@@ -1,3 +1,4 @@
+![alt text](SKRTLOGO3.png "Logo Title")
 #SKRT
 
 ## Introduction
