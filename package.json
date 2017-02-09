@@ -1,0 +1,19 @@
+{
+  "name": "skrt",
+  "version": "1.0.0",
+  "description": "SKRT compiler/interpreter",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronyaguilar09/SKRT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronyaguilar09/SKRT/issues"
+  },
+  "homepage": "https://github.com/ronyaguilar09/SKRT#readme"
+}
