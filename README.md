@@ -1,5 +1,4 @@
-![alt text](SKRTLOGO3.png "Logo Title")
-#SKRT
+              ![alt text](SKRTLOGO3.png "Logo Title")
 
 ## Introduction
 A functional, immutable, and statically-typed language. Feels like JavaScript, works like OCaml. SKRT possesses powerful features such as Pattern Matching, Type Inference, First-Class Functions. SKRT out programs real quick, and whip onto the next project with skid marks.
