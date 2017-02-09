@@ -1,3 +1,5 @@
+#SKRT
+
 ## Introduction
 A functional, immutable, and statically-typed language. Feels like JavaScript, works like OCaml. SKRT possesses powerful features such as Pattern Matching, Type Inference, First-Class Functions. SKRT out programs real quick, and whip onto the next project with skid marks.
 
@@ -17,8 +19,8 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
 ```
 
   Program     =  Body
-  Body        =  (Stmts)+
-  Stmts       =  Def                      -- assignment
+  Body        =  (Stmts)*
+  Stmts       =  Def                      
               |  If                       
               |  For
               |  Exp
@@ -44,7 +46,7 @@ Exp7          = Exp8("." Exp8)?
 Exp8          = Prim ? "("Exp")"
 Prim          = bool|int|string|float|id|char|obj
 ```
-## Features
+## Example Programs
 
 ### Comments
 
