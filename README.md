@@ -51,31 +51,31 @@ Prim          = bool|int|string|float|id|char|obj
 ### Comments
 
 ```
-~ This is a single line comment
-~| This is a multiple line comment
-    comments
-    comments
-|~
+~ This is a single line comment               JS Example #1
+~| This is a multiple line comment            // This is a single line comment
+    comments                                  /* This is a multiple line comment
+    comments                                     More comments….
+|~                                            /*
 ```
 
 ### Assignments
 
 ```
-def int: x = 5;   ~Type Assertion
+def int: x = 5;   ~Type Assertion            console.log(“Hello” + “ World”);
 def y = 1;
 def x,y = 5,10;
 ```
 
 ### Printing
 ```
-print(“Hello” + “ World”);
+print(“Hello” + “ World”);                   let x = 5
 ```
 
 ### Function
 ```
-def add x y = {
-    x + y;
-}
+def add x y = {                              function add (x, y) {
+    x + y;                                      return x + y;
+}                                            }
 ```
 
 ### Object Declaration
@@ -90,15 +90,15 @@ type obj = {
 ### Tuples
 
 ```
-def tup = (“Max”,  21);
+def tup = (“Max”,  21);                    tuple = [“Max”, 21];
 ```
 
 ### Recursion
 
 ```
-def rec fib (n : int) : int list = {
-    match n with
-    | 0 -> 0
+def rec fib (n : int) : int list = {        
+    match n with                            
+    | 0 -> 0                                
     | 1 -> 1
     | n -> fib (n-1) + fib (n-2)
 };
@@ -106,13 +106,13 @@ def rec fib (n : int) : int list = {
 
 ### If Else Statements
 ```
-Def addOrSub x y z = {
-    if  (x = 0) {
-        y + z;
-    } else if (x = 1) {
-        y - z;
-    } else {
-        print("Error");
-    }
+Def addOrSub x y z = {                     function addOrSub(x, y, z) {
+    if  (x = 0) {                             if (x=0) {
+        y + z;                                  return y + z;
+    } else if (x = 1) {                       } else if (x = 1) {
+        y - z;                                  return y-z;
+    } else {                                  } else {
+        print("Error");                         return;
+    }                                      }
 }
 ```
