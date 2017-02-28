@@ -2,7 +2,7 @@
   "name": "skrt",
   "version": "1.0.0",
   "description": "SKRT compiler/interpreter",
-  "main": "index.js",
+  "main": "skrt.ohm",
   "scripts": {
     "test": "./node_modules/.bin/mocha"
   },
