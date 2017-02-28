@@ -13,3 +13,13 @@ describe('One Line Expression Test:', function () {
         assert.equal(true, m.succeeded());
     });
 });
+
+var userInput = 'def filip = 69;';
+var m = myGrammar.match(userInput);
+
+describe('One Line Expression Test:', function () {
+    it("should return true for 'def filip = 69'", function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
