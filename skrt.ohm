@@ -1,20 +1,22 @@
 SKRT {
     Program     =  Body
-    Body        = (Stmts)*
+    Body        =  Stmts
     Stmts       =  Def
                 |  If
                 |  For
                 |  Exp
                 |  Match
-    Def         = "def" id "=" Exp";"
-                | "def" id "=> {" Body "}"
-                | "def" Prim ":" id "=" Exp";"
-                | "type" id "= {" Obj "}"
-    If          = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
-                | "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
-    For         = "for" id "from" Exp "to" Exp "{"Body"}"
+    Def         = VarDef | FunDef | CamlDef | TypeDef
+    VarDef      = "def" id "=" Exp ";"
+    FunDef      = "def" id "=>" "{" Body "}"
+    CamlDef     = "def" Prim ":" id "=" Exp";"
+    TypeDef     = "type" id "=" "{" Obj "}"
+    If          = IfElse | Else
+    Else        = "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
+    IfElse	    = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
+    For         = "for" id "from" Exp "to" Exp "{" Body "}"
     Match       = "match" "(" Exp ")" "with" "\n" MatchBlock
-    MatchBlock  = ("|" MatchPat "=>" Stmt)+
+    MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp|"_"
     Exp         = Exp1("or" Exp)*
     Exp1        = Exp2("and" Exp1)*
@@ -24,7 +26,8 @@ SKRT {
     Exp5        = Exp6(preop Exp6)?
     Exp6        = Exp7("**" Exp7)*
     Exp7        = Exp8("." Exp8)?
-    Exp8        = Prim ? "("Exp")"
+    Exp8        = Prim? | Exp9
+    Exp9 		= "(" Exp ")"
     Prim        = bool|int|string|float|id|char
     Obj         = "{" (id ":" Exp ",")* "}"
 
@@ -32,7 +35,7 @@ SKRT {
     int         = digit+
     string      = any+
     float       = digit* "." digit+
-    id          = ~keyword
+    id          = ~keyword alnum+
     char        = any
     relop       = "<"|">"|"<="|"=="|">="|"!="
     addop       = "+" | "-"
