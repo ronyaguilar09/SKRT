@@ -1,0 +1,37 @@
+SKRT {
+    Program     =  Body
+    Body        =  (Stmts)*
+    Stmts       =  Def
+                |  If
+                |  For
+                |  Exp
+                |  Match
+    Def         = "def" id "=" Exp";"
+                | "def" id "=> {" Body "}"
+                | "def" Prim ":" id "=" Exp";"
+                | "type" id "= {" Obj "}"
+    If          = "if""("Exp")" "{"Body"}"("else if""("Exp")" "{" Body "}")*
+                | "if""("Exp")" "{"Body"}"("else" {" Body "}")?
+    For         = "for" id "from" Exp "to" Exp "{"Body"}"
+    Match       = "match" "("Exp")""watch""\n" MatchBlock
+    MatchBlock  = ("|" MatchPat "=>" Stmt)+
+    MatchPat    = Exp|"_"
+    Exp         = Exp1("or" Exp)*
+    Exp1        = Exp2("and" Exp1)*
+    Exp2        = Exp3(relop Exp2)*
+    Exp3        = Exp4(addop Exp3)*
+    Exp4        = Exp5(mulop Exp4)*
+    Exp5        = Exp6(preop Exp6)?
+    Exp6        = Exp7("**" Exp7)*
+    Exp7        = Exp8("." Exp8)?
+    Exp8        = Prim ? "("Exp")"
+    Prim        = bool|int|string|float|id|char
+    Obj         =
+
+    bool        = "true" | "false"
+    int         = digit+
+    string      = any+
+    float       = digit* "." digit+
+    id          = ~keyword
+    char        = any
+}
