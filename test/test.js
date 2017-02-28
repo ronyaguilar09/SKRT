@@ -15,8 +15,8 @@ describe('One Line Expression Test:', function () {
     });
 });
 
-var userInput = 'def filip = 69;';
-var m = myGrammar.match(userInput);
+userInput = 'def filip = 69;';
+m = myGrammar.match(userInput);
 
 describe('One Line Expression Test:', function () {
     it("should return true for 'def filip = 69'", function () {
