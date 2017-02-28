@@ -1,7 +1,7 @@
 const ohm = require('../node_modules/ohm-js');
 const fs = require('fs');
 
-const contents = fs.readFileSync('../skrt.ohm');
+const contents = fs.readFileSync('skrt.ohm');
 const myGrammar = ohm.grammar(contents);
 
 const userInput = 'def x = 5;';
