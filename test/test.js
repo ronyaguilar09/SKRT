@@ -27,11 +27,23 @@ describe('One Line Expression Test:', function () {
 
 userInput = `def x = 5;
              def y = x;
-             x + y`
+             x + y`;
 m = myGrammar.match(userInput);
 
 describe('Multi Line Expression Test:', function () {
     it("should return true for `def x = 5;\n def y = x;\n x + y`", function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
+
+userInput = `for x from 0 to 10 {
+                x + x
+            }`;
+m = myGrammar.match(userInput);
+
+describe('For expressions', function () {
+    it(`should return true for a "for" loop statement`, function () {
         const m = myGrammar.match(userInput);
         assert.equal(true, m.succeeded());
     });
