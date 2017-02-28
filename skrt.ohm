@@ -1,6 +1,6 @@
 SKRT {
     Program     =  Body
-    Body        =  Stmts
+    Body        =  Stmts*
     Stmts       =  Def
                 |  If
                 |  For
@@ -26,7 +26,7 @@ SKRT {
     Exp5        = Exp6(preop Exp6)?
     Exp6        = Exp7("**" Exp7)*
     Exp7        = Exp8("." Exp8)?
-    Exp8        = Prim? | Exp9
+    Exp8        = Prim | Exp9
     Exp9 		= "(" Exp ")"
     Prim        = bool|int|string|float|id|char
     Obj         = "{" (id ":" Exp ",")* "}"
