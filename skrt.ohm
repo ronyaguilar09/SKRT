@@ -10,8 +10,8 @@ SKRT {
                 | "def" id "=> {" Body "}"
                 | "def" Prim ":" id "=" Exp";"
                 | "type" id "= {" Obj "}"
-    If          = "if""("Exp")" "{"Body"}"("else if""("Exp")" "{" Body "}")*
-                | "if""("Exp")" "{"Body"}"("else" {" Body "}")?
+    If          = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
+                | "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
     For         = "for" id "from" Exp "to" Exp "{"Body"}"
     Match       = "match" "("Exp")""watch""\n" MatchBlock
     MatchBlock  = ("|" MatchPat "=>" Stmt)+
@@ -26,7 +26,7 @@ SKRT {
     Exp7        = Exp8("." Exp8)?
     Exp8        = Prim ? "("Exp")"
     Prim        = bool|int|string|float|id|char
-    Obj         =
+    Obj         = "{" (id ":" Exp ","")"* "}"
 
     bool        = "true" | "false"
     int         = digit+
