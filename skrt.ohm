@@ -33,9 +33,9 @@ SKRT {
 
     bool        = "true" | "false"
     int         = digit+
-    string      = any+
+    string      = "\"" any+ "\""
     float       = digit* "." digit+
-    id          = ~keyword alnum+
+    id          = ~keyword ~string alnum+
     char        = any
     relop       = "<"|">"|"<="|"=="|">="|"!="
     addop       = "+" | "-"
