@@ -9,9 +9,7 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
 - First-Class Functions
 - Pattern Matching
 - Recursion
-- .SKRT file extension
 - Tuples
-- Loops
 - Destructuring
 
 ### Macrosyntax
@@ -67,7 +65,7 @@ def x,y = 5,10;
 
 ### Printing
 ```
-print(“Hello” + “ World”);                   let x = 5
+print(“Hello” + “ World”);                   let x = 5;
 ```
 
 ### Function
@@ -100,18 +98,19 @@ def rec fib (n : int) : int list = {
     | 0 -> 0                                
     | 1 -> 1
     | n -> fib (n-1) + fib (n-2)
-};
+}
 ```
 
 ### If Else Statements
 ```
-Def addOrSub x y z = {                     function addOrSub(x, y, z) {
+def addOrSub x y z = {                     function addOrSub(x, y, z) {
     if  (x = 0) {                             if (x=0) {
         y + z;                                  return y + z;
     } else if (x = 1) {                       } else if (x = 1) {
         y - z;                                  return y-z;
     } else {                                  } else {
         print("Error");                         return;
-    }                                      }
+    }                                      	  }
+    									   {
 }
 ```
