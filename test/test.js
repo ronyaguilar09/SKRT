@@ -24,3 +24,15 @@ describe('One Line Expression Test:', function () {
         assert.equal(true, m.succeeded());
     });
 });
+
+userInput = `def x = 5;
+             def y = x;
+             x + y`
+m = myGrammar.match(userInput);
+
+describe('Multi Line Expression Test:', function () {
+    it("should return true for `def x = 5;\n def y = x;\n x + y`", function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
