@@ -1,4 +1,4 @@
-const ohm = require('ohm-js');
+const ohm = require('../node_modules/ohm-js');
 const fs = require('fs');
 
 const contents = fs.readFileSync('../skrt.ohm');
