@@ -48,3 +48,51 @@ describe('For expressions', function () {
         assert.equal(true, m.succeeded());
     });
 });
+
+userInput = `def add => {
+                1+2
+            }`;
+m = myGrammar.match(userInput);
+
+describe('Function declaration', function () {
+    it(`should return true for a function declaration`, function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
+
+userInput = `type Car = {
+                owner : Rony,
+                price : 10000000,
+            }`;
+m = myGrammar.match(userInput);
+describe('Type/Class declaration', function () {
+    it(`should return true for a Type/Class declaration`, function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
+
+userInput = `if(y<0){
+                def x = 1;
+            } else if(y < 10){
+                def x = 2;
+            }`;
+m = myGrammar.match(userInput);
+describe('if and else statements', function () {
+    it(`should return true for a if statement`, function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
+
+userInput = `match(x) with
+            | _ => 1
+            | 1 => 2`
+m = myGrammar.match(userInput);
+describe('match statements', function () {
+    it(`should return true for a match statement`, function () {
+        const m = myGrammar.match(userInput);
+        assert.equal(true, m.succeeded());
+    });
+});
