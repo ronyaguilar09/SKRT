@@ -1,6 +1,6 @@
 SKRT {
     Program     =  Body
-    Body        =  (Stmts)*
+    Body        = (Stmts)*
     Stmts       =  Def
                 |  If
                 |  For
@@ -13,7 +13,7 @@ SKRT {
     If          = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
                 | "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
     For         = "for" id "from" Exp "to" Exp "{"Body"}"
-    Match       = "match" "("Exp")""watch""\n" MatchBlock
+    Match       = "match" "(" Exp ")" "with" "\n" MatchBlock
     MatchBlock  = ("|" MatchPat "=>" Stmt)+
     MatchPat    = Exp|"_"
     Exp         = Exp1("or" Exp)*
@@ -34,4 +34,9 @@ SKRT {
     float       = digit* "." digit+
     id          = ~keyword
     char        = any
+    relop       = "<"|">"|"<="|"=="|">="|"!="
+    addop       = "+" | "-"
+    mulop       = "*" | "/" | "%"
+    preop       = "-" | "!"
+    keyword     = "for" | "match" | "def" | "type" | "from" | "to" | "with"
 }
