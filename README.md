@@ -78,10 +78,10 @@ def add x y = {                              function add (x, y) {
 ### Object Declaration
 
 ```
-type obj = {
-    name: "John",
-    age: 32
-}
+type obj = {                                 var car = {
+    name: "John",                              type:"Fiat",
+    age: 32                                    color:"white"
+}                                            };
 ```
 
 ### Tuples
@@ -93,13 +93,13 @@ def tup = (“Max”,  21);                    tuple = [“Max”, 21];
 ### Recursion
 
 ```
-def rec fib (n : int) : int list = {        
-    match n with                            
-    | 0 -> 0                                
-    | 1 -> 1
-    | n -> fib (n-1) + fib (n-2)
-}
-```
+def rec fib (n : int) : int list = {   function fibonacci(n) {
+    match n with                          if (n < 2){        
+    | 0 -> 0                                return 1;
+    | 1 -> 1                              } else{
+    | n -> fib (n-1) + fib (n-2)            return fibonacci(n-2) + fibonacci(n-1);
+}                                         }
+```                                     }
 
 ### If Else Statements
 ```
