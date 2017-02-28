@@ -38,5 +38,5 @@ SKRT {
     addop       = "+" | "-"
     mulop       = "*" | "/" | "%"
     preop       = "-" | "!"
-    keyword     = "for" | "match" | "def" | "type" | "from" | "to" | "with"
+    keyword     = "for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false"
 }
