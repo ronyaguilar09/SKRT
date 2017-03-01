@@ -42,7 +42,7 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
     Exp6        = Exp7("**" Exp7)*
     Exp7        = Exp8("." Exp8)?
     Exp8        = Prim | Exp9
-    Exp9 		= "(" Exp ")"
+    Exp9 		    = "(" Exp ")"
     Prim        = bool|int|string|float|id|char
     Obj         = "{" (id ":" Exp ",")* "}"
 
