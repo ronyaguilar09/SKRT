@@ -14,34 +14,49 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
 
 ### Macrosyntax
 ```
+    Program     =  Body
+    Body        =  Stmts*
+    Stmts       =  Def
+                |  If
+                |  For
+                |  Exp
+                |  Match
+    Def         = VarDef | FunDef | CamlDef | TypeDef
+    VarDef      = "def" id "=" Exp ";"
+    FunDef      = "def" id "=>" "{" Body "}"
+    CamlDef     = "def" Prim ":" id "=" Exp";"
+    TypeDef     = "type" id "=" "{" Obj "}"
+    If          = IfElse | Else
+    Else        = "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
+    IfElse	    = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
+    For         = "for" id "from" Exp "to" Exp "{" Body "}"
+    Match       = "match" "(" Exp ")" "with" "\n" MatchBlock
+    MatchBlock  = ("|" MatchPat "=>" Stmts)+
+    MatchPat    = Exp|"_"
+    Exp         = Exp1("or" Exp)*
+    Exp1        = Exp2("and" Exp1)*
+    Exp2        = Exp3(relop Exp2)*
+    Exp3        = Exp4(addop Exp3)*
+    Exp4        = Exp5(mulop Exp4)*
+    Exp5        = Exp6(preop Exp6)?
+    Exp6        = Exp7("**" Exp7)*
+    Exp7        = Exp8("." Exp8)?
+    Exp8        = Prim | Exp9
+    Exp9 		= "(" Exp ")"
+    Prim        = bool|int|string|float|id|char
+    Obj         = "{" (id ":" Exp ",")* "}"
 
-  Program     =  Body
-  Body        =  (Stmts)*
-  Stmts       =  Def                      
-              |  If                       
-              |  For
-              |  Exp
-              |  Match
-Def           = "def" id "=" Exp";"
-              | "def" id "=> {" Body "}"
-              | "def" Prim ":" id "=" Exp";"
-              | "type" id "= {" Obj "}"
-If            = "if""("Exp")" "{"Body"}"("else if""("Exp")" "{" Body "}")*
-              | "if""("Exp")" "{"Body"}"("else" {" Body "}")?
-For           = "for" id "from" Exp "to" Exp "{"Body"}"
-Match         = "match" "("Exp")""watch""\n" MatchBlock
-MatchBlock    = ("|" MatchPat "=>" Stmt)+
-MatchPat      = Exp|"_"
-Exp           = Exp1("or" Exp)*
-Exp1          = Exp2("and" Exp1)*
-Exp2          = Exp3(relop Exp2)*
-Exp3          = Exp4(addop Exp3)*
-Exp4          = Exp5(mulop Exp4)*
-Exp5          = Exp6(preop Exp6)?
-Exp6          = Exp7("**" Exp7)*
-Exp7          = Exp8("." Exp8)?
-Exp8          = Prim ? "("Exp")"
-Prim          = bool|int|string|float|id|char|obj
+    bool        = "true" | "false"
+    int         = digit+
+    string      = "\"" any+ "\""
+    float       = digit* "." digit+
+    id          = ~keyword ~string alnum+
+    char        = any
+    relop       = "<"|">"|"<="|"=="|">="|"!="
+    addop       = "+" | "-"
+    mulop       = "*" | "/" | "%"
+    preop       = "-" | "!"
+    keyword     = "for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print"
 ```
 ## Example Programs
 
@@ -58,14 +73,14 @@ Prim          = bool|int|string|float|id|char|obj
 ### Assignments
 
 ```
-def int: x = 5;   ~Type Assertion            console.log(“Hello” + “ World”);
+def int: x = 5;   ~Type Assertion            let x = 5;
 def y = 1;
 def x,y = 5,10;
 ```
 
 ### Printing
 ```
-print(“Hello” + “ World”);                   let x = 5;
+print(“Hello” + “ World”);                   console.log(“Hello” + “ World”);
 ```
 
 ### Function
@@ -78,7 +93,7 @@ def add x y = {                              function add (x, y) {
 ### Object Declaration
 
 ```
-type obj = {                                 var car = {
+def obj = {                                 var car = {
     name: "John",                              type:"Fiat",
     age: 32                                    color:"white"
 }                                            };
@@ -99,9 +114,11 @@ def rec fib (n : int) : int list = {   function fibonacci(n) {
     | 1 -> 1                              } else{
     | n -> fib (n-1) + fib (n-2)            return fibonacci(n-2) + fibonacci(n-1);
 }                                         }
-```                                     }
+                                    }
+```
 
 ### If Else Statements
+
 ```
 def addOrSub x y z = {                     function addOrSub(x, y, z) {
     if  (x = 0) {                             if (x=0) {
