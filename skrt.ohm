@@ -9,11 +9,11 @@ SKRT {
     Def         = VarDef | FunDef | CamlDef | TypeDef
     VarDef      = "def" id "=" Exp ";"
     FunDef      = "def" id "=>" "{" Body "}"
-    CamlDef     = "def" Prim ":" id "=" Exp";"
+    CamlDef     = "def" Prim ":" id "=" Exp";" // dont restrict just to primitive types here
     TypeDef     = "type" id "=" "{" Obj "}"
     If          = IfElse | Else
-    Else        = "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")?
-    IfElse	    = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )*
+    Else        = "if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? // make tighter, ARITY --
+    IfElse	    = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* // OHM EXAMPLE PAGE
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
     Match       = "match" "(" Exp ")" "with" "\n" MatchBlock
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
@@ -27,7 +27,7 @@ SKRT {
     Exp6        = Exp7("**" Exp7)*
     Exp7        = Exp8("." Exp8)?
     Exp8        = Prim | Exp9
-    Exp9 		= "(" Exp ")"
+    Exp9 	    	= "(" Exp ")"
     Prim        = bool|int|string|float|id|char
     Obj         = "{" (id ":" Exp ",")* "}"
 
@@ -36,10 +36,17 @@ SKRT {
     string      = "\"" any+ "\""
     float       = digit* "." digit+
     id          = ~keyword ~string alnum+
-    char        = any
+    char        = any // characters in string, notes fo HW1 answers
     relop       = "<"|">"|"<="|"=="|">="|"!="
     addop       = "+" | "-"
     mulop       = "*" | "/" | "%"
     preop       = "-" | "!"
     keyword     = "for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print"
 }
+// should be able to assign (missed it)
+// match into expressions
+// arity dash dash
+// Tuples
+// def (int, string)x = (3,"hi");
+// tilda at the end of keywords
+// c
