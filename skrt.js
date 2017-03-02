@@ -279,5 +279,6 @@ class Object {
 const semantics = skrtGrammar.createSemantics().addOperation('tree',{
     Program(body) {return new Program(body.tree());},
     Body(stmt) {return new Body(stmt.tree());},
-    Stmts(def,if,for,exp) {return }
-})
+    Stmts(stmt) {return new Statement(stmt.tree())},
+    VarDef(_,id,_,exp,_) {return new VariableDefinition(_,id.tree(),_,exp.tree())}
+});
