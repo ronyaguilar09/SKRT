@@ -12,7 +12,7 @@ const skrtGrammar = ohm.grammar(`SKRT {
     VarDef      = "def" id "=" Exp ";"
     FunDef      = "def" id "=>" "{" Body "}"
     CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
-    ObjDef     = "type" id "=" Obj
+    ObjDef      = "type" id "=" Obj
     IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")? --ifelse
     			  |"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									   --else
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
@@ -96,8 +96,31 @@ class StructDefinition extends Definition{
 }
 
 class FunctionDefinition extends Definition {
-    constructor()
+    constructor(_,id,_,_,body,_){
+        super();
+        this.id = id;
+        this.body = body;
+    }
 }
+
+class AssertDefinition extends Definition {
+    constructor(_,type,_,id,_,exp,_){
+        super();
+        this.type = type;
+        this.id = id;
+        this.body = body;
+    }
+}
+
+class ObjectDefinition extends Definition {
+    constructor(_,id,_,obj){
+        super();
+        this.id = id;
+        this.obj = obj;
+    }
+}
+
+
 
 const semantics = skrtGrammar.createSemantics().addOperation('tree',{
     Program(body) {return new Program(body.tree());},

@@ -18,8 +18,7 @@ SKRT {
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp|"_"
     StructId	= id | Tuple
-    Exp         = Exp1("or" Exp)*
-    Exp1        = Exp2("and" Exp1)*
+    Exp         = Exp2(logop Exp)*
     Exp2        = Exp3(relop Exp2)*
     Exp3        = Exp4(addop Exp3)*
     Exp4        = Exp5(mulop Exp4)*
@@ -43,6 +42,7 @@ SKRT {
     charlit     = "\'"any"\'" // characters in string, notes fo HW1 answers
     char		= escape
     			 |~"\\" ~"\"" ~"'" ~"\n" any
+    logop       = "and" | "or"
     relop       = "<"|">"|"<="|"=="|">="|"!="
     addop       = "+" | "-"
     mulop       = "*" | "/" | "%"
