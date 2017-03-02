@@ -147,8 +147,65 @@ class NumericLiteral  extends Expression {
   }
 }
 
+class IfElse {
+    constructor(_,_,cond1,_body1,_,_,_,cond2,_,_,body2,_,_,_,body3,_){
+        this.cond1 = cond1;
+        this.body1 = body1;
+        this.cond2 = cond2;
+        this.body2 = body2;
+        this.body3 = body3;
+    }
+}
 
+class Else {
+    constructor(_,_,exp1,_,_,body1,_,_,_,body2,_){
+        this.exp1 = exp1;
+        this.body1 = body1;
+        this.body2 = body2;
+    }
+}
 
+class Match {
+    constructor(_,_,exp,_,_,mblock){
+        this.exp = exp;
+        this.block = mblock;
+    }
+}
+
+class MatchBlock {
+    constructor(_,pattern,_,stmt){
+        this.pattern = pattern;
+        this.stmt = stmt;
+    }
+}
+
+class MatchPattern {
+    constructor(exp){
+        this.exp = exp;
+    }
+}
+
+class StructId {
+    constructor(id){
+        this.id = id;
+    }
+}
+
+class Type {
+    constructor(type){
+        this.type = type;
+    }
+}
+
+class Primitive{
+    constructor(prim){
+        this.value = prim;
+    }
+}
+// Objects, Tuples and Lists, how do we store into constructor?
+class Object {
+    constructor(_)
+}
 
 const semantics = skrtGrammar.createSemantics().addOperation('tree',{
     Program(body) {return new Program(body.tree());},
