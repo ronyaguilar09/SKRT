@@ -1,4 +1,6 @@
-SKRT {
+const ohm = require('ohm-js');
+
+const skrtGrammar = ohm.grammar(`SKRT {
     Program     =  Body
     Body        =  Stmts*
     Stmts       =  Def
@@ -6,7 +8,7 @@ SKRT {
                 |  For
                 |  Exp
     Def         = VarDef | FunDef | CamlDef | ObjDef | StructDef
-    StructDef	= "def" StructId "=" (Tuple|id) ";"
+    StructDef	= "def" StructId "=" StructId ";"
     VarDef      = "def" id "=" Exp ";"
     FunDef      = "def" id "=>" "{" Body "}"
     CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
@@ -50,4 +52,55 @@ SKRT {
     keyword     = ("for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print") ~idrest
     escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
     			| "\\u{"hexDigit+"}"								-- codepoint
+}`);
+
+class Program {
+    constuctor(body){
+        this.body = body;
+    }
 }
+
+class Body {
+    constructor(stmts){
+        this.statement = stmts;
+    }
+}
+
+class Statement {
+    constructor(def,ifelse,forloop,exp){
+        this.def = def;
+        this.if = ifelse;
+        this.for = forloop;
+        this.exp = exp;
+    }
+}
+
+class Definition {
+
+}
+
+class VariableDefinition extends Definition{
+    constructor(_, id, _, exp, _){
+        super();
+        this.id = id;
+        this.exp = exp;
+    }
+}
+
+class StructDefinition extends Definition{
+    constructor(_,id,_,struct,_){
+        super();
+        this.id = id;
+        this.struct = struct;
+    }
+}
+
+class FunctionDefinition extends Definition {
+    constructor()
+}
+
+const semantics = skrtGrammar.createSemantics().addOperation('tree',{
+    Program(body) {return new Program(body.tree());},
+    Body(stmt) {return new Body(stmt.tree());},
+    Stmts(def,if,for,exp) {return }
+})
