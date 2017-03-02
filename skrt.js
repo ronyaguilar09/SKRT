@@ -14,12 +14,12 @@ const skrtGrammar = ohm.grammar(`SKRT {
     CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
     ObjDef      = "type" id "=" Obj
     IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")? --ifelse
-    			         |"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									   --else
+    			  |"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									   --else
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
     Match       = "match" "(" Exp ")" "with" MatchBlock
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp|"_"
-    StructId	  = id | Tuple
+    StructId	= id | Tuple
     Exp         = Exp1("or" Exp)*
     Exp1        = Exp2("and" Exp1)*
     Exp2        = Exp3(relop Exp2)*
@@ -29,29 +29,29 @@ const skrtGrammar = ohm.grammar(`SKRT {
     Exp6        = Exp7("**" Exp7)*
     Exp7        = Exp8("." Exp8)?
     Exp8        = Type | Match | Exp9
-    Exp9 	      = "(" Exp ")"
-    Type		    = Prim | Tuple | List
+    Exp9 	    = "(" Exp ")"
+    Type	    = Prim | Tuple | List
     Prim        = bool|int|stringlit|float|id|charlit
     Obj         = "{" (~(id ":" Exp "}" ) (id ":" Exp "," ))* (id ":" Exp "}" )
     Tuple       = "(" (~(Exp ")")(Exp","))* (Exp ")")
-    List		    = "[" (~(Exp ")")(Exp ","))* (Exp "]")
+    List		= "[" (~(Exp ")")(Exp ","))* (Exp "]")
 
     bool        = "true" | "false"
     int         = digit+
     stringlit   = "\"" (char|"\'")* "\""
     float       = digit* "." digit+
     id          = ~keyword letter idrest*
-    idrest		  = "_" | alnum
+    idrest		= "_" | alnum
     charlit     = "\'"any"\'" // characters in string, notes fo HW1 answers
-    char		    = escape
-    			        |~"\\" ~"\"" ~"'" ~"\n" any
+    char	    = escape
+    			  |~"\\" ~"\"" ~"'" ~"\n" any
     relop       = "<"|">"|"<="|"=="|">="|"!="
     addop       = "+" | "-"
     mulop       = "*" | "/" | "%"
     preop       = "-" | "!"
     keyword     = ("for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print") ~idrest
-    escape		  = "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-    			        | "\\u{"hexDigit+"}"								-- codepoint
+    escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
+    		    | "\\u{"hexDigit+"}"								-- codepoint
 }`);
 
 class Program {

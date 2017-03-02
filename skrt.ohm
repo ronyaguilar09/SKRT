@@ -10,7 +10,7 @@ SKRT {
     VarDef      = "def" id "=" Exp ";"
     FunDef      = "def" id "=>" "{" Body "}"
     CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
-    ObjDef     = "type" id "=" Obj
+    ObjDef      = "type" id "=" Obj
     IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")? --ifelse
     			  |"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									   --else
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
