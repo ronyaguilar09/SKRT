@@ -58,20 +58,26 @@ class Program {
     constuctor(body){
         this.body = body;
     }
+    toString(){
+        return ("( Program: " + this.body + " )");
+    }
 }
 
 class Body {
     constructor(stmts){
         this.statement = stmts;
     }
+    toString(){
+        return ("( Body: " + this.statement + " )");
+    }
 }
 
 class Statement {
-    constructor(def,ifelse,forloop,exp){
-        this.def = def;
-        this.if = ifelse;
-        this.for = forloop;
-        this.exp = exp;
+    constructor(stmt){
+        this.statement = stmt;
+    }
+    toString(){
+        return ("( Statement: " + this.statement + " )");
     }
 }
 
@@ -85,6 +91,9 @@ class VariableDefinition extends Definition{
         this.id = id;
         this.exp = exp;
     }
+    toString(){
+        return ("( Var: " + this.id + " = " + this.exp + " )");
+    }
 }
 
 class StructDefinition extends Definition{
@@ -92,6 +101,9 @@ class StructDefinition extends Definition{
         super();
         this.id = id;
         this.struct = struct;
+    }
+    toString(){
+        return ("( Id: " + this.id + " = " + "( " + this.struct + " ) )");
     }
 }
 
@@ -101,6 +113,9 @@ class FunctionDefinition extends Definition {
         this.id = id;
         this.body = body;
     }
+    toString(){
+        return ("( Func: " + this.id + " = " + this.body + " )");
+    }
 }
 
 class AssertDefinition extends Definition {
@@ -108,7 +123,10 @@ class AssertDefinition extends Definition {
         super();
         this.type = type;
         this.id = id;
-        this.body = body;
+        this.exp = exp;
+    }
+    toString(){
+        return ("( Var: " + this.id + " ofType: " + this.type " = " + this.exp + " )");
     }
 }
 
@@ -117,6 +135,9 @@ class ObjectDefinition extends Definition {
         super();
         this.id = id;
         this.obj = obj;
+    }
+    toString(){
+        return ("( Obj: " + this.id + " = " + this.obj + " )");
     }
 }
 
@@ -128,7 +149,10 @@ class BinaryExpression  extends Expression {
   	super();
   	this.left = left;
   	this.op = op;
-  	this. right = right;
+  	this.right = right;
+  }
+  toString(){
+      return ("( " + this.left + this.op + this.right + " )");
   }
 }
 
@@ -136,14 +160,32 @@ class UnaryExpression  extends Expression {
 	constructor(op, operand) {
   	super();
   	this.op = op;
-  	this. operand = operand;
+  	this.operand = operand;
   }
+  toString(){
+      return ("( " + this.op + this.operand + " )");
+  }
+}
+
+class ParensExpression extends Expression {
+    constructor(p1, exp, p2){
+        super();
+        this.p1 = p1;
+        this.exp = exp;
+        this.p2 = p2;
+    }
+    toString(){
+        return ("( " + this.exp + " )");
+    }
 }
 
 class NumericLiteral  extends Expression {
 	constructor(value) {
   	super();
   	this.value = value;
+  }
+  toString(){
+      return ("( " + this.value + " )");
   }
 }
 
@@ -155,6 +197,11 @@ class IfElse {
         this.body2 = body2;
         this.body3 = body3;
     }
+    toString(){
+        return ("If: " + this.cond1 + " Body: " + this.body1 +
+                " IfElse: " + this.cond2 + " Body2: " + this.body2 +
+                " Else: " + this.body3 + " )");
+    }
 }
 
 class Else {
@@ -163,12 +210,19 @@ class Else {
         this.body1 = body1;
         this.body2 = body2;
     }
+    toString(){
+        return ("( If: " + this.exp1 + " Body: " + this.body1 +
+                " Else: " + this.body2+ " )");
+    }
 }
 
 class Match {
     constructor(_,_,exp,_,_,mblock){
         this.exp = exp;
         this.block = mblock;
+    }
+    toString(){
+        return ("( Match: " + this.exp + " Block: " + this.block + " )");
     }
 }
 
@@ -177,11 +231,17 @@ class MatchBlock {
         this.pattern = pattern;
         this.stmt = stmt;
     }
+    toString(){
+        return ("( MatchPattern: " + this.pattern + " Statement: " + this.stmt + " )");
+    }
 }
 
 class MatchPattern {
     constructor(exp){
         this.exp = exp;
+    }
+    toString(){
+        return ("( Pattern: " + this.exp + " )");
     }
 }
 
@@ -189,17 +249,26 @@ class StructId {
     constructor(id){
         this.id = id;
     }
+    toString(){
+        return ("( " + this.id + " )");
+    }
 }
 
 class Type {
     constructor(type){
         this.type = type;
     }
+    toString(){
+        return ("( " + this.type + " )");
+    }
 }
 
 class Primitive{
     constructor(prim){
         this.value = prim;
+    }
+    toString(){
+        return ("( " + this.value + " )");
     }
 }
 // Objects, Tuples and Lists, how do we store into constructor?
