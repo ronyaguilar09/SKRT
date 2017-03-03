@@ -1,5 +1,1 @@
-"def y = 1;
-
-SKKKKKKRRRRRRRTTTTTTTT
-
-"
+"def y = 1;"
