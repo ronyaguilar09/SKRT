@@ -59,7 +59,7 @@ class Program {
     this.body = body;
   }
   toString() {
-    return ("( Program: " + this.body + " )");
+    return (`( Program: ${this.body} )`);
   }
 }
 
@@ -68,7 +68,7 @@ class Body {
     this.statement = stmts;
   }
   toString() {
-    return ("( Body: " + this.statement + " )");
+    return (`( Body: ${this.statement} )`);
   }
 }
 
@@ -77,7 +77,7 @@ class Statement {
     this.statement = stmt;
   }
   toString() {
-    return ("( Statement: " + this.statement + " )");
+    return (`( Statement: ${this.statement} )`);
   }
 }
 
@@ -92,7 +92,7 @@ class VariableDefinition extends Definition {
     this.exp = exp;
   }
   toString() {
-    return ("( Var: " + this.id + " = " + this.exp + " )");
+    return (`( Var: ${this.id} = ${this.exp} )`);
   }
 }
 
@@ -103,7 +103,7 @@ class StructDefinition extends Definition {
     this.struct = struct;
   }
   toString() {
-    return ("( Id: " + this.id + " = " + "( " + this.struct + " ) )");
+    return (`( Id: ${this.id} = ` + `( ${this.struct} ) )`);
   }
 }
 
@@ -114,7 +114,7 @@ class FunctionDefinition extends Definition {
     this.body = body;
   }
   toString() {
-    return ("( Func: " + this.id + " = " + this.body + " )");
+    return (`( Func: ${this.id} = ${this.body} )`);
   }
 }
 
@@ -126,7 +126,7 @@ class AssertDefinition extends Definition {
     this.exp = exp;
   }
   toString() {
-    return ("( Var: " + this.id + " ofType: " + this.type + " = " + this.exp + " )");
+    return (`( Var: ${this.id} ofType: ${this.type} = ${this.exp} )`);
   }
 }
 
@@ -137,7 +137,7 @@ class ObjectDefinition extends Definition {
     this.obj = obj;
   }
   toString() {
-    return ("( Obj: " + this.id + " = " + this.obj + " )");
+    return (`( Obj: ${this.id} = ${this.obj} )`);
   }
 }
 
@@ -152,7 +152,7 @@ class BinaryExpression extends Expression {
     this.right = right;
   }
   toString() {
-    return ("( " + this.left + this.op + this.right + " )");
+    return (`( ${this.left}${this.op}${this.right} )`);
   }
 }
 
@@ -163,7 +163,7 @@ class UnaryExpression extends Expression {
     this.operand = operand;
   }
   toString() {
-    return ("( " + this.op + this.operand + " )");
+    return (`( ${this.op}${this.operand} )`);
   }
 }
 
@@ -175,7 +175,7 @@ class ParensExpression extends Expression {
     this.p2 = p2;
   }
   toString() {
-    return ("( " + this.exp + " )");
+    return (`( ${this.exp} )`);
   }
 }
 
@@ -185,7 +185,7 @@ class NumericLiteral extends Expression {
     this.value = value;
   }
   toString() {
-    return ("( " + this.value + " )");
+    return (`( ${this.value} )`);
   }
 }
 
@@ -198,9 +198,9 @@ class IfElse {
     this.body3 = body3;
   }
   toString() {
-    return ("If: " + this.cond1 + " Body: " + this.body1 +
-              " IfElse: " + this.cond2 + " Body2: " + this.body2 +
-              " Else: " + this.body3 + " )");
+    return (`If: ${this.cond1} Body: ${this.body1
+              } IfElse: ${this.cond2} Body2: ${this.body2
+              } Else: ${this.body3} )`);
   }
 }
 
@@ -211,8 +211,8 @@ class Else {
     this.body2 = body2;
   }
   toString() {
-    return ("( If: " + this.exp1 + " Body: " + this.body1 +
-              " Else: " + this.body2+ " )");
+    return (`( If: ${this.exp1} Body: ${this.body1
+              } Else: ${this.body2} )`);
   }
 }
 
@@ -222,7 +222,7 @@ class Match {
     this.block = mblock;
   }
   toString() {
-    return ("( Match: " + this.exp + " Block: " + this.block + " )");
+    return (`( Match: ${this.exp} Block: ${this.block} )`);
   }
 }
 
@@ -232,7 +232,7 @@ class MatchBlock {
     this.stmt = stmt;
   }
   toString() {
-    return ("( MatchPattern: " + this.pattern + " Statement: " + this.stmt + " )");
+    return (`( MatchPattern: ${this.pattern} Statement: ${this.stmt} )`);
   }
 }
 
@@ -241,7 +241,7 @@ class MatchPattern {
     this.exp = exp;
   }
   toString() {
-    return ("( Pattern: " + this.exp + " )");
+    return (`( Pattern: ${this.exp} )`);
   }
 }
 
@@ -250,7 +250,7 @@ class StructId {
     this.id = id;
   }
   toString() {
-    return ("( " + this.id + " )");
+    return (`( ${this.id} )`);
   }
 }
 
@@ -259,28 +259,121 @@ class Type {
     this.type = type;
   }
   toString() {
-    return ("( " + this.type + " )");
+    return (`( ${this.type} )`);
   }
 }
 
-class Primitive{
+class Primitive {
   constructor(prim) {
     this.value = prim;
   }
   toString() {
-    return ("( " + this.value + " )");
+    return (`( ${this.value} )`);
   }
 }
 // Objects, Tuples and Lists, how do we store into constructor?
 class Object {
-  constructor(_) {}
+  constructor(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) {
+    this.id = id;
+    this.exp = exp;
+    this.lastId = lastId;
+    this.lastExp = lastExp;
+  }
+  toString() {
+    return (`Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`);
+  }
 }
+
+class Tuple {
+  constructor(openP, exp, comma, lastExp, closeP) {
+    this.exp = exp;
+    this.lastExp = lastExp;
+  }
+  toString() {
+    return (`Tuple: (${this.exp}, ${this.lastExp})`);
+  }
+}
+
+class List {
+  constructor(openB, exp, comma, lastExp, closeB) {
+    this.exp = exp;
+    this.lastExp = lastExp;
+  }
+  toString() {
+    return (`List: [${this.exp}, ${this.lastExp}]`);
+  }
+}
+
+class Boolean {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class Integer {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class String {
+  constructor(value) {
+    this.value = value;
+  }
+}
+class Float {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class Id {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class IdRest {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class Charlit {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class Char {
+  constructor(value) {
+    this.value = value;
+  }
+}
+
 
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Program(body) { return new Program(body.tree()); },
   Body(stmt) { return new Body(stmt.tree()); },
   Stmts(stmt) { return new Statement(stmt.tree()); },
-  VarDef(_, id, _a, exp, _b) { return new VariableDefinition(_, id.tree(), _, exp.tree()); }
+  VarDef(_, id, _a, exp, _b) { return new VariableDefinition(_, id.tree(), _, exp.tree()); },
+  StructDef(_, id, _a, struct, _b) { return new StructDefinition(_, id.tree(), _a, struct.tree(), _b); },
+  FuncDef(_, id, _a, _b, body, _c) { return new FuncionDefinition(_, id.tree(), _a, _b, body.tree(), _c); },
+  AssDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(_, type.tree(), _a, id.tree(), _b, exp.tree(), _c); },
+  ObjDef(_, id, _a, obj) { return new ObjectDefinition(_, id.tree(), _a, obj.tree()); },
+  BinExp(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString(), right.tree()); },
+  UnaryExp(op, operand) { return new UnaryExpression(op.sourceString, operand.tree()); },
+  ParensExp(p1, exp, p2) { return new ParensExpression(p1, exp.tree(), p2); },
+  NumLit(value) { return new NumericLiteral(value.tree()); },
+  IfEl(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(_, _a, cond1.tree(), _b, body1.tree(), _c, _d, _e, cond2.tree(), _f, _g, body2.tree(), _h, _i, _j, body3.tree(), _k); },
+  Els(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) { return new Else(_, _a, exp1.tree(), _b, _c, body1.tree(), _d, _e, _f, body2.tree(), _g); },
+  MatchStmt(_, _a, exp, _b, _c, block) { return new Match(_, _a, exp.tree(), _b, _c, block.tree()); },
+  MatchBlck(_, pattern, _a, stmt) { return new MatchBlock(_, pattern.tree(), _a, stmt.tree()); },
+  MatchPat(exp) { return new MatchPattern(exp.tree()); },
+  StrucId(id) { return new StructId(id.tree()); },
+  Typee(type) { return new Type(type.tree()); },
+  Prim(prim) { return new Primitive(prim.tree()); },
+  Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new Object(openB, id.tree(), colon, exp.tree(), comma, lastId.tree(), lastColon, lastExp.tree(), lastCloseB); },
 });
 
 // read args
