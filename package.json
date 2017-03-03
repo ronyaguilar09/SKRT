@@ -5,7 +5,8 @@
   "main": "skrt.ohm",
   "scripts": {
     "test": "./node_modules/.bin/mocha",
-    "lint": "./node_modules/.bin/eslint **/*.js skrt.js"
+    "lint": "./node_modules/.bin/eslint **/*.js skrt.js",
+    "start": "node practice.js"
   },
   "repository": {
     "type": "git",
