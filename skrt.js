@@ -339,7 +339,7 @@ class IdRest {
   }
 }
 
-class Charlit {
+class CharLit {
   constructor(value) {
     this.value = value;
   }
@@ -374,6 +374,16 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Typee(type) { return new Type(type.tree()); },
   Prim(prim) { return new Primitive(prim.tree()); },
   Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new Object(openB, id.tree(), colon, exp.tree(), comma, lastId.tree(), lastColon, lastExp.tree(), lastCloseB); },
+  Tup(openP, exp, comma, lastExp, closeP) { return new Tuple(openP, exp.tree(), comma, lastExp.tree(), closeP); },
+  List_(openP, exp, comma, lastExp, closeP) { return new List(openP, exp.tree(), comma, lastExp.tree(), closeP); },
+  Bool(val) { return new Boolean(val.sourceString()); },
+  Int(val) { return new Integer(val.sourceString()); },
+  Str(val) { return new String(val.sourceString()); },
+  Flt(val) { return new Float(val.sourceString()); },
+  Id_(val) { return new Id(val.sourceString()); },
+  Id_Rest(val) { return new IdRest(val.sourceString()); },
+  Char_Lit(val) { return new CharLit(val.sourceString()); },
+  Char_(val) { return new Char(val.sourceString()); },
 });
 
 // read args
