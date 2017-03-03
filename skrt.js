@@ -168,6 +168,15 @@ class Else {
   }
 }
 
+class For {
+  constructor(_, id, from, exp1, to, exp2, b1, body, b2) {
+    this.id = id;
+    this.exp1 = exp1;
+    this.exp2 = exp2;
+    this.body = body;
+  }
+}
+
 class Match {
   constructor(_, _a, exp, _b, _c, mblock) {
     this.exp = exp;
@@ -310,20 +319,21 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Stmts(stmt) { return new Statement(stmt.tree()); },
   VarDef(_, id, _a, exp, _b) { return new VariableDefinition(id.sourceString, exp.tree()); },
   StructDef(_, id, _a, struct, _b) { return new StructDefinition(id.sourceString, struct.tree()); },
-  FuncDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.sourceString, params.tree(), body.tree()); },
-  AssDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(type.tree(), id.sourceString, exp.tree()); },
+  FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.sourceString, params.tree(), body.tree()); },
+  CamlDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(type.tree(), id.sourceString, exp.tree()); },
   ObjDef(_, id, _a, obj) { return new ObjectDefinition(id.sourceString, obj.tree()); },
   BinExp(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
   UnaryExp(op, operand) { return new UnaryExpression(op.sourceString, operand.tree()); },
   ParensExp(p1, exp, p2) { return new ParensExpression(exp.tree()); },
   NumLit(value) { return new NumericLiteral(value.sourceString); },
-  IfEl(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
-  Els(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) { return new Else(exp1.tree(), body1.tree(), body2.tree()); },
+  For(_, id, from, exp1, to, exp2, b1, body, b2) { return new For(id.sourceString, exp1.tree(), exp2.tree(), body.tree()); },
+  IfElse(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
+ // Else_(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) { return new Else(exp1.tree(), body1.tree(), body2.tree()); },
   MatchStmt(_, _a, exp, _b, _c, block) { return new Match(exp.tree(), block.tree()); },
   MatchBlck(_, pattern, _a, stmt) { return new MatchBlock(pattern.tree(), stmt.tree()); },
   MatchPat(exp) { return new MatchPattern(exp.tree()); },
   StrucId(id) { return new StructId(id.sourceString); },
-  Typee(type) { return new Type(type.tree()); },
+  Type_(type) { return new Type(type.tree()); },
   Prim(prim) { return new Primitive(prim.tree()); },
   Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new Object(id.sourceString, exp.tree(), lastId.sourceString, lastExp.tree()); },
   Tuple_(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
@@ -338,9 +348,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Char_(val) { return new Char(val.sourceString); },
 });
 
-const match = skrtGrammar.match(`def x = 5;
-                               def y = x;
-                               x + y`);
+const match = skrtGrammar.match('def x = 5;');
 if (match.succeeded()) { console.log(semantics(match).tree()); }
 // read args
 // Parse
