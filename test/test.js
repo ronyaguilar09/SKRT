@@ -8,6 +8,7 @@ const myGrammar = ohm.grammar(contents);
 
 let userInput = 'def x = 5;';
 
+/* eslint-disable */
 describe('One Line Expression Test:', () => {
   it("should return true for 'def x = 5'", () => {
     const m = myGrammar.match(userInput);
@@ -92,3 +93,4 @@ describe('match statements', () => {
     assert.equal(true, m.succeeded());
   });
 });
+/* eslint-enable */
