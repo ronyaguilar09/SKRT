@@ -38,11 +38,11 @@ const skrtGrammar = ohm.grammar(`SKRT {
 
     bool        = "true" | "false"
     int         = digit+
-    stringlit   = "\"" (char|"\'")* "\""
-    float       = digit* "." digit+
+    stringlit   = "\"" (char|'\'')* "\""
+    float       = digit* '.'' digit+
     id          = ~keyword letter idrest*
     idrest      = "_" | alnum
-    charlit     = "\'"any"\'" --characters in string, notes fo HW1 answers
+    charlit     = '\'' any '\''
     char        = escape
                 |~"\\" ~"\"" ~"'" ~"\n" any
     relop       = "<"|">"|"<="|"=="|">="|"!="
@@ -50,8 +50,8 @@ const skrtGrammar = ohm.grammar(`SKRT {
     mulop       = "*" | "/" | "%"
     preop       = "-" | "!"
     keyword     = ("for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print") ~idrest
-    escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-                | "\\u{"hexDigit+"}"			-- codepoint
+    escape      = "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
+                | "\\u{"hexDigit+"}"                        -- codepoint
 }`);
 
 class Program {
@@ -103,7 +103,7 @@ class StructDefinition extends Definition {
     this.struct = struct;
   }
   toString() {
-    return (`( Id: ${this.id} = ` + `( ${this.struct} ) )`);
+    return (`( Id: ${this.id} = ( ${this.struct} ) )`);
   }
 }
 
@@ -357,8 +357,10 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Body(stmt) { return new Body(stmt.tree()); },
   Stmts(stmt) { return new Statement(stmt.tree()); },
   VarDef(_, id, _a, exp, _b) { return new VariableDefinition(_, id.tree(), _, exp.tree()); },
-  StructDef(_, id, _a, struct, _b) { return new StructDefinition(_, id.tree(), _a, struct.tree(), _b); },
-  FuncDef(_, id, _a, _b, body, _c) { return new FuncionDefinition(_, id.tree(), _a, _b, body.tree(), _c); },
+  StructDef(_, id, _a, struct, _b) {
+    return new StructDefinition(_, id.tree(), _a, struct.tree(), _b);
+  },
+  FuncDef(_, id, _a, _b, body, _c) { return new FunctionDefinition(_, id.tree(), _a, _b, body.tree(), _c); },
   AssDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(_, type.tree(), _a, id.tree(), _b, exp.tree(), _c); },
   ObjDef(_, id, _a, obj) { return new ObjectDefinition(_, id.tree(), _a, obj.tree()); },
   BinExp(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString(), right.tree()); },
