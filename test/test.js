@@ -16,7 +16,6 @@ describe('One Line Expression Test:', () => {
 });
 
 userInput = 'def filip = 69;';
-m = myGrammar.match(userInput);
 
 describe('One Line Expression Test:', () => {
   it("should return true for 'def filip = 69'", () => {
@@ -28,7 +27,6 @@ describe('One Line Expression Test:', () => {
 userInput = `def x = 5;
              def y = x;
              x + y`;
-m = myGrammar.match(userInput);
 
 describe('Multi Line Expression Test:', () => {
   it('should return true for `def x = 5;\n def y = x;\n x + y`', () => {
@@ -40,7 +38,6 @@ describe('Multi Line Expression Test:', () => {
 userInput = `for x from 0 to 10 {
                 x + x
             }`;
-m = myGrammar.match(userInput);
 
 describe('For expressions', () => {
   it('should return true for a "for" loop statement', () => {
@@ -52,7 +49,6 @@ describe('For expressions', () => {
 userInput = `def add => {
                 1+2
             }`;
-m = myGrammar.match(userInput);
 
 describe('Function declaration', () => {
   it('should return true for a function declaration', () => {
@@ -65,7 +61,7 @@ userInput = `type Car = {
                 owner : Rony,
                 price : 10000000,
             }`;
-m = myGrammar.match(userInput);
+
 describe('Type/Class declaration', () => {
   it('should return true for a Type/Class declaration', () => {
     const m = myGrammar.match(userInput);
@@ -78,7 +74,7 @@ userInput = `if(y<0){
             } else if(y < 10){
                 def x = 2;
             }`;
-m = myGrammar.match(userInput);
+
 describe('if and else statements', () => {
   it('should return true for a if statement', () => {
     const m = myGrammar.match(userInput);
@@ -89,7 +85,7 @@ describe('if and else statements', () => {
 userInput = `match(x) with
             | _ => 1
             | 1 => 2`;
-m = myGrammar.match(userInput);
+
 describe('match statements', () => {
   it('should return true for a match statement', () => {
     const m = myGrammar.match(userInput);
