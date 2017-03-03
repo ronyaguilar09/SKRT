@@ -85,7 +85,7 @@ print(“Hello” + “ World”);                   console.log(“Hello” + �
 
 ### Function
 ```
-def add x y = {                              function add (x, y) {
+def add x y => {                             function add (x, y) {
     x + y;                                      return x + y;
 }                                            }
 ```
