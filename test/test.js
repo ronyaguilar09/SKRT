@@ -1,28 +1,28 @@
 const ohm = require('../node_modules/ohm-js');
-var assert = require('assert');
+const assert = require('assert');
 
 const fs = require('fs');
+
 const contents = fs.readFileSync('skrt.ohm');
 const myGrammar = ohm.grammar(contents);
 
-var userInput = 'def x = 5;';
-var m = myGrammar.match(userInput);
+let userInput = 'def x = 5;';
 
-describe('One Line Expression Test:', function () {
-    it("should return true for 'def x = 5'", function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('One Line Expression Test:', () => {
+  it("should return true for 'def x = 5'", () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = 'def filip = 69;';
 m = myGrammar.match(userInput);
 
-describe('One Line Expression Test:', function () {
-    it("should return true for 'def filip = 69'", function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('One Line Expression Test:', () => {
+  it("should return true for 'def filip = 69'", () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `def x = 5;
@@ -30,11 +30,11 @@ userInput = `def x = 5;
              x + y`;
 m = myGrammar.match(userInput);
 
-describe('Multi Line Expression Test:', function () {
-    it("should return true for `def x = 5;\n def y = x;\n x + y`", function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('Multi Line Expression Test:', () => {
+  it('should return true for `def x = 5;\n def y = x;\n x + y`', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `for x from 0 to 10 {
@@ -42,11 +42,11 @@ userInput = `for x from 0 to 10 {
             }`;
 m = myGrammar.match(userInput);
 
-describe('For expressions', function () {
-    it(`should return true for a "for" loop statement`, function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('For expressions', () => {
+  it('should return true for a "for" loop statement', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `def add => {
@@ -54,11 +54,11 @@ userInput = `def add => {
             }`;
 m = myGrammar.match(userInput);
 
-describe('Function declaration', function () {
-    it(`should return true for a function declaration`, function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('Function declaration', () => {
+  it('should return true for a function declaration', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `type Car = {
@@ -66,11 +66,11 @@ userInput = `type Car = {
                 price : 10000000,
             }`;
 m = myGrammar.match(userInput);
-describe('Type/Class declaration', function () {
-    it(`should return true for a Type/Class declaration`, function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('Type/Class declaration', () => {
+  it('should return true for a Type/Class declaration', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `if(y<0){
@@ -79,20 +79,20 @@ userInput = `if(y<0){
                 def x = 2;
             }`;
 m = myGrammar.match(userInput);
-describe('if and else statements', function () {
-    it(`should return true for a if statement`, function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('if and else statements', () => {
+  it('should return true for a if statement', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
 
 userInput = `match(x) with
             | _ => 1
-            | 1 => 2`
+            | 1 => 2`;
 m = myGrammar.match(userInput);
-describe('match statements', function () {
-    it(`should return true for a match statement`, function () {
-        const m = myGrammar.match(userInput);
-        assert.equal(true, m.succeeded());
-    });
+describe('match statements', () => {
+  it('should return true for a match statement', () => {
+    const m = myGrammar.match(userInput);
+    assert.equal(true, m.succeeded());
+  });
 });
