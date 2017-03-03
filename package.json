@@ -4,7 +4,8 @@
   "description": "SKRT compiler/interpreter",
   "main": "skrt.ohm",
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint **/*.js"
   },
   "repository": {
     "type": "git",
