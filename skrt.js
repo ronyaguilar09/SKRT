@@ -1,6 +1,7 @@
 const ohm = require('ohm-js');
 
 const fs = require('fs');
+
 const contents = fs.readFileSync('skrt.ohm');
 const skrtGrammar = ohm.grammar(contents);
 
@@ -315,26 +316,26 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   BinExp(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
   UnaryExp(op, operand) { return new UnaryExpression(op.sourceString, operand.tree()); },
   ParensExp(p1, exp, p2) { return new ParensExpression(exp.tree()); },
-  NumLit(value) { return new NumericLiteral(value.sourceString; },
+  NumLit(value) { return new NumericLiteral(value.sourceString); },
   IfEl(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
   Els(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) { return new Else(exp1.tree(), body1.tree(), body2.tree()); },
   MatchStmt(_, _a, exp, _b, _c, block) { return new Match(exp.tree(), block.tree()); },
   MatchBlck(_, pattern, _a, stmt) { return new MatchBlock(pattern.tree(), stmt.tree()); },
   MatchPat(exp) { return new MatchPattern(exp.tree()); },
-  StrucId(id) { return new StructId(id.sourceString; },
+  StrucId(id) { return new StructId(id.sourceString); },
   Typee(type) { return new Type(type.tree()); },
   Prim(prim) { return new Primitive(prim.tree()); },
   Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new Object(id.sourceString, exp.tree(), lastId.sourceString, lastExp.tree()); },
   Tuple_(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
   List_(openP, exp, comma, lastExp, closeP) { return new List(exp.tree(), lastExp.tree()); },
-  Bool(val) { return new Boolean(val.sourceString; },
-  Int(val) { return new Integer(val.sourceString; },
-  Str(val) { return new String(val.sourceString; },
-  Flt(val) { return new Float(val.sourceString; },
-  Id_(val) { return new Id(val.sourceString; },
-  Id_Rest(val) { return new IdRest(val.sourceString; },
-  Char_Lit(val) { return new CharLit(val.sourceString; },
-  Char_(val) { return new Char(val.sourceString; },
+  Bool(val) { return new Boolean(val.sourceString); },
+  Int(val) { return new Integer(val.sourceString); },
+  Str(val) { return new String(val.sourceString); },
+  Flt(val) { return new Float(val.sourceString); },
+  Id_(val) { return new Id(val.sourceString); },
+  Id_Rest(val) { return new IdRest(val.sourceString); },
+  Char_Lit(val) { return new CharLit(val.sourceString); },
+  Char_(val) { return new Char(val.sourceString); },
 });
 
 const match = skrtGrammar.match(`def x = 5;
