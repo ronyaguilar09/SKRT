@@ -6,7 +6,7 @@
   "scripts": {
     "test": "./node_modules/.bin/mocha",
     "lint": "./node_modules/.bin/eslint **/*.js skrt.js",
-    "start": "node practice.js"
+    "start": "node skrt.js"
   },
   "repository": {
     "type": "git",

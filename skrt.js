@@ -401,11 +401,10 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
 
 });
 
-const match = skrtGrammar.match(`def inc x => {
-                                    match ( x ) with
-                                    | _ => 1
-                                    | 1 => 2
-                                }`);
+const startContents = fs.readFileSync(process.argv[2]);
+
+const match = skrtGrammar.match(startContents);
+
 if (match.succeeded()) { console.log(semantics(match).tree().toString()); }
 // read args
 // Parse
