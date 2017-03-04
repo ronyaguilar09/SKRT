@@ -4,3 +4,9 @@ plugins:
 rules:
   max-len:
     off
+  no-new-wrappers:
+    off
+  no-unused-vars:
+    off
+  no-console:
+    off

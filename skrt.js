@@ -140,7 +140,6 @@ class ParensExpression extends Expression {
     return `(${this.exp})`;
   }
 }
-
 class NumericLiteral extends Expression {
   constructor(value) {
     super();
