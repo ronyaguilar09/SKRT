@@ -10,7 +10,7 @@ class Program {
     this.body = body;
   }
   toString() {
-    return (`( Program: ${this.body} )`);
+    return `(Program: ${this.body})`;
   }
 }
 
@@ -19,7 +19,7 @@ class Body {
     this.statements = stmts;
   }
   toString() {
-    return (`( Body: ${this.statements.join(' ')} )`);
+    return `(Body: ${this.statements.join(' ')})`;
   }
 }
 
@@ -28,7 +28,7 @@ class Statement {
     this.statement = stmt;
   }
   toString() {
-    return (`( Statement: ${this.statement} )`);
+    return `(Statement: ${this.statement})`;
   }
 }
 
@@ -37,49 +37,49 @@ class Definition {
     this.definition = def;
   }
   toString() {
-    return (`(Definition: ${this.definition} )`);
+    return `(Definition: ${this.definition})`;
   }
 }
 
 class VariableDefinition {
-  constructor(_, id, _a, exp, _b) {
+  constructor(id, exp) {
     this.id = id;
     this.exp = exp;
   }
   toString() {
-    return (`( Var: ${this.id} = ${this.exp} )`);
+    return `(Var: ${this.id} ${this.exp})`;
   }
 }
 
 class StructDefinition {
-  constructor(_, id, _a, struct, _b) {
+  constructor(id, struct) {
     this.id = id;
     this.struct = struct;
   }
   toString() {
-    return (`( Id: ${this.id} = ( ${this.struct} ) )`);
+    return `(StructDef: ${this.id} ${this.struct})`;
   }
 }
 
 class FunctionDefinition {
-  constructor(_, funName, params, _a, _b, body, _c) {
+  constructor(funName, params, body) {
     this.id = funName;
     this.params = params;
     this.body = body;
   }
   toString() {
-    return (`( Func: ${this.id} (${this.params.join(' ')})= ${this.body} )`);
+    return `(Func: ${this.id} (Params: ${this.params.join(' ')}) ${this.body})`;
   }
 }
 
 class AssertDefinition {
-  constructor(_, type, _a, id, _b, exp, _c) {
+  constructor(type, id, exp) {
     this.type = type;
     this.id = id;
     this.exp = exp;
   }
   toString() {
-    return (`( Var: ${this.id} ofType: ${this.type} = ${this.exp} )`);
+    return `(Var: ${this.id} ofType: ${this.type} = ${this.exp})`;
   }
 }
 
@@ -89,7 +89,7 @@ class ObjectDefinition {
     this.obj = obj;
   }
   toString() {
-    return (`( Obj: ${this.id} = ${this.obj} )`);
+    return (`(Obj: ${this.id} = ${this.obj})`);
   }
 }
 
@@ -104,7 +104,7 @@ class BinaryExpression extends Expression {
     this.right = right;
   }
   toString() {
-    return (`( ${this.left}${this.op}${this.right} )`);
+    return (`(${this.left}${this.op}${this.right})`);
   }
 }
 
@@ -115,7 +115,7 @@ class UnaryExpression extends Expression {
     this.operand = operand;
   }
   toString() {
-    return (`( ${this.op.join()}${this.operand.join()} )`);
+    return (`(${this.op.join()}${this.operand.join()})`);
   }
 }
 
@@ -127,7 +127,7 @@ class ParensExpression extends Expression {
     this.p2 = p2;
   }
   toString() {
-    return (`( ${this.exp} )`);
+    return (`(${this.exp})`);
   }
 }
 
@@ -142,7 +142,7 @@ class NumericLiteral extends Expression {
 }
 
 class IfElse {
-  constructor(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) {
+  constructor(cond1, body1, cond2, body2, body3) {
     this.cond1 = cond1;
     this.body1 = body1;
     this.cond2 = cond2;
@@ -157,7 +157,7 @@ class IfElse {
 }
 
 class Else {
-  constructor(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) {
+  constructor(exp1, body1, body2) {
     this.exp1 = exp1;
     this.body1 = body1;
     this.body2 = body2;
@@ -169,14 +169,14 @@ class Else {
 }
 
 class For {
-  constructor(_, id, from, exp1, to, exp2, b1, body, b2) {
+  constructor(id, exp1, exp2, body) {
     this.id = id;
     this.exp1 = exp1;
     this.exp2 = exp2;
     this.body = body;
   }
   toString() {
-    return (`( For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`);
+    return (`(For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`);
   }
 }
 
@@ -186,7 +186,7 @@ class Match {
     this.block = mblock;
   }
   toString() {
-    return (`( Match: ${this.exp} Block: ${this.block.join(' ')} )`);
+    return (`(Match: ${this.exp} Block: ${this.block.join(' ')})`);
   }
 }
 
@@ -196,7 +196,7 @@ class MatchBlock {
     this.stmt = stmt;
   }
   toString() {
-    return (`( MatchPattern: ${this.pattern} Statement: ${this.stmt} )`);
+    return (`(MatchPattern: ${this.pattern} Statement: ${this.stmt})`);
   }
 }
 
@@ -205,7 +205,7 @@ class MatchPattern {
     this.exp = exp;
   }
   toString() {
-    return (`( Pattern: ${this.exp} )`);
+    return (`(Pattern: ${this.exp})`);
   }
 }
 
@@ -214,7 +214,7 @@ class StructId {
     this.id = id;
   }
   toString() {
-    return (`( ${this.id} )`);
+    return (`(Structure: ${this.id})`);
   }
 }
 
@@ -223,7 +223,7 @@ class Type {
     this.type = type;
   }
   toString() {
-    return (`( ${this.type} )`);
+    return (`(Type: ${this.type})`);
   }
 }
 
@@ -232,11 +232,11 @@ class Primitive {
     this.value = prim;
   }
   toString() {
-    return (`( ${this.value} )`);
+    return (`(${this.value})`);
   }
 }
 
-class Object {
+class ObjectLiteral {
   constructor(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) {
     this.id = id;
     this.exp = exp;
@@ -249,7 +249,7 @@ class Object {
 }
 
 class Tuple {
-  constructor(openP, exp, comma, lastExp, closeP) {
+  constructor(exp, lastExp) {
     this.exp = exp;
     this.lastExp = lastExp;
   }
@@ -259,7 +259,7 @@ class Tuple {
 }
 
 class List {
-  constructor(openB, exp, comma, lastExp, closeB) {
+  constructor(exp, lastExp) {
     this.exp = exp;
     this.lastExp = lastExp;
   }
@@ -273,7 +273,7 @@ class Boolean {
     this.value = value;
   }
   toString() {
-    return (`Bool: ${this.value}`);
+    return (`${this.value}`);
   }
 }
 
@@ -282,56 +282,20 @@ class Integer {
     this.value = value;
   }
   toString() {
-    return (`Int: ${this.value.join('')}`);
+    return (`${this.value}`);
   }
 }
 
-class String {
+class StringLiteral {
   constructor(value) {
     this.value = value;
   }
   toString() {
     return (`String: ${this.value.join('')}`);
   }
- }
+}
+
 class Float {
-  constructor(value, value2) {
-    this.value1 = value;
-    this.value2 = value2;
-  }
-  toString() {
-    return (`Float: ${this.value1.join('')}. ${this.value2.join('')}`);
-  }
-}
-
-class Id {
-  constructor(value) {
-    this.value = value;
-  }
-  toString() {
-    return (`Id: ${this.value.join('')}`);
-  }
-}
-
-class IdRest {
-  constructor(value) {
-    this.value = value;
-  }
-  toString() {
-    return (`${this.value.join('')}`);
-  }
-}
-
-class CharLit {
-  constructor(value) {
-    this.value = value;
-  }
-  toString() {
-    return (`Char: ${this.value}`);
-  }
-}
-
-class Char {
   constructor(value) {
     this.value = value;
   }
@@ -340,7 +304,35 @@ class Char {
   }
 }
 
+class Id {
+  constructor(value) {
+    this.value = value;
+  }
+  toString() {
+    return (`${this.value}`);
+  }
+}
 
+class CharLit {
+  constructor(value) {
+    this.value = value;
+  }
+  toString() {
+    return `(Char: ${this.value})`;
+  }
+}
+
+class Char {
+  constructor(value) {
+    this.value = value;
+  }
+  toString() {
+    return `${this.value}`;
+  }
+}
+
+
+/* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Program(body) { return new Program(body.tree()); },
   Body(stmts) { return new Body(stmts.tree()); },
@@ -361,7 +353,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Exp7_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
   Exp8(type) { return new BinaryExpression(type.tree()); },
   // Exp_unary(op, operand) { return new UnaryExpression(op.sourceString, operand.tree()); },
-  Exp9_parens(p1, exp, p2) { return new ParensExpression(exp.tree()); },
+  Exp9_parens(p1, exp, p2) { return exp.tree(); },
  // NumLit(value) { return new NumericLiteral(value.sourceString); },
   For(_, id, from, exp1, to, exp2, b1, body, b2) { return new For(id.sourceString, exp1.tree(), exp2.tree(), body.tree()); },
   IfElse(_, _a, cond1, p, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
@@ -372,21 +364,20 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   StructId(id) { return new StructId(id.sourceString); },
   Type(type) { return new Type(type.tree()); },
   Prim(prim) { return new Primitive(prim.tree()); },
-  Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new Object(id.sourceString, exp.tree(), lastId.sourceString, lastExp.tree()); },
+  Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new ObjectLiteral(id.sourceString, exp.tree(), lastId.sourceString, lastExp.tree()); },
   Tuple(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
   List(openP, exp, comma, lastExp, closeP) { return new List(exp.tree(), lastExp.tree()); },
-  bool(val) { return new Boolean(val.sourceString); },
-  int(val) { return new Integer(val.sourceString); },
-  stringlit(p, val, p2) { return new String(val.sourceString); },
-  float(val, dot, val2) { return new Float(val.sourceString, val2.sourceString); },
-  id(val, idrest) { return new Id(val.sourceString + idrest.sourceString); },
-  idrest(val) { return new IdRest(val.sourceString); },
+  bool(val) { return new Boolean(this.sourceString); },
+  int(val) { return new Integer(this.sourceString); },
+  stringlit(p, val, p2) { return new StringLiteral(val.sourceString); },
+  float(val, dot, val2) { return new Float(this.sourceString); },
+  id(first, rest) { return new Id(this.sourceString); },
   charlit(p1, val, p2) { return new CharLit(val.sourceString); },
   char(val) { return new Char(val.sourceString); },
 });
 
 const match = skrtGrammar.match('def x = 5;');
-if (match.succeeded()) { console.log(semantics(match).tree()); }
+if (match.succeeded()) { console.log(semantics(match).tree().toString()); }
 // read args
 // Parse
 // constole.log(.ast())
