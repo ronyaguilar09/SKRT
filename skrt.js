@@ -84,12 +84,12 @@ class AssertDefinition {
 }
 
 class ObjectDefinition {
-  constructor(_, id, _a, obj) {
+  constructor(id, obj) {
     this.id = id;
     this.obj = obj;
   }
   toString() {
-    return (`(Obj: ${this.id} = ${this.obj})`);
+    return `(Obj: ${this.id} = ${this.obj})`;
   }
 }
 
@@ -104,7 +104,17 @@ class BinaryExpression extends Expression {
     this.right = right;
   }
   toString() {
-    return (`(${this.left}${this.op}${this.right})`);
+    return `(${this.left}${this.op}${this.right})`;
+  }
+}
+
+class VariableExpression extends Expression {
+  constructor(v) {
+    super();
+    this.val = v;
+  }
+  toString() {
+    return `(${this.val})`;
   }
 }
 
@@ -115,7 +125,7 @@ class UnaryExpression extends Expression {
     this.operand = operand;
   }
   toString() {
-    return (`(${this.op.join()}${this.operand.join()})`);
+    return `(${this.op.join()}${this.operand.join()})`;
   }
 }
 
@@ -127,7 +137,7 @@ class ParensExpression extends Expression {
     this.p2 = p2;
   }
   toString() {
-    return (`(${this.exp})`);
+    return `(${this.exp})`;
   }
 }
 
@@ -137,7 +147,7 @@ class NumericLiteral extends Expression {
     this.value = value;
   }
   toString() {
-    return (`( ${this.value} )`);
+    return `( ${this.value} )`;
   }
 }
 
@@ -150,9 +160,9 @@ class IfElse {
     this.body3 = body3;
   }
   toString() {
-    return (`If: ${this.cond1} Body: ${this.body1
+    return `If: ${this.cond1} Body: ${this.body1
     } IfElse: ${this.cond2.join(' ')} Body2: ${this.body2.join(' ')
-              } Else: ${this.body3} )`);
+              } Else: ${this.body3} )`;
   }
 }
 
@@ -163,8 +173,8 @@ class Else {
     this.body2 = body2;
   }
   toString() {
-    return (`( If: ${this.exp1} Body: ${this.body1
-              } Else: ${this.body2} )`);
+    return `( If: ${this.exp1} Body: ${this.body1
+              } Else: ${this.body2} )`;
   }
 }
 
@@ -176,27 +186,27 @@ class For {
     this.body = body;
   }
   toString() {
-    return (`(For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`);
+    return `(For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`;
   }
 }
 
 class Match {
-  constructor(_, _a, exp, _b, _c, mblock) {
+  constructor(exp, mblock) {
     this.exp = exp;
     this.block = mblock;
   }
   toString() {
-    return (`(Match: ${this.exp} Block: ${this.block.join(' ')})`);
+    return `(Match: ${this.exp} Block: ${this.block})`;
   }
 }
 
 class MatchBlock {
-  constructor(_, pattern, _a, stmt) {
+  constructor(pattern, stmt) {
     this.pattern = pattern;
     this.stmt = stmt;
   }
   toString() {
-    return (`(MatchPattern: ${this.pattern} Statement: ${this.stmt})`);
+    return `(MatchPattern: ${this.pattern} Statement: ${this.stmt})`;
   }
 }
 
@@ -205,7 +215,7 @@ class MatchPattern {
     this.exp = exp;
   }
   toString() {
-    return (`(Pattern: ${this.exp})`);
+    return `(Pattern: ${this.exp})`;
   }
 }
 
@@ -214,7 +224,7 @@ class StructId {
     this.id = id;
   }
   toString() {
-    return (`(Structure: ${this.id})`);
+    return `(Structure: ${this.id})`;
   }
 }
 
@@ -223,7 +233,7 @@ class Type {
     this.type = type;
   }
   toString() {
-    return (`(Type: ${this.type})`);
+    return `(Type: ${this.type})`;
   }
 }
 
@@ -232,19 +242,19 @@ class Primitive {
     this.value = prim;
   }
   toString() {
-    return (`(${this.value})`);
+    return `(${this.value})`;
   }
 }
 
 class ObjectLiteral {
-  constructor(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) {
+  constructor(id, exp, lastId, lastExp) {
     this.id = id;
     this.exp = exp;
     this.lastId = lastId;
     this.lastExp = lastExp;
   }
   toString() {
-    return (`Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`);
+    return `Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`;
   }
 }
 
@@ -254,7 +264,7 @@ class Tuple {
     this.lastExp = lastExp;
   }
   toString() {
-    return (`Tuple: (${this.exp}, ${this.lastExp})`);
+    return `Tuple: (${this.exp}, ${this.lastExp})`;
   }
 }
 
@@ -264,7 +274,7 @@ class List {
     this.lastExp = lastExp;
   }
   toString() {
-    return (`List: [${this.exp}, ${this.lastExp}]`);
+    return `List: [${this.exp}, ${this.lastExp}]`;
   }
 }
 
@@ -273,7 +283,7 @@ class Boolean {
     this.value = value;
   }
   toString() {
-    return (`${this.value}`);
+    return `${this.value}`;
   }
 }
 
@@ -282,7 +292,7 @@ class Integer {
     this.value = value;
   }
   toString() {
-    return (`${this.value}`);
+    return `${this.value}`;
   }
 }
 
@@ -291,7 +301,7 @@ class StringLiteral {
     this.value = value;
   }
   toString() {
-    return (`String: ${this.value.join('')}`);
+    return `String: ${this.value}`;
   }
 }
 
@@ -300,7 +310,7 @@ class Float {
     this.value = value;
   }
   toString() {
-    return (`${this.value}`);
+    return `${this.value}`;
   }
 }
 
@@ -309,7 +319,7 @@ class Id {
     this.value = value;
   }
   toString() {
-    return (`${this.value}`);
+    return `Id: ${this.value}`;
   }
 }
 
@@ -331,6 +341,14 @@ class Char {
   }
 }
 
+class Op {
+  constructor(op) {
+    this.op = op;
+  }
+  toString() {
+    return `${this.op}`;
+  }
+}
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
@@ -343,15 +361,15 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.sourceString, params.tree(), body.tree()); },
   CamlDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(type.tree(), id.sourceString, exp.tree()); },
   ObjDef(_, id, _a, obj) { return new ObjectDefinition(id.sourceString, obj.tree()); },
-  Exp_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
+  Exp_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
  // Exp_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp2_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp3_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp4_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp5_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp6_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp7_binary(left, op, right) { return new BinaryExpression(left.tree(), op.sourceString, right.tree()); },
-  Exp8(type) { return new BinaryExpression(type.tree()); },
+  Exp2_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp3_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp4_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp5_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp6_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp7_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
+  Exp8(type) { return new VariableExpression(type.tree()); },
   // Exp_unary(op, operand) { return new UnaryExpression(op.sourceString, operand.tree()); },
   Exp9_parens(p1, exp, p2) { return exp.tree(); },
  // NumLit(value) { return new NumericLiteral(value.sourceString); },
@@ -374,9 +392,21 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   id(first, rest) { return new Id(this.sourceString); },
   charlit(p1, val, p2) { return new CharLit(val.sourceString); },
   char(val) { return new Char(val.sourceString); },
+  relop(op) { return new Op(op.sourceString); },
+  addop(op) { return new Op(op.sourceString); },
+  mulop(op) { return new Op(op.sourceString); },
+  preop(op) { return new Op(op.sourceString); },
+  exop(op) { return new Op(op.sourceString); },
+  dotop(op) { return new Op(op.sourceString); },
+  wild(op) { return new Op(op.sourceString); },
+
 });
 
-const match = skrtGrammar.match('def x = 5;');
+const match = skrtGrammar.match(`def inc x => {
+                                    match ( x ) with
+                                    | _ => 1
+                                    | 1 => 2
+                                }`);
 if (match.succeeded()) { console.log(semantics(match).tree().toString()); }
 // read args
 // Parse
