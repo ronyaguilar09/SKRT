@@ -1,5 +1,3 @@
-
-
 class Program {
   constructor(body) {
     this.body = body;

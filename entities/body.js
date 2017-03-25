@@ -1,5 +1,3 @@
-
-
 class Body {
   constructor(stmts) {
     this.statements = stmts;
