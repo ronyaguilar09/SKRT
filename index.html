@@ -28,7 +28,7 @@
 
     <div class="fluid-container">
         <div class = "row">
-            <div class = "col-xs-8">
+            <div class = "col-xs-12">
                 <div class="header clearfix">
                     <nav>
                         <ul class="nav nav-pills pull-right">
@@ -42,57 +42,55 @@
             </div>
         </div>
 
-      <div class="jumbotron">
-        <div class="col-lg-6">
-          <center>
-          <img src="SKRTLOGOREADME.png" class="rounded float-left" alt="...">
-          </center>
-          <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-          <p><a class="btn btn-lg btn-success" href="#" role="button">Download</a></p>
-          </div>
-      </div>
-
-      <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Fibonacci </h4>
-          <p><code>def rec fib (n : int) : int list = { <br>
-
-                match n with <br>
-                | 0 -> 0 <br>
-                | 1 -> 1 <br>
-                | n -> fib (n-1) + fib (n-2) <br>
-
-            };<br></code>
-          </p>
-
-          <h4>addOrSub Program</h4>
-          <p><code>def addOrSub x y z = {
-              if  (x = 0) {
-                y + z;
-              } else if (x = 1) {
-                y - z;
-              } else {
-                print("Error");
-              }
-            }
-            </code>
-          </p>
-
-          <h4>Code Snippet</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        <div class = "row">
+            <div class = "col-xs-12">
+                <div class="jumbotron">
+                    <center>
+                        <img src="SKRTLOGOREADME.png" class="rounded float-left" alt="...">
+                    </center>
+                    <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+                    <p><a class="btn btn-lg btn-success" href="#" role="button">Download</a></p>
+                </div>
+            </div>
         </div>
 
-        <div class="col-lg-6">
-          <h4>Code Snippet</h4>
-          <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+        <div class="row marketing">
+            <div class="col-xs-6" style = "border-right-width:thin; border-right-style:solid; border-color: #ddd">
+                <h4>Fibonacci </h4>
+                <p><code>def rec fib (n : int) : int list = { <br>
+                            match n with <br>
+                            | 0 -> 0 <br>
+                            | 1 -> 1 <br>
+                            | n -> fib (n-1) + fib (n-2) <br>
+                          };<br>
+                </code></p>
 
-          <h4>Code Snippet</h4>
-          <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+                <h4>addOrSub Program</h4>
+                <p><code>def addOrSub x y z = { <br>
+                            if  (x = 0) {       <br>
+                                y + z;          <br>
+                            } else if (x = 1) { <br>
+                                y - z;          <br>
+                            } else {            <br>
+                                print("Error"); <br>
+                            }                   <br>
+                        }
+                </code></p>
+            </div>
 
-          <h4>Code Snippet</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <div class="col-xs-6">
+                <h4>Code Snippet</h4>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+                <h4>Code Snippet</h4>
+                <p>Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum.</p>
+
+                <h4>Code Snippet</h4>
+                <p>Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum.</p>
+
+                <h4>Code Snippet</h4>
+                <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            </div>
         </div>
-      </div>
 
       <footer class="footer">
         <p>&copy; 2017 SKRT, Inc.</p>
