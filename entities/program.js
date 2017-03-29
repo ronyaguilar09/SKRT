@@ -1,3 +1,4 @@
+const initialContext = require('../analyzer').initialContext;
 class Program {
   constructor(body) {
     this.body = body;
@@ -6,6 +7,6 @@ class Program {
     return (`( Program: ${this.body} )`);
   }
   analyze() {
-      return this.body.analyze(initialContext());
+    return this.body.analyze(initialContext());
   }
 }
