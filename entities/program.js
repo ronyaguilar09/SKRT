@@ -5,4 +5,7 @@ class Program {
   toString() {
     return (`( Program: ${this.body} )`);
   }
+  analyze() {
+      return this.body.analyze(initialContext());
+  }
 }
