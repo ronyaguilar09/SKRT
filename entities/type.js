@@ -62,7 +62,9 @@ class Type {
 Type.INT = new Type('int');
 Type.BOOL = new Type('bool');
 Type.STRING = new Type('string');
+Type.CHAR = new Type('char');
 Type.FLOAT = new Type('float');
 Type.LIST = new Type('list');
 Type.TUPLE = new Type('tuple');
 Type.NULL = new Type('null');
+Type.ID = new Type('id');
