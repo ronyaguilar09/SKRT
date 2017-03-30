@@ -8,6 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="../../favicon.ico">
+    <link href="../railroad-diagrams/railroad-diagrams.css" rel="stylesheet">
+    <script src="../railroad-diagrams/railroad-diagrams.js"></script>
 
     <title>Narrow Jumbotron Template for Bootstrap</title>
 
@@ -90,6 +92,44 @@
                 <h4>Code Snippet</h4>
                 <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
             </div>
+        </div>
+        <div class = "syntaxdiagrams">
+            <div> Program </div>
+            <script>
+            Diagram(NonTerminal("Body")).addTo();
+            </script>
+
+            <div> Body </div>
+            <script>
+            Diagram(OneOrMore(Sequence(NonTerminal("Stmt")))).addTo();
+            </script>
+
+            <div> Stmts </div>
+            <script>
+            Diagram(Choice(0, NonTerminal('Def'), NonTerminal('IfElse'), NonTerminal('For'), NonTerminal('Exp'))).addTo();
+            </script>
+
+            <div> Def </div>
+            <script>
+            Diagram(Choice(0, NonTerminal('VarDef'), NonTerminal('FunDef'), NonTerminal('CamlDef'), NonTerminal('ObjDef'), NonTerminal('StructDef'))).addTo();
+            </script>
+
+            <div> StructDef </div>
+            <script>
+            Diagram(Sequence("def", NonTerminal("StructId"), "="), Choice(0,NonTerminal("Tuple"), NonTerminal("id")), ";").addTo();
+            </script>
+
+            <div> VarDef </div>
+            <script>
+            Diagram(Sequence("def", NonTerminal("id"), "="), NonTerminal("Exp"), ";").addTo();
+            </script>
+
+            <div> FunDef </div>
+            <script>
+            Diagram(Sequence("def", NonTerminal("id"), (ZeroOrMore(NonTerminal("id"))), "=>", "{", NonTerminal("Body"), "}")).addTo();
+            </script>
+
+
         </div>
 
       <footer class="footer">
