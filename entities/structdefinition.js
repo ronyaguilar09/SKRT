@@ -6,4 +6,7 @@ class StructDefinition {
   toString() {
     return (`( Id: ${this.id} = ( ${this.struct} ) )`);
   }
+  analyze(context) {
+    context.variableMustNotBeAlreadyDeclared(this.id); // Not Sure
+  }
 }

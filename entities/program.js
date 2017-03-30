@@ -1,4 +1,5 @@
 const initialContext = require('../analyzer').initialContext;
+
 class Program {
   constructor(body) {
     this.body = body;

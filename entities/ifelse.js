@@ -11,4 +11,9 @@ class IfElse {
     } IfElse: ${this.cond2.join(' ')} Body2: ${this.body2.join(' ')
               } Else: ${this.body3} )`);
   }
+
+  analyze(context) {
+    const booleanCondition = 'Condition in if statement must be boolean';
+    this.cond1.type.mustBeBoolean(booleanCondition);
+  }
 }

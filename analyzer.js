@@ -1,3 +1,6 @@
+const error = require('./error');
+const VariableDefinition = require('./entities/variabledefinition');
+
 class AnalysisContext {
   constructor(parent) {
     this.parent = parent;

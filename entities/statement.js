@@ -5,7 +5,7 @@ class Statement {
   toString() {
     return (`( Statement: ${this.statement} )`);
   }
-  analyze(context){
-      return this.statement.analyze(context);
+  analyze(context) {
+    return this.statement.analyze(context);
   }
 }
