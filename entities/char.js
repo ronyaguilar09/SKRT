@@ -1,4 +1,4 @@
-const Type = require('.type');
+const Type = require('./type');
 
 class Char {
 
@@ -10,7 +10,4 @@ class Char {
     return (`${this.value}`);
   }
 
-  analyze(context) {
-    this.type = Type.CHAR;
-  }
 }
