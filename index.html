@@ -129,6 +129,196 @@
             Diagram(Sequence("def", NonTerminal("id"), (ZeroOrMore(NonTerminal("id"))), "=>", "{", NonTerminal("Body"), "}")).addTo();
             </script>
 
+            <div> CamlDef </div>
+            <script>
+            Diagram(Sequence("def", NonTerminal("Type"), ":"), NonTerminal("id"), "=", NonTerminal("Exp"), ";").addTo();
+            </script>
+
+            <div> ObjDef </div>
+            <script>
+            Diagram(Sequence("def", NonTerminal("id"), "="), NonTerminal("Obj")).addTo();
+            </script>
+
+            <div> IfElse </div>
+            <script>
+            Diagram(Sequence("if", "(", NonTerminal("Exp"), ")", "{", NonTerminal("Body"), "}"), ZeroOrMore(Sequence("else if", "(", NonTerminal("Exp"), ")", "{", NonTerminal("Body"), "}")), Optional(Sequence("else", "{", NonTerminal("Body"), "}"))).addTo();
+            </script>
+
+            <div> For </div>
+            <script>
+            Diagram(Sequence("for", NonTerminal("id"), "from"), NonTerminal("Exp"), "to", NonTerminal("Exp"), "{", NonTerminal("Body"), "}").addTo();
+            </script>
+
+            <div> Match </div>
+            <script>
+            Diagram(Sequence("match", "(", NonTerminal("Exp"), ")", "with", NonTerminal("MatchBlock"))).addTo();
+            </script>
+
+            <div> MatchBlock </div>
+            <script>
+            Diagram(OneOrMore(Sequence("|", NonTerminal("MatchPat"), "=>", NonTerminal("Stmts")))).addTo();
+            </script>
+
+            <div> MatchPat </div>
+            <script>
+            Diagram(Choice(0, NonTerminal("Exp"), NonTerminal("wild"))).addTo();
+            </script>
+
+            <div> StructId </div>
+            <script>
+            Diagram(Choice(0, NonTerminal("id"), NonTerminal("Tuple"))).addTo();
+            </script>
+
+            <div> Exp </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp2")), ZeroOrMore(NonTerminal("logop"), NonTerminal("Exp"))).addTo();
+            </script>
+
+            <div> Exp2 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp3")), ZeroOrMore(NonTerminal("relop"), NonTerminal("Exp2"))).addTo();
+            </script>
+
+            <div> Exp3 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Ex4")), ZeroOrMore(NonTerminal("addop"), NonTerminal("Exp3"))).addTo();
+            </script>
+
+            <div> Exp4 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp5")), ZeroOrMore(NonTerminal("mulop"), NonTerminal("Exp4"))).addTo();
+            </script>
+
+            <div> Exp5 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp6")), ZeroOrMore(NonTerminal("preop"), NonTerminal("Exp5"))).addTo();
+            </script>
+
+            <div> Exp6 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp7")), ZeroOrMore(NonTerminal("exop"), NonTerminal("Exp6"))).addTo();
+            </script>
+
+            <div> Exp7 </div>
+            <script>
+            Diagram(Sequence(NonTerminal("Exp8")), ZeroOrMore(NonTerminal("dotop"), NonTerminal("Exp7"))).addTo();
+            </script>
+
+            <div> Exp8 </div>
+            <script>
+            Diagram(Choice(0, NonTerminal("Type"), NonTerminal("Match"),NonTerminal("Exp9"))).addTo();
+            </script>
+
+            <div> Exp9 </div>
+            <script>
+            Diagram(Sequence("(", NonTerminal("Exp"), ")")).addTo();
+            </script>
+
+            <div> Type </div>
+            <script>
+            Diagram(Choice(0, NonTerminal("Prim"), NonTerminal("Tuple"),NonTerminal("List"))).addTo();
+            </script>
+
+            <div> Prim </div>
+            <script>
+            Diagram(Choice(0, NonTerminal("bool"), NonTerminal("int"),NonTerminal("stringlit"), NonTerminal("float"), NonTerminal("id"),NonTerminal("charlit"))).addTo();
+            </script>
+
+            <div> DOES NOT WORK Obj </div>
+            <script>
+            Diagram(Sequence("{", ZeroOrMore(Comment("NEGLOOKAHEAD: id : Exp }"), NonTerminal("id"), ":", NonTerminal("Exp"), ","), NonTerminal("id"), ":", NonTerminal("Exp"), "}")).addTo();
+            </script>
+
+            <div> INCOMPLETE Tuple </div>
+            <script>
+            </script>
+
+            <div> INCOMPLETE List </div>
+            <script>
+            </script>
+
+            <div> bool </div>
+            <script>
+            Diagram(Choice(0, "true", "false")).addTo();
+            </script>
+
+            <div> int </div>
+            <script>
+            Diagram(Sequence(OneOrMore("digit"))).addTo();
+            </script>
+
+            <div>  INCOMPLETE stringlit </div>
+            <script>
+            </script>
+
+            <div> float </div>
+            <script>
+            Diagram(Sequence(ZeroOrMore("digit")),".", OneOrMore("digit")).addTo();
+            </script>
+
+            <div> INCOMPLETE id </div>
+            <script>
+            </script>
+
+            <div> INCOMPLETE idrest </div>
+            <script>
+            </script>
+
+            <div> INCOMPLETE charlit </div>
+            <script>
+            </script>
+
+            <div> INCOMPLETE char </div>
+            <script>
+            </script>
+
+            <div> logop </div>
+            <script>
+            Diagram(Choice(0, "and", "or")).addTo();
+            </script>
+
+            <div> relop </div>
+            <script>
+            Diagram(Choice(0, "<", ">", "<=", "==", ">=", "!=")).addTo();
+            </script>
+
+            <div> addop </div>
+            <script>
+            Diagram(Choice(0, "=", "-")).addTo();
+            </script>
+
+            <div> mulop </div>
+            <script>
+            Diagram(Choice(0, "*", "/", "%")).addTo();
+            </script>
+
+            <div> preop </div>
+            <script>
+            Diagram(Choice(0, "-", "!")).addTo();
+            </script>
+
+            <div> exop </div>
+            <script>
+            Diagram(Sequence("**")).addTo();
+            </script>
+
+            <div> dotop </div>
+            <script>
+            Diagram(Sequence(".")).addTo();
+            </script>
+
+            <div> wild </div>
+            <script>
+            Diagram(Sequence("_")).addTo();
+            </script>
+
+            <div> INCOMPLETE keyword </div>
+            <script>
+            </script>
+
+            <div> INCOMPLETE escape </div>
+            <script>
+            </script>
 
         </div>
 
