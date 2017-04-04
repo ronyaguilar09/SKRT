@@ -4,6 +4,6 @@ module.exports = class TypeExpression {
     this.exp = exp;
   }
   toString() {
-    return `TypeofExpression: ${this.exp}`;
+    return ` (TypeExpression: ${this.exp}) `;
   }
 };

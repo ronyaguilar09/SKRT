@@ -4,6 +4,6 @@ module.exports = class Op {
   }
 
   toString() {
-    return `Op: ${this.op}`;
+    return ` (Op: ${this.op}) `;
   }
 };
