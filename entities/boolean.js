@@ -11,6 +11,6 @@ class Boolean {
   }
 
   analyze(context) {
-    this.type = Type.BOOL
+    this.type = Type.BOOL;
   }
 }
