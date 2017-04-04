@@ -13,8 +13,7 @@ SKRT {
     CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
     ObjDef      = "type" id "=" Obj ";"
     Print       = "print" "(" Exp ")" ";"
-    IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")?  // -- if
-    			 //|"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									       -- else
+    IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")?
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
     Match       = "match" "(" Exp ")" "with" MatchBlock
     FunCall     = id "(" Args ")"

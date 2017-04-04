@@ -10,4 +10,7 @@ class Char {
     return (`${this.value}`);
   }
 
+  analyze(context) {
+
+  }
 }

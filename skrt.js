@@ -374,7 +374,6 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
  // NumLit(value) { return new NumericLiteral(value.sourceString); },
   For(_, id, from, exp1, to, exp2, b1, body, b2) { return new For(id.sourceString, exp1.tree(), exp2.tree(), body.tree()); },
   IfElse(_, _a, cond1, p, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
-  // IfElse_else(_, _a, exp1, _b, _c, body1, _d, _e, _f, body2, _g) { return new Else(exp1.tree(), body1.tree(), body2.tree()); },
   Match(_, _a, exp, _b, _c, block) { return new Match(exp.tree(), block.tree()); },
   MatchBlock(_, pattern, _a, stmt) { return new MatchBlock(pattern.tree(), stmt.tree()); },
   MatchPat(exp) { return new MatchPattern(exp.tree()); },

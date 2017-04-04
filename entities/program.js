@@ -1,4 +1,4 @@
-const initialContext = require('../analyzer').initialContext;
+const Context = require('../analyzer');
 
 class Program {
   constructor(body) {
@@ -7,7 +7,7 @@ class Program {
   toString() {
     return (`( Program: ${this.body} )`);
   }
-  analyze() {
-    return this.body.analyze(initialContext());
+  analyze(context = Context.INITIAL) {
+    return this.body.analyze(context);
   }
 }
