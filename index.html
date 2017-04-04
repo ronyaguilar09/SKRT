@@ -58,13 +58,27 @@
 
         <div class="row marketing">
             <div class="col-xs-6" style = "border-right-width:thin; border-right-style:solid; border-color: #ddd">
+              <h4>Function Declarations </h4>
+              <p><code>def add x y => { <br>
+                          x + y; <br>
+                        } <br>
+              </code></p>
+
+              <h4>Object Declarations </h4>
+              <p><code>def obj = { <br>
+                          name: "John", <br>
+                          age: 42,
+                          gender: "male" <br>
+                        } <br>
+              </code></p>
+
                 <h4>Fibonacci </h4>
                 <p><code>def rec fib (n : int) : int list = { <br>
                             match n with <br>
                             | 0 -> 0 <br>
                             | 1 -> 1 <br>
                             | n -> fib (n-1) + fib (n-2) <br>
-                          };<br>
+                          } <br>
                 </code></p>
 
                 <h4>addOrSub Program</h4>
@@ -79,7 +93,7 @@
                         }
                 </code></p>
 
-                <h4>addOrSub Program</h4>
+                <h4>LengthOfList Program</h4>
                 <p><code>def listlength  => { <br>
                             match lst with    <br>
                             |[] -> 0          <br>
