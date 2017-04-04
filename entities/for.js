@@ -1,5 +1,5 @@
 class For {
-  constructor(_, id, from, exp1, to, exp2, b1, body, b2) {
+  constructor(id, exp1, exp2, body) {
     this.id = id;
     this.exp1 = exp1;
     this.exp2 = exp2;

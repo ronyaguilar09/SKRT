@@ -1,5 +1,5 @@
 class IfElse {
-  constructor(_, _a, cond1, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) {
+  constructor(cond1, body1, cond2, body2, body3) {
     this.cond1 = cond1;
     this.body1 = body1;
     this.cond2 = cond2;
@@ -15,5 +15,7 @@ class IfElse {
   analyze(context) {
     const booleanCondition = 'Condition in if statement must be boolean';
     this.cond1.type.mustBeBoolean(booleanCondition);
+    this.body1.analyze(context.createChildContextForBlock());
+    this.cond2.forEach(c => c.analyze());
   }
 }

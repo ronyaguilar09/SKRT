@@ -1,5 +1,5 @@
 class AssertDefinition {
-  constructor(_, type, _a, id, _b, exp, _c) {
+  constructor(type, id, exp) {
     this.type = type;
     this.id = id;
     this.exp = exp;
