@@ -1,0 +1,56 @@
+SKRT {
+    Program     =  Body
+    Body        =  Stmts*
+    Stmts       =  Def
+                |  IfElse
+                |  For
+                |  Exp
+    Def         = VarDef | FunDef | CamlDef | ObjDef | StructDef
+    StructDef	= "def" StructId "=" (Tuple|id) ";"
+    VarDef      = "def" id "=" Exp ";"
+    FunDef      = "def" id id* "=>" "{" Body "}"
+    CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
+    ObjDef      = "type" id "=" Obj
+    IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")?  // -- if
+    			 //|"if" "(" Exp ")" "{" Body "}" ("else" "{" Body "}")? 									       -- else
+    For         = "for" id "from" Exp "to" Exp "{" Body "}"
+    Match       = "match" "(" Exp ")" "with" MatchBlock
+    MatchBlock  = ("|" MatchPat "=>" Stmts)+
+    MatchPat    = Exp| wild
+    StructId	= id | Tuple
+    Exp         = Exp2(logop Exp)*          -- binary
+    Exp2        = Exp3(relop Exp2)*         -- binary
+    Exp3        = Exp4(addop Exp3)*         -- binary
+    Exp4        = Exp5(mulop Exp4)*         -- binary
+    Exp5        = Exp6(preop Exp6)?         -- binary
+    Exp6        = Exp7(exop Exp7)*          -- binary
+    Exp7        = Exp8(dotop Exp8)?           -- binary
+    Exp8        = Type | Match | Exp9
+    Exp9 	    = "(" Exp ")"               -- parens
+    Type		= Prim | Tuple | List
+    Prim        = bool|int|stringlit|float|id|charlit
+    Obj         = "{" (~(id ":" Exp "}" ) (id ":" Exp "," ))* (id ":" Exp "}" )
+    Tuple       = "(" (~(Exp ")")(Exp","))* (Exp ")")
+    List		= "[" (~(Exp ")")(Exp ","))* (Exp "]")
+
+    bool        = "true" | "false"
+    int         = digit+
+    stringlit   = "\"" (char|"\'")* "\""
+    float       = digit* "." digit+
+    id          = ~keyword letter idrest*
+    idrest		= "_" | alnum
+    charlit     = "\'"any"\'" // characters in string, notes fo HW1 answers
+    char		= escape
+    			 |~"\\" ~"\"" ~"'" ~"\n" any
+    logop       = "and" | "or"
+    relop       = "<"|">"|"<="|"=="|">="|"!="
+    addop       = "+" | "-"
+    mulop       = "*" | "/" | "%"
+    preop       = "-" | "!"
+    exop        = "**"
+    dotop       = "."
+    wild        = "_"
+    keyword     = ("for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print") ~idrest
+    escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
+    			| "\\u{"hexDigit+"}"								-- codepoint
+}
