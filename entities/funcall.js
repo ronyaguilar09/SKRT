@@ -4,6 +4,6 @@ module.exports = class FunCall {
     this.args = args;
   }
   toString() {
-    return `Function ${this.id} with ${this.args}`;
+    return `Function Call ${this.id} with ${this.args}`;
   }
 };

@@ -3,6 +3,6 @@ module.exports = class Arg {
     this.arg = arg;
   }
   toString() {
-    return `${this.arg}`;
+    return `${this.arg} `;
   }
 };

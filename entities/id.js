@@ -5,7 +5,7 @@ module.exports = class Id {
     this.value = value;
   }
   toString() {
-    return `Id: ${this.value.join('')}`;
+    return `Id: ${this.value}`;
   }
   analyze(context) {
     this.type = Type.ID;

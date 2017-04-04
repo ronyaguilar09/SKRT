@@ -16,9 +16,9 @@ SKRT {
     IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")?
     For         = "for" id "from" Exp "to" Exp "{" Body "}"
     Match       = "match" "(" Exp ")" "with" MatchBlock
-    FunCall     = id "(" Args ")"
-    Arg         = (id | Exp)?
-    Args        = ListOf<Arg, ",">
+    FunCall     = id Arg* ";"
+    Arg         = (id | Exp)
+    //Args        = ListOf<Arg, ",">
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp| wild
     StructId	= id | Tuple
