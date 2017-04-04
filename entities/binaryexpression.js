@@ -13,6 +13,8 @@ module.exports = class BinaryExpression {
 
   analyze(context) {
     this.left.analyze(context);
-    this.right.analyze(context);
+    if (this.right.length !== 0) {
+      this.right.analyze(context);
+    }
   }
 };

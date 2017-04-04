@@ -2,7 +2,6 @@ const error = require('./error');
 const VariableDefinition = require('./entities/variabledefinition');
 const FunctionDefinition = require('./entities/functiondefinition');
 
-// TODO: create an arg and args entity
 const Arg = require('./entities/arg');
 
 class AnalysisContext {
@@ -26,8 +25,8 @@ class AnalysisContext {
   }
 
   variableMustNotBeAlreadyDeclared(name) {
-    if (this.symbolTable[name]) {
-      return error(`Variable ${name} already declared`, name);
+    if (this.variables[name]) {
+      throw new Error(`Variable ${name} already declared`, name);
     }
   }
 
@@ -61,6 +60,6 @@ class AnalysisContext {
   }
 }
 
-// Context.INITIAL = new Context();
+AnalysisContext.INITIAL = new AnalysisContext();
 
-// module.exports = Context;
+module.exports = AnalysisContext;

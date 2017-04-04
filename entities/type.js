@@ -11,6 +11,10 @@ module.exports = class Type {
     return `( ${this.type} )`;
   }
 
+  analyze(context) {
+    this.type.analyze(context);
+  }
+
   mustBeInteger(message, location) {
     return this.mustBeCompatibleWith(Type.INT, message);
   }
@@ -35,8 +39,8 @@ module.exports = class Type {
     return this.mustBeCompatibleWith(Type.TUPLE, message);
   }
 
-  mustBeNull(message, location) {
-    return this.mustBeCompatibleWith(Type.NULL, message);
+  mustBeAny(message, location) {
+    return this.mustBeCompatibleWith(Type.ANY, message);
   }
 
   mustBeCompatibleWith(otherType, message, location) {
@@ -67,5 +71,5 @@ Type.CHAR = new Type('char');
 Type.FLOAT = new Type('float');
 Type.LIST = new Type('list');
 Type.TUPLE = new Type('tuple');
-Type.NULL = new Type('null');
+Type.ANY = new Type('any');
 Type.ID = new Type('id');

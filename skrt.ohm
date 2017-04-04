@@ -10,7 +10,7 @@ SKRT {
     StructDef	= "def" StructId "=" (Tuple|id) ";"
     VarDef      = "def" id "=" Exp ";"
     FunDef      = "def" id id* "=>" "{" Body "}"
-    CamlDef     = "def" Type ":" id "=" Exp";" // dont restrict just to primitive types here
+    CamlDef     = "def" Type ":" id "=" Exp";"
     ObjDef      = "type" id "=" Obj ";"
     Print       = "print" "(" Exp ")" ";"
     IfElse      = "if" "(" Exp ")" "{" Body "}" ( "else if" "(" Exp ")" "{" Body "}" )* ("else" "{" Body "}")?

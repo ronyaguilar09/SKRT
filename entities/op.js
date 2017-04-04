@@ -6,4 +6,8 @@ module.exports = class Op {
   toString() {
     return ` (Op: ${this.op}) `;
   }
+
+  analyze(context) {
+    console.log(this.op);
+  }
 };
