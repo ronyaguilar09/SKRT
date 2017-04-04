@@ -16,6 +16,25 @@ const AssertDefinition = require('../entities/assertdefinition');
 const ObjectDefinition = require('../entities/objectdefinition');
 const BinaryExpression = require('../entities/binaryexpression');
 const VariableExpression = require('../entities/variableexpression');
+const For = require('../entities/for');
+const IfElse = require('../entities/ifelse');
+const Match = require('../entities/match');
+const MatchBlock = require('../entities/matchblock');
+const MatchPattern = require('../entities/matchpattern');
+const StructId = require('../entities/structid');
+const Type = require('../entities/type');
+const Primitive= require('../entities/primitive');
+const ObjectLiteral = require('../entities/objectliteral');
+const Tuple = require('../entities/tuple');
+const List = require('../entities/list');
+const Boolean = require('../entities/boolean');
+const Integer = require('../entities/integer');
+const StringLiteral = require('../entities/stringliteral');
+const Float = require('../entities/float');
+const Id = require('../entities/id');
+const CharLit = require('../entities/charlit');
+const Char = require('../entities/char');
+const Op = require('../entities/op');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
