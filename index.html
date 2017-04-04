@@ -7,11 +7,11 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+    <link rel="icon" href="SKRTLOGOREADME.png">
     <link href="../railroad-diagrams/railroad-diagrams.css" rel="stylesheet">
     <script src="../railroad-diagrams/railroad-diagrams.js"></script>
 
-    <title>Narrow Jumbotron Template for Bootstrap</title>
+    <title>SKRT</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -25,9 +25,19 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
+  <style>
+  body {
 
-  <body>
-
+     margin-top: 20px;
+     margin-bottom:20px;
+     margin-right: 20px;
+     margin-left: 20px;
+  },
+  h3 {
+     margin-left: 20px;
+  }
+  </style>
+  <body class= "bodyMargins">
     <div class="fluid-container">
         <div class = "row">
             <div class = "col-xs-12">
@@ -224,17 +234,17 @@
             Diagram(Choice(0, NonTerminal("bool"), NonTerminal("int"), NonTerminal("stringlit"), NonTerminal("float"), NonTerminal("id"), NonTerminal("charlit"))).addTo();
             </script>
 
-            <div> DOES NOT WORK Obj </div>
+            <div> ASK Obj </div>
             <script>
             Diagram(Sequence("{", ZeroOrMore(Sequence(Comment("NEGLOOKAHEAD: id : Exp }"), NonTerminal("id"), ":", NonTerminal("Exp"), ",") ), NonTerminal("id"), ":", NonTerminal("Exp"), "}") ).addTo();
             </script>
 
-            <div> INCOMPLETE Tuple </div>
+            <div> ASK Tuple </div>
             <script>
             Diagram(Sequence("(", ZeroOrMore(Sequence(Comment("NEGLOOKAHEAD: Exp )"), NonTerminal("Exp"), ",") ), NonTerminal("Exp"), ")")).addTo();
             </script>
 
-            <div> INCOMPLETE List </div>
+            <div> ASK List </div>
             <script>
             Diagram(Sequence("[", ZeroOrMore(Sequence(Comment("NEGLOOKAHEAD: Exp )"), NonTerminal("Exp"), ",") ), NonTerminal("Exp"), "]")).addTo();
             </script>
@@ -249,7 +259,7 @@
             Diagram(Sequence(OneOrMore("digit"))).addTo();
             </script>
 
-            <div>  INCOMPLETE stringlit </div>
+            <div>  NOT SURE stringlit </div>
             <script>
             Diagram(Sequence("\"", ZeroOrMore(Choice(0, NonTerminal("char"), "\'")), "\"")).addTo();
             </script>
@@ -259,22 +269,22 @@
             Diagram(Sequence(ZeroOrMore("digit")),".", OneOrMore("digit")).addTo();
             </script>
 
-            <div> INCOMPLETE id </div>
+            <div> NOT SURE id </div>
             <script>
             Diagram(Sequence(Comment("NEGLOOKAHEAD: keyword"), "letter", ZeroOrMore( "idrest"))).addTo();
             </script>
 
-            <div> INCOMPLETE idrest </div>
+            <div> NOT SURE idrest </div>
             <script>
             Diagram(Choice(0, "_", "alnum")).addTo();
             </script>
 
-            <div> INCOMPLETE charlit </div>
+            <div> NOT SURE charlit </div>
             <script>
             Diagram(Sequence("\'", "any", "\'")).addTo();
             </script>
 
-            <div> INCOMPLETE char </div>
+            <div> NOT SURE char </div>
             <script>
             Diagram(Choice(0,"escape", Sequence(Comment("NEGLOOKAHEAD: \\"), Comment("NEGLOOKAHEAD: \""), Comment("NEGLOOKAHEAD: ' "), Comment("NEGLOOKAHEAD: \n"),"any"))).addTo();
             </script>
@@ -319,12 +329,12 @@
             Diagram(Sequence("_")).addTo();
             </script>
 
-            <div> INCOMPLETE keyword </div>
+            <div> NOT SURE keyword </div>
             <script>
             Diagram(Choice(0, "for", "match", "def", "type", "from", "to", "with", "if", "else", "or", "and", "true", "false", "print"), Sequence(Comment("NEGLOOKAHEAD: idrest ") ) ).addTo();
             </script>
 
-            <div> INCOMPLETE escape </div>
+            <div> NOT SURE escape </div>
             <script>
             Diagram(Choice(0, "\\\\", "\\\"", "\\'", "\\n", "\\t", Sequence("\\u{", OneOrMore("hexDigit"), "}") ) ).addTo();
             </script>
