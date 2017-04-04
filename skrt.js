@@ -5,36 +5,40 @@ const fs = require('fs');
 const contents = fs.readFileSync('skrt.ohm');
 const skrtGrammar = ohm.grammar(contents);
 
-const Program = require('../entities/program');
-const Body = require('../entities/body');
-const Statement = require('../entities/statement');
-const Definition = require('../entities/definition');
-const VariableDefinition = require('../entities/variabledefinition');
-const StructDefinition = require('../entities/structdefinition');
-const FunctionDefinition = require('../entities/functiondefinition');
-const AssertDefinition = require('../entities/assertdefinition');
-const ObjectDefinition = require('../entities/objectdefinition');
-const BinaryExpression = require('../entities/binaryexpression');
-const VariableExpression = require('../entities/variableexpression');
-const For = require('../entities/for');
-const IfElse = require('../entities/ifelse');
-const Match = require('../entities/match');
-const MatchBlock = require('../entities/matchblock');
-const MatchPattern = require('../entities/matchpattern');
-const StructId = require('../entities/structid');
-const Type = require('../entities/type');
-const Primitive = require('../entities/primitive');
-const ObjectLiteral = require('../entities/objectliteral');
-const Tuple = require('../entities/tuple');
-const List = require('../entities/list');
-const Boolean = require('../entities/boolean');
-const Integer = require('../entities/integer');
-const StringLiteral = require('../entities/stringliteral');
-const Float = require('../entities/float');
-const Id = require('../entities/id');
-const CharLit = require('../entities/charlit');
-const Char = require('../entities/char');
-const Op = require('../entities/binaryexpression');
+const Program = require('./entities/program');
+const Body = require('./entities/body');
+const Statement = require('./entities/statement');
+const Definition = require('./entities/definition');
+const VariableDefinition = require('./entities/variabledefinition');
+const StructDefinition = require('./entities/structdefinition');
+const FunctionDefinition = require('./entities/functiondefinition');
+const FunCall = require('./entities/funcall');
+const Args = require('./entities/args');
+const Arg = require('./entities/arg');
+const AssertDefinition = require('./entities/assertdefinition');
+const ObjectDefinition = require('./entities/objectdefinition');
+const Expression = require('./entities/expression');
+const BinaryExpression = require('./entities/binaryexpression');
+const TypeExpression = require('./entities/typeexpression');
+const For = require('./entities/for');
+const IfElse = require('./entities/ifelse');
+const Match = require('./entities/match');
+const MatchBlock = require('./entities/matchblock');
+const MatchPattern = require('./entities/matchpattern');
+const StructId = require('./entities/structid');
+const Type = require('./entities/type');
+const Primitive = require('./entities/primitive');
+const ObjectLiteral = require('./entities/object');
+const Tuple = require('./entities/tuple');
+const List = require('./entities/list');
+const Boolean = require('./entities/boolean');
+const Integer = require('./entities/integer');
+const StringLiteral = require('./entities/string');
+const Float = require('./entities/float');
+const Id = require('./entities/id');
+const CharLit = require('./entities/charlit');
+const Char = require('./entities/char');
+const Op = require('./entities/op');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
@@ -46,7 +50,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   StructDef(_, id, _a, struct, _b) { return new StructDefinition(id.sourceString, struct.tree()); },
   FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.sourceString, params.tree(), body.tree()); },
   CamlDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(type.tree(), id.sourceString, exp.tree()); },
-  ObjDef(_, id, _a, obj) { return new ObjectDefinition(id.sourceString, obj.tree()); },
+  ObjDef(_, id, _a, obj, semi) { return new ObjectDefinition(id.sourceString, obj.tree()); },
   Exp_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
   Exp2_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
   Exp3_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
@@ -54,7 +58,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Exp5_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
   Exp6_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
   Exp7_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
-  Exp8(type) { return new VariableExpression(type.tree()); },
+  Exp8(type) { return new TypeExpression(type.tree()); },
   Exp9_parens(p1, exp, p2) { return exp.tree(); },
   For(_, id, from, exp1, to, exp2, b1, body, b2) { return new For(id.sourceString, exp1.tree(), exp2.tree(), body.tree()); },
   IfElse(_, _a, cond1, p, _b, body1, _c, _d, _e, cond2, _f, _g, body2, _h, _i, _j, body3, _k) { return new IfElse(cond1.tree(), body1.tree(), cond2.tree(), body2.tree(), body3.tree()); },
@@ -68,10 +72,10 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Tuple(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
   List(openP, exp, comma, lastExp, closeP) { return new List(exp.tree(), lastExp.tree()); },
   bool(val) { return new Boolean(this.sourceString); },
-  int(val) { return new Integer(this.sourceString); },
+  int(val) { return new Integer(val.sourceString); },
   stringlit(p, val, p2) { return new StringLiteral(val.sourceString); },
   float(val, dot, val2) { return new Float(this.sourceString); },
-  id(first, rest) { return new Id(this.sourceString); },
+  id(first, rest) { return new Id(first.sourceString); },
   charlit(p1, val, p2) { return new CharLit(val.sourceString); },
   char(val) { return new Char(val.sourceString); },
   relop(op) { return new Op(op.sourceString); },

@@ -1,8 +1,8 @@
-class String {
+module.exports = class String {
   constructor(value) {
     this.value = value;
   }
   toString() {
-    return (`String: ${this.value.join('')}`);
+    return `String: ${this.value.join('')}`;
   }
- }
+ };

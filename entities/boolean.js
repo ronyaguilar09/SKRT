@@ -1,16 +1,16 @@
 const Type = require('./type');
 
-class Boolean {
+module.exports = class Boolean {
 
   constructor(value) {
     this.value = value;
   }
 
   toString() {
-    return (`Bool: ${this.value}`);
+    return `Bool: ${this.value}`;
   }
 
   analyze(context) {
     this.type = Type.BOOL;
   }
-}
+};

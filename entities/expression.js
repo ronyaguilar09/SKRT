@@ -1,2 +1,3 @@
-class Expression {
-}
+module.exports = class Expression {
+
+};

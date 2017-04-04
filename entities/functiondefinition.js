@@ -1,13 +1,13 @@
 const Type = require('./type');
 
-class FunctionDefinition {
+module.exports = class FunctionDefinition {
   constructor(funName, params, body) {
     this.id = funName;
     this.params = params;
     this.body = body;
   }
   toString() {
-    return (`( Func: ${this.id} (${this.params.join(' ')})= ${this.body} )`);
+    return `( Func: ${this.id} (${this.params.join(' ')})= ${this.body} )`;
   }
 
   analyze(context) {
@@ -18,4 +18,4 @@ class FunctionDefinition {
     }
     return this.body.analyze(localContext);
   }
-}
+};

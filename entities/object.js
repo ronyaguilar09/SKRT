@@ -1,4 +1,4 @@
-class Object {
+module.exports = class Object {
   constructor(id, exp, lastId, lastExp) {
     this.id = id;
     this.exp = exp;
@@ -6,6 +6,6 @@ class Object {
     this.lastExp = lastExp;
   }
   toString() {
-    return (`Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`);
+    return `Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`;
   }
-}
+};

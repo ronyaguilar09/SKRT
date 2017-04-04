@@ -1,15 +1,14 @@
 const error = require('../error');
-
 const cache = {};
 
-class Type {
+module.exports = class Type {
   constructor(type) {
     this.type = type;
     cache[this.type] = this;
   }
 
   toString() {
-    return (`( ${this.type} )`);
+    return `( ${this.type} )`;
   }
 
   mustBeInteger(message, location) {
@@ -57,7 +56,9 @@ class Type {
   isCompatibileWith(otherType) {
     return this === otherType;
   }
-}
+};
+
+const Type = require('./type');
 
 Type.INT = new Type('int');
 Type.BOOL = new Type('bool');

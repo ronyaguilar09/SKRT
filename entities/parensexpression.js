@@ -1,4 +1,4 @@
-class ParensExpression extends Expression {
+module.exports = class ParensExpression extends Expression {
   constructor(p1, exp, p2) {
     super();
     this.p1 = p1;
@@ -6,6 +6,6 @@ class ParensExpression extends Expression {
     this.p2 = p2;
   }
   toString() {
-    return (`( ${this.exp} )`);
+    return `( ${this.exp} )`;
   }
-}
+};

@@ -1,8 +1,8 @@
-class IdRest {
+module.exports = class IdRest {
   constructor(value) {
     this.value = value;
   }
   toString() {
-    return (`${this.value.join('')}`);
+    return `${this.value.join('')}`;
   }
-}
+};

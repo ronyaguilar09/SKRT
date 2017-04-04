@@ -1,16 +1,16 @@
 const Type = require('./type');
 
-class Char {
+module.exports = class Char {
 
   constructor(value) {
     this.value = value;
   }
 
   toString() {
-    return (`${this.value}`);
+    return `${this.value}`;
   }
 
   analyze(context) {
 
   }
-}
+};

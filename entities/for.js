@@ -1,4 +1,4 @@
-class For {
+module.exports = class For {
   constructor(id, exp1, exp2, body) {
     this.id = id;
     this.exp1 = exp1;
@@ -6,6 +6,6 @@ class For {
     this.body = body;
   }
   toString() {
-    return (`( For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`);
+    return `( For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`;
   }
-}
+};

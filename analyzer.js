@@ -61,6 +61,6 @@ class AnalysisContext {
   }
 }
 
-Context.INITIAL = new Context();
+// Context.INITIAL = new Context();
 
-module.exports = Context;
+// module.exports = Context;
