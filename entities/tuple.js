@@ -1,5 +1,5 @@
 class Tuple {
-  constructor(openP, exp, comma, lastExp, closeP) {
+  constructor(exp, lastExp) {
     this.exp = exp;
     this.lastExp = lastExp;
   }

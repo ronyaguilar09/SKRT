@@ -1,7 +1,7 @@
 const Type = require('./type');
 
 class VariableDefinition {
-  constructor(_, id, _a, exp, _b) {
+  constructor(id, exp) {
     this.id = id;
     this.exp = exp;
   }

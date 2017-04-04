@@ -1,5 +1,5 @@
 class Object {
-  constructor(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) {
+  constructor(id, exp, lastId, lastExp) {
     this.id = id;
     this.exp = exp;
     this.lastId = lastId;

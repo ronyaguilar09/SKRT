@@ -1,5 +1,5 @@
 class MatchBlock {
-  constructor(_, pattern, _a, stmt) {
+  constructor(pattern, stmt) {
     this.pattern = pattern;
     this.stmt = stmt;
   }
