@@ -34,7 +34,7 @@ const Float = require('../entities/float');
 const Id = require('../entities/id');
 const CharLit = require('../entities/charlit');
 const Char = require('../entities/char');
-const Op = require('../entities/op');
+const Op = require('../entities/binaryexpression');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
