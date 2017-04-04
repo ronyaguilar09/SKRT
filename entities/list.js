@@ -1,5 +1,5 @@
 class List {
-  constructor(openB, exp, comma, lastExp, closeB) {
+  constructor(exp, lastExp) {
     this.exp = exp;
     this.lastExp = lastExp;
   }

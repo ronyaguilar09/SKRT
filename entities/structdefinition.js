@@ -1,5 +1,5 @@
 class StructDefinition {
-  constructor(_, id, _a, struct, _b) {
+  constructor(id, struct) {
     this.id = id;
     this.struct = struct;
   }

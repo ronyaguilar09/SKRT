@@ -1,7 +1,7 @@
 const Type = require('./type');
 
 class FunctionDefinition {
-  constructor(_, funName, params, _a, _b, body, _c) {
+  constructor(funName, params, body) {
     this.id = funName;
     this.params = params;
     this.body = body;

@@ -1,5 +1,5 @@
 class ObjectDefinition {
-  constructor(_, id, _a, obj) {
+  constructor(id, obj) {
     this.id = id;
     this.obj = obj;
   }
