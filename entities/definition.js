@@ -5,4 +5,8 @@ class Definition {
   toString() {
     return (`(Definition: ${this.definition} )`);
   }
+
+  analyze(context) {
+    this.definition.analyze(context);
+  }
 }
