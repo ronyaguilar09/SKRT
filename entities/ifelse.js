@@ -13,9 +13,10 @@ class IfElse {
   }
 
   analyze(context) {
-    const booleanCondition = 'Condition in if statement must be boolean';
-    this.cond1.type.mustBeBoolean(booleanCondition);
+    this.cond1.analyze(context);
     this.body1.analyze(context.createChildContextForBlock());
-    this.cond2.forEach(c => c.analyze());
+    this.cond2.forEach(c => c.analyze(context.createChildContextForBlock()));
+    this.body2.forEach(b => b.analyze(context.createChildContextForBlock()));
+    this.body3.analyze(context.createChildContextForBlock());
   }
 }
