@@ -8,4 +8,9 @@ class BinaryExpression extends Expression {
   toString() {
     return (`( ${this.left}${this.op}${this.right} )`);
   }
+
+  analyze(context) {
+    this.left.analyze(context);
+    this.right.analyze(context);
+  }
 }
