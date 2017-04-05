@@ -10,6 +10,6 @@ module.exports = class AssertDefinition {
 
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id);
-    return context.addVariable(this.id, this.exp);
+    context.addVariable(this.id, this.exp);
   }
 };

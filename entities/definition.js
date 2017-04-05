@@ -1,13 +1,13 @@
 module.exports = class Definition {
   constructor(def) {
-    this.definition = def;
+    this.typeOfDef = def;
   }
   toString() {
-    return `(Definition: ${this.definition} )`;
+    return `(Definition: ${this.typeOfDef} )`;
   }
 
   analyze(context) {
     console.log(`in definiton analysis: ${context}`);
-    this.definition.analyze(context);
+    this.typeOfDef.analyze(context);
   }
 };
