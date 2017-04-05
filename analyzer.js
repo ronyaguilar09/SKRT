@@ -30,11 +30,11 @@ class AnalysisContext {
     }
   }
 
-  addVariable(entity) {
-    if (entity.id in this.variables) {
-      throw new Error(`Identifier ${entity.id} already declared in this scope`);
+  addVariable(id) {
+    if (id.name in this.variables) {
+      throw new Error(`Identifier ${id.name} already declared in this scope`);
     }
-    this.variables[entity.id] = entity;
+    this.variables[id.name] = id;
   }
 
   lookupVariable(name) {

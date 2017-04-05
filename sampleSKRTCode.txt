@@ -1,2 +1,2 @@
 def x = 5;
-def x = 2;
+def y = 2;
