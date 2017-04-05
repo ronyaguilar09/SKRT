@@ -67,7 +67,7 @@ module.exports = class Type {
 const Type = require('./type');
 
 Type.isNumber = (literal) => {
-  if (literal === 'int' || literal === 'float') {
+  if (literal === 'int' || literal === 'float' || literal === 'number') {
     return true;
   }
   return false;

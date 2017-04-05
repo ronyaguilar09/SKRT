@@ -14,26 +14,31 @@ module.exports = class BinaryExpression {
   }
 
   analyze(context) {
-    this.left.analyze(context);     // <--- will set this.left.type as a side effect
-    this.right.forEach(exp => exp.analyze(context));    // <---- will set this.right.type as a side effect
-    this.op.forEach((o) => {
-      if (['*', '/', '+', '-'].includes(o.operator)) {
-        if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right.type.literal))) { // || !(Type.isNumber(this.right.type.literal))) {
-          throw Error('Invalid operands, expected numbers');
+    this.left.analyze(context);
+    if (this.right.length > 0) {
+      for (let i = 0; i < this.right.length; i += 1) {
+        this.right[i].analyze(context);
+        if (['*', '/', '+', '-'].includes(this.op[0].operator)) {
+          console.log(this.left.type.literal);
+          console.log(this.right[i].type.literal);
+          if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) { // || !(Type.isNumber(this.right.type.literal))) {
+            throw Error('Invalid operands, expected numbers');
+          }
+          this.type = Type.NUMBER;
+        } else if (['and', 'or'].includes(this.op[0].operator)) {
+          if (this.left.type.literal !== 'boolean' || this.right[i].type !== 'boolean') {
+            throw Error('Expected Boolean values');
+          }
+          this.type = Type.BOOLEAN;
+        } else if (['<', '<=', '>', '>=', '==', '!='].includes(this.op[0].operator)) {
+          if (!(Type.isNumber(this.left.type)) || !(Type.isNumber(this.right[i].type))) {
+            throw Error('Invalid operands, expected numbers');
+          }
+          this.type = Type.BOOLEAN;
         }
-        this.type = Type.NUMBER;
-      } else if (['and', 'or'].includes(o.operator)) {
-        if (this.left.type !== Type.BOOLEAN || this.right.type !== Type.BOOLEAN) {
-          throw Error('Expected Boolean values');
-        }
-        this.type = Type.BOOLEAN;
-      } else if (['<', '<=', '>', '>=', '==', '!='].includes(o.operator)) {
-        if (!(Type.isNumber(this.left.type)) || !(Type.isNumber(this.right.type))) {
-          throw Error('Invalid operands, expected numbers');
-        }
-        this.type = Type.BOOLEAN;
-      }
-    });
+      } // <--- will set this.left.type as a side effect
+        // <---- will set this.right.type as a side effect
+    }
 
     if (!this.type) {
       this.type = this.left.type;
