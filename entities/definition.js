@@ -7,6 +7,7 @@ module.exports = class Definition {
   }
 
   analyze(context) {
+    console.log(`in definiton analysis: ${context}`);
     this.definition.analyze(context);
   }
 };

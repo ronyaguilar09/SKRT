@@ -8,4 +8,9 @@ module.exports = class Object {
   toString() {
     return `Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`;
   }
+
+  analyze(context){
+    this.type = Type.OBJECT;
+    this.id.analyze(context);
+  }
 };

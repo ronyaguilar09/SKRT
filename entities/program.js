@@ -8,6 +8,7 @@ module.exports = class Program {
     return `( Program: ${this.body} )`;
   }
   analyze(context = Context.INITIAL) {
+    console.log(`in program analysis: ${context}`);
     return this.body.analyze(context);
   }
 };

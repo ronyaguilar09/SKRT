@@ -100,7 +100,7 @@ if (match.succeeded()) {
 }
 */
 const program = semantics(match).tree();
-console.log(program);
+console.log(program.toString());
 program.analyze();
 // read args
 // Parse

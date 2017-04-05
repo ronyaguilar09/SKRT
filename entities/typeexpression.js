@@ -7,6 +7,8 @@ module.exports = class TypeExpression {
     return ` (TypeExpression: ${this.exp}) `;
   }
   analyze(context) {
+    console.log(`in type expression analysis ${context}`);
     this.exp.analyze(context);
+    this.type = this.exp.type;
   }
 };

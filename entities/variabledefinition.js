@@ -11,6 +11,7 @@ module.exports = class VariableDefinition {
   }
 
   analyze(context) {
+    console.log(`in var def analysis: ${context}`);
     context.variableMustNotBeAlreadyDeclared(this.id);
     context.addVariable(this.id, this.exp);
     this.exp.analyze(context); // Not sure

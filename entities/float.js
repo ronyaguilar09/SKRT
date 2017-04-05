@@ -8,7 +8,7 @@ module.exports = class Float {
   }
 
   toString() {
-    return `Float: ${this.value1.join('')}. ${this.value2.join('')}`;
+    return `Float: ${this.value1.join('')}.${this.value2.join('')}`;
   }
 
   analyze(context) {

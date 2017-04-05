@@ -1,11 +1,11 @@
 const Type = require('./type');
 
 module.exports = class Id {
-  constructor(value) {
-    this.value = value;
+  constructor(name) {
+    this.name = name;
   }
   toString() {
-    return `Id: ${this.value}`;
+    return `Id: ${this.name}`;
   }
   analyze(context) {
     this.type = Type.ID;

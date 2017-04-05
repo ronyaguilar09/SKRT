@@ -1,11 +1,12 @@
 module.exports = class Primitive {
   constructor(prim) {
-    this.type = prim;
+    this.prim = prim;
   }
   toString() {
-    return `( ${this.type} )`;
+    return `( ${this.prim} )`;
   }
   analyze(context) {
-    this.type.analyze(context);
+    this.prim.analyze(context);
+    this.type = this.prim.type;
   }
 };
