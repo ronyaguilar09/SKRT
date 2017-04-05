@@ -102,6 +102,11 @@ if (match.succeeded()) {
 const program = semantics(match).tree();
 console.log(program.toString());
 program.analyze();
-// read args
-// Parse
-// constole.log(.ast())
+
+module.exports = (text) => {
+  const testMatch = skrtGrammar.match(text);
+  if (!match.succeeded()) {
+    throw new Error(`Syntax Error: ${match.message}`);
+  }
+  return semantics(testMatch).tree();
+};
