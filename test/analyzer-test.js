@@ -1,19 +1,15 @@
 const ohm = require('../node_modules/ohm-js');
 const assert = require('assert');
-
 const fs = require('fs');
-
-const contents = fs.readFileSync('../skrt.ohm');
-const myGrammar = ohm.grammar(contents);
-const parse = require('../skrt.js');
+const parse = require('../skrt');
 
 describe('The semantic analyzer', () => {
   fs.readdirSync(__dirname).forEach((name) => {
     if (name.endsWith('.error')) {
+
       it(`detects a ${name.replace(/[^a-z]/g, ' ')}`, (done) => {
         const program = parse(fs.readFileSync(`${__dirname}/${name}`, 'utf-8'));
         const errorPattern = RegExp(name.replace('.error', '').replace(/-/g, ' '), 'i');
-        console.log(program);
         assert.throws(() => program.analyze(), errorPattern);
         done();
       });
