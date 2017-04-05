@@ -66,11 +66,11 @@ module.exports = class Type {
 
 const Type = require('./type');
 
-Type.isNumber = (type) => {
-  if (type !== Type.INT || type !== Type.FLOAT) {
-    return false;
+Type.isNumber = (literal) => {
+  if (literal === 'int' || literal === 'float') {
+    return true;
   }
-  return true;
+  return false;
 };
 
 Type.NUMBER = new Type('number');

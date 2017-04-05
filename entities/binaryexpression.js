@@ -18,7 +18,7 @@ module.exports = class BinaryExpression {
     this.right.forEach(exp => exp.analyze(context));    // <---- will set this.right.type as a side effect
     this.op.forEach((o) => {
       if (['*', '/', '+', '-'].includes(o.operator)) {
-        if (!(Type.isNumber(this.left.type)) || !(Type.isNumber(this.right.type))) {
+        if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right.type.literal))) { // || !(Type.isNumber(this.right.type.literal))) {
           throw Error('Invalid operands, expected numbers');
         }
         this.type = Type.NUMBER;
@@ -38,8 +38,5 @@ module.exports = class BinaryExpression {
     if (!this.type) {
       this.type = this.left.type;
     }
-    console.log(`left: ${this.left.type}`);
-    console.log(`right: ${this.right.type}`);
-      // console.log(this.type);
   }
 };
