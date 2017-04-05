@@ -6,8 +6,7 @@ const parse = require('../skrt');
 describe('The semantic analyzer', () => {
   fs.readdirSync(__dirname).forEach((name) => {
     if (name.endsWith('.error')) {
-
-      it(`detects a ${name.replace(/[^a-z]/g, ' ')}`, (done) => {
+      it('detects an error', (done) => {
         const program = parse(fs.readFileSync(`${__dirname}/${name}`, 'utf-8'));
         const errorPattern = RegExp(name.replace('.error', '').replace(/-/g, ' '), 'i');
         assert.throws(() => program.analyze(), errorPattern);
