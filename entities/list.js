@@ -9,9 +9,9 @@ module.exports = class List {
     return `List: [${this.exp}, ${this.lastExp}]`;
   }
   analyze(context) {
-    this.exp.analyze(context);
-    for (let i = 0; i < this.lastExp.length; i += 1) {
-      this.lastExp[i].analyze(context);
+    this.lastExp.analyze(context);
+    for (let i = 0; i < this.exp.length; i += 1) {
+      this.exp[i].analyze(context);
     }
     this.type = Type.LIST;
   }
