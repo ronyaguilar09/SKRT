@@ -9,7 +9,8 @@ module.exports = class ObjectDefinition {
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id);
     context.addVariable(this.id, this.obj);
-    this.obj.analyze(context);
+    const localcontext = context.createChildContextForFunctionBody(this);
+    this.obj.analyze(localcontext);
     this.id.analyze(context);
   }
 };

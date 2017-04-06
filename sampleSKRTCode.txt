@@ -1,4 +1,4 @@
-type God = {
-    name : "Rony",
-    last : "Aguilar"
+type Peasant = {
+    name : "Filip",
+    last : "Mietka"
 };
