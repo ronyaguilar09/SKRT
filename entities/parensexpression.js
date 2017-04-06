@@ -8,4 +8,7 @@ module.exports = class ParensExpression extends Expression {
   toString() {
     return `( ${this.exp} )`;
   }
+  analyze(context) {
+    this.exp.analyze(context);
+  }
 };

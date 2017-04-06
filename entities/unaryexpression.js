@@ -1,4 +1,4 @@
-module.exports = class UnaryExpression extends Expression {
+module.exports = class UnaryExpression {
   constructor(op, operand) {
     super();
     this.op = op;
@@ -6,5 +6,9 @@ module.exports = class UnaryExpression extends Expression {
   }
   toString() {
     return `( ${this.op.join()}${this.operand.join()} )`;
+  }
+  analyze(context) {
+    this.op.analyze(context);
+    this.operand.analyze(context);
   }
 };

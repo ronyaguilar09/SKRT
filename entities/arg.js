@@ -5,4 +5,7 @@ module.exports = class Arg {
   toString() {
     return `${this.arg} `;
   }
+  analyze(context) {
+    this.arg.analyze(context);
+  }
 };
