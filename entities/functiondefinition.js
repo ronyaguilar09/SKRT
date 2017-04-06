@@ -12,13 +12,16 @@ module.exports = class FunctionDefinition {
 
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id, 'Function already declared');
-    const localContext = context.createChildContext();
+    const localContext = context.createChildContextForAFunctionBody(this);
 
     for (let i = 0; i < this.params.length; i += 1) {
       localContext.variableMustNotBeAlreadyDeclared(this.params[i], 'Duplicate Parameters found in definition');
-      localContext.addVariable(this.params[i], Type.ANY);
+      this.params[i].analyze(localContext);
     }
 
-    this.body.analyze(localContext);
+    localContext.addVariable(this, Type.ANY);
+    if (this.body) {
+      this.body.analyze(localContext);
+    }
   }
 };
