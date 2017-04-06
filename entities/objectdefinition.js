@@ -9,6 +9,7 @@ module.exports = class ObjectDefinition {
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id);
     context.addVariable(this.id, this.obj);
-    return this.obj.analyze(this.obj);
+    this.obj.analyze(context);
+    this.id.analyze(context);
   }
 };

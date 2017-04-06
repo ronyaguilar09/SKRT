@@ -8,11 +8,20 @@ module.exports = class Object {
     this.lastExp = lastExp;
   }
   toString() {
-    return `Object: { ${this.id}} : ${this.exp}, ${this.lastId} : ${this.lastExp} }`;
+    return `Object: { ${this.lastId}} : ${this.lastExp}, ${this.id} : ${this.exp} }`;
   }
 
   analyze(context) {
     this.type = Type.OBJECT;
-    this.id.analyze(context);
+    context.variableMustNotBeAlreadyDeclared(this.lastId.name);
+    context.addVariable(this.lastId, this.lastExp);
+    this.lastId.analyze(context);
+    this.lastExp.analyze(context);
+    for (let i = 0; i < this.id.length; i += 1) {
+      context.variableMustNotBeAlreadyDeclared(this.id[i].name);
+      context.addVariable(this.id[i].name, this.exp[i]);
+      this.id[i].analyze(context);
+      this.exp[i].analyze(context);
+    }
   }
 };

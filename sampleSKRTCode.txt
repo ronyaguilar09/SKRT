@@ -1,1 +1,4 @@
-def bool : x = true;
+type God = {
+    name : "Rony",
+    last : "Aguilar"
+};
