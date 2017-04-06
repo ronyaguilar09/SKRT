@@ -5,7 +5,7 @@ module.exports = class String {
     this.value = value;
   }
   toString() {
-    return `String: ${this.value.join('')}`;
+    return `String: ${this.value}`;
   }
 
   analyze(context) {
