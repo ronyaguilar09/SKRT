@@ -32,11 +32,12 @@ SKRT {
     Exp8        = FunCall | Type | Match | Exp9
     Exp9 	    = "(" Exp ")"                   -- parens
     Type		= Prim | Tuple | List
-    Prim        = bool|int|id|stringlit|float|charlit
+    Prim        = assert | bool|int|id|stringlit|float|charlit
     Obj         = "{" (~(id ":" Exp "}" ) (id ":" Exp "," ))* (id ":" Exp "}" )
     Tuple       = "(" (~(Exp ")")(Exp","))* (Exp ")")
     List		= "[" (~(Exp ")")(Exp ","))* (Exp "]")
 
+    assert		= "int" | "float" | "string" | "char" | "bool"
     bool        = "true" | "false"
     int         = digit+
     stringlit   = "\"" (char|"\'")* "\""

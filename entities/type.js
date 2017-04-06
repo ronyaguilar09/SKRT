@@ -12,7 +12,6 @@ module.exports = class Type {
   }
 
   analyze(context) {
-    console.log(`in type analysis: ${context}`);
     this.literal.analyze(context);
     this.type = this.literal.type;
   }

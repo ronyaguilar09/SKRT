@@ -39,6 +39,7 @@ const Id = require('./entities/id');
 const CharLit = require('./entities/charlit');
 const Char = require('./entities/char');
 const Op = require('./entities/op');
+const Assert = require('./entities/assert');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
@@ -74,6 +75,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Obj(openB, id, colon, exp, comma, lastId, lastColon, lastExp, lastCloseB) { return new ObjectLiteral(id.tree(), exp.tree(), lastId.sourceString, lastExp.tree()); },
   Tuple(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
   List(openP, exp, comma, lastExp, closeP) { return new List(exp.tree(), lastExp.tree()); },
+  assert(type) { return new Assert(type.sourceString); },
   bool(val) { return new Boolean(val.sourceString); },
   int(val) { return new Integer(val.sourceString); },
   stringlit(p, val, p2) { return new StringLiteral(val.sourceString); },

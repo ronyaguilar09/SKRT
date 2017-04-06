@@ -1,1 +1,1 @@
-false and true
+def bool : x = true;
