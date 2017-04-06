@@ -22,7 +22,7 @@ module.exports = class BinaryExpression {
           console.log(this.left.type.literal);
           console.log(this.right[i].type.literal);
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
-            throw Error('Invalid operands, expected numbers');
+            throw Error('Invalid operands expected numbers');
           }
           this.type = Type.NUMBER;
         } else if (['and', 'or'].includes(this.op[0].operator)) {
@@ -32,7 +32,7 @@ module.exports = class BinaryExpression {
           this.type = Type.BOOLEAN;
         } else if (['<', '<=', '>', '>=', '==', '!='].includes(this.op[0].operator)) {
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
-            throw Error('Invalid operands, expected numbers');
+            throw Error('Invalid operands expected numbers');
           }
           this.type = Type.BOOLEAN;
         }
