@@ -1,4 +1,5 @@
 const error = require('../error');
+
 const cache = {};
 
 module.exports = class Type {

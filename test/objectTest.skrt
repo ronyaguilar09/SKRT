@@ -1,0 +1,4 @@
+type God = {
+    name : "Rony",
+    last : "Aguilar"
+};

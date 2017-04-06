@@ -1,4 +1,5 @@
 const Type = require('./type');
+
 module.exports = class Tuple {
   constructor(exp, lastExp) {
     this.exp = exp;
