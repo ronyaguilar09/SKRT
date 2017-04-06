@@ -83,6 +83,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   char(val) { return new Char(val.sourceString); },
   relop(op) { return new Op(op.sourceString); },
   addop(op) { return new Op(op.sourceString); },
+  logop(op) { return new Op(op.sourceString); },
   mulop(op) { return new Op(op.sourceString); },
   preop(op) { return new Op(op.sourceString); },
   exop(op) { return new Op(op.sourceString); },

@@ -19,14 +19,14 @@ module.exports = class BinaryExpression {
       for (let i = 0; i < this.right.length; i += 1) {
         this.right[i].analyze(context);
         if (['*', '/', '+', '-'].includes(this.op[0].operator)) {
-          console.log(this.left.type.literal);
-          console.log(this.right[i].type.literal);
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
             throw Error('Invalid operands expected numbers');
           }
           this.type = Type.NUMBER;
         } else if (['and', 'or'].includes(this.op[0].operator)) {
-          if (this.left.type.literal !== 'boolean' || this.right[i].type !== 'boolean') {
+          console.log(this.left.type.literal);
+          console.log(this.right[i].type.literal);
+          if (this.left.type.literal !== 'bool' || this.right[i].type.literal !== 'bool') {
             throw Error('Expected Boolean values');
           }
           this.type = Type.BOOLEAN;
