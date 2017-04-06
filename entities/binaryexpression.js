@@ -32,7 +32,7 @@ module.exports = class BinaryExpression {
           this.type = Type.BOOLEAN;
         } else if (['<', '<=', '>', '>=', '==', '!='].includes(this.op[0].operator)) {
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
-            throw Error('Invalid operands expected numbers');
+            throw Error('Invalid boolean expected numbers');
           }
           this.type = Type.BOOLEAN;
         }
