@@ -37,6 +37,10 @@ class AnalysisContext {
     this.variables[id.name] = value;
   }
 
+  setVariable(name, value) {
+    this.variables[name] = value;
+  }
+
   lookupVariable(name) {
     if (name in this.variables) {
       return this.variables[name];
@@ -50,12 +54,6 @@ class AnalysisContext {
   assertInFunction(message) {
     if (!this.currentFunction) {
       throw new Error(message);
-    }
-  }
-
-  assertIsFunction(entity) {
-    if (entity.constructor !== FunctionDefinition) {
-      throw new Error(`${entity.id} is not a function`);
     }
   }
 }

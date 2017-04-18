@@ -49,7 +49,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Def(def) { return new Definition(def.tree()); },
   VarDef(_, id, _a, exp, _b) { return new VariableDefinition(id.tree(), exp.tree()); },
   StructDef(_, id, _a, struct, _b) { return new StructDefinition(id.tree(), struct.tree()); },
-  FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.sourceString, params.tree(), body.tree()); },
+  FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.tree(), params.tree(), body.tree()); },
   FunCall(id, args, s) { return new FunCall(id.tree(), args.tree()); },
   Arg(arg) { return new Arg(arg.tree()); },
   // Args(arg) { return new Args(arg.tree()); },

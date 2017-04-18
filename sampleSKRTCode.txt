@@ -1,6 +1,7 @@
+def x = 2;
+def y = 1;
 def add x y => {
     x + y
 }
 
-def x = 5;
-x + 3
+add 2 y;
