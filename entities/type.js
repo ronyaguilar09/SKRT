@@ -5,6 +5,7 @@ const cache = {};
 module.exports = class Type {
   constructor(type) {
     this.literal = type;
+    this.type = this;
     cache[this.literal] = this;
   }
 
@@ -15,6 +16,10 @@ module.exports = class Type {
   analyze(context) {
     this.literal.analyze(context);
     this.type = this.literal.type;
+
+    if (this.literal.name) {
+      this.name = this.literal.name;
+    }
   }
 
   mustBeInteger(message, location) {
@@ -67,7 +72,7 @@ module.exports = class Type {
 const Type = require('./type');
 
 Type.isNumber = (literal) => {
-  if (literal === 'int' || literal === 'float' || literal === 'number') {
+  if (literal === 'int' || literal === 'float' || literal === 'number' || literal === 'any') {
     return true;
   }
   return false;

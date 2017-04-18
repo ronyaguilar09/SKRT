@@ -15,17 +15,18 @@ module.exports = class BinaryExpression {
 
   analyze(context) {
     this.left.analyze(context);
+    if (this.left.name) {
+      this.type = context.lookupVariable(this.left.name).type;
+    }
     if (this.right.length > 0) {
       for (let i = 0; i < this.right.length; i += 1) {
         this.right[i].analyze(context);
         if (['*', '/', '+', '-'].includes(this.op[0].operator)) {
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
-            throw Error('Invalid operands expected numbers');
+            throw Error('Numbers: Invalid operands expected numbers');
           }
           this.type = Type.NUMBER;
         } else if (['and', 'or'].includes(this.op[0].operator)) {
-          console.log(this.left.type.literal);
-          console.log(this.right[i].type.literal);
           if (this.left.type.literal !== 'bool' || this.right[i].type.literal !== 'bool') {
             throw Error('Expected Boolean values');
           }
@@ -36,8 +37,7 @@ module.exports = class BinaryExpression {
           }
           this.type = Type.BOOLEAN;
         }
-      } // <--- will set this.left.type as a side effect
-        // <---- will set this.right.type as a side effect
+      }
     }
 
     if (!this.type) {

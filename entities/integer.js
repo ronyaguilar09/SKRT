@@ -9,7 +9,6 @@ module.exports = class Integer {
   }
 
   analyze(context) {
-    console.log(`reached integer without errors: ${this.value}`);
     this.type = Type.INT;
   }
 };

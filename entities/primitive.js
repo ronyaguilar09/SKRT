@@ -8,5 +8,8 @@ module.exports = class Primitive {
   analyze(context) {
     this.prim.analyze(context);
     this.type = this.prim.type;
+    if (this.type.literal === 'id') {
+      this.name = this.prim.name;
+    }
   }
 };
