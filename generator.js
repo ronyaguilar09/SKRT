@@ -1,3 +1,4 @@
+const Analyzer = require('./analyzer');
 const Program = require('./entities/program');
 const Body = require('./entities/body');
 const Statement = require('./entities/statement');
