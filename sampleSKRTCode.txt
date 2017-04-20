@@ -2,3 +2,5 @@ match(1) with
 | true => false
 | 2 => 1 + 2
 | 1 => true
+
+print(1);

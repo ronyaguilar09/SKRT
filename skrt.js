@@ -40,6 +40,7 @@ const CharLit = require('./entities/charlit');
 const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
+const PrintStatement = require('./entities/printstatement');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
@@ -69,6 +70,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Match(_, _a, exp, _b, _c, block) { return new Match(exp.tree(), block.tree()); },
   MatchBlock(_, pattern, _a, stmt) { return new MatchBlock(pattern.tree(), stmt.tree()); },
   MatchPat(exp) { return new MatchPattern(exp.tree()); },
+  Print(pr, p1, exp, p2, s) { return new PrintStatement(exp.tree()); },
   StructId(id) { return new StructId(id.tree()); },
   Type(type) { return new Type(type.tree()); },
   Prim(prim) { return new Primitive(prim.tree()); },
