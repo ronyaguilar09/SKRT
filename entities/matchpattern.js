@@ -5,4 +5,8 @@ module.exports = class MatchPattern {
   toString() {
     return `( Pattern: ${this.exp} )`;
   }
+
+  analyze(context) {
+    this.exp.analyze(context);
+  }
 };

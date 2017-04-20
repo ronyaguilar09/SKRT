@@ -1,6 +1,5 @@
 module.exports = class UnaryExpression {
   constructor(op, operand) {
-    super();
     this.op = op;
     this.operand = operand;
   }
