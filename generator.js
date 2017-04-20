@@ -34,3 +34,11 @@ const CharLit = require('./entities/charlit');
 const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
+
+function makeOp(op) {
+  return { and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
+}
+
+Object.assign(BinaryExpression.prototype, {
+  gen() { return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`; },
+});
