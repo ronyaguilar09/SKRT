@@ -52,7 +52,6 @@ function makeOp(op) {
   return { and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
 
-<<<<<<< HEAD
 const jsName = (() => {
   let lastId = 0;
   const map = new Map();
@@ -81,7 +80,7 @@ function generateLibraryFunctions() {
   generateLibraryStub('print', 's', 'console.log(s);');
   generateLibraryStub('sqrt', 'x', 'return Math.sqrt(x);');
 }
-=======
+
 Object.assign(Program.prototype, {
   gen() { return `(${this.body})`; },
 });
@@ -97,11 +96,6 @@ Object.assign(Statement.prototype, {
 Object.assign(Definition.prototype, {
   gen() { return `(${this.typeOfDef})`; },
 });
-
-Object.assign(VariableDefinition.prototype, {
-  gen() { return `(${})`; },
-});
->>>>>>> e175b6f872037c800f2c0e1b23d4e345d041b139
 
 Object.assign(BinaryExpression.prototype, {
   gen() { return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`; },
