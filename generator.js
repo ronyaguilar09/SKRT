@@ -39,6 +39,26 @@ function makeOp(op) {
   return { and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
 }
 
+Object.assign(Program.prototype, {
+  gen() { return `(${this.body})`; },
+});
+
+Object.assign(Body.prototype, {
+  gen() { return `(${this.statements})`; },
+});
+
+Object.assign(Statement.prototype, {
+  gen() { return `(${this.statement})`; },
+});
+
+Object.assign(Definition.prototype, {
+  gen() { return `(${this.typeOfDef})`; },
+});
+
+Object.assign(VariableDefinition.prototype, {
+  gen() { return `(${})`; },
+});
+
 Object.assign(BinaryExpression.prototype, {
   gen() { return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`; },
 });
