@@ -4,6 +4,10 @@ module.exports = class Match {
     this.block = mblock;
   }
   toString() {
-    return `( Match: ${this.exp} Block: ${this.block.join(' ')} )`;
+    return `( Match: ${this.exp} Block: ${this.block} )`;
+  }
+  analyze(context) {
+    this.exp.analyze(context);
+    this.block.analyze(context);
   }
 };
