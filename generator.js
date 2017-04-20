@@ -35,8 +35,50 @@ const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
 
+const indentPadding = 2;
+let indentLevel = 0;
+
+function genStatementList(statements) {
+  indentLevel += 1;
+  statements.forEach(statement => statement.gen());
+  indentLevel -= 1;
+}
+
+function emit(line) {
+  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+}
+
 function makeOp(op) {
   return { and: '&&', or: '||', '==': '===', '!=': '!==' }[op] || op;
+}
+
+const jsName = (() => {
+  let lastId = 0;
+  const map = new Map();
+  return (v) => {
+    if (!(map.has(v))) {
+      map.set(v, ++lastId); // eslint-disable-line no-plusplus
+    }
+    return `${v.id}_${map.get(v)}`;
+  };
+})();
+
+function bracketIfNecessary(a) {
+  if (a.length === 1) {
+    return `${a}`;
+  }
+  return `[${a.join(', ')}]`;
+}
+
+
+function generateLibraryFunctions() {
+  function generateLibraryStub(name, params, body) {
+    const entity = Context.INITIAL.variables[name];
+    emit(`function ${jsName(entity)} (${params}) {${body}}`);
+  }
+  // This is sloppy. There should be a better way to do this.
+  generateLibraryStub('print', 's', 'console.log(s);');
+  generateLibraryStub('sqrt', 'x', 'return Math.sqrt(x);');
 }
 
 Object.assign(Program.prototype, {
@@ -53,10 +95,6 @@ Object.assign(Statement.prototype, {
 
 Object.assign(Definition.prototype, {
   gen() { return `(${this.typeOfDef})`; },
-});
-
-Object.assign(VariableDefinition.prototype, {
-  gen() { return `(${})`; },
 });
 
 Object.assign(BinaryExpression.prototype, {
