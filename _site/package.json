@@ -1,0 +1,30 @@
+{
+  "name": "skrt",
+  "version": "1.0.0",
+  "description": "SKRT compiler/interpreter",
+  "main": "skrt.ohm",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha",
+    "lint": "./node_modules/.bin/eslint **/*.js skrt.js",
+    "start": "node skrt.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ronyaguilar09/SKRT.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ronyaguilar09/SKRT/issues"
+  },
+  "homepage": "https://github.com/ronyaguilar09/SKRT#readme",
+  "devDependencies": {
+    "eslint": "^3.16.1",
+    "eslint-config-airbnb-base": "^11.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "mocha": "^3.2.0"
+  },
+  "dependencies": {
+    "ohm-js": "^0.13.1"
+  }
+}
