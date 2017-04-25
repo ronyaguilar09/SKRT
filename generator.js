@@ -58,7 +58,7 @@ const jsName = (() => {
     if (!(map.has(v))) {
       map.set(v, ++lastId); // eslint-disable-line no-plusplus
     }
-    return `${v.id}_${map.get(v)}`;
+    return `${v.name}_${map.get(v)}`;
   };
 })();
 
@@ -81,7 +81,7 @@ function generateLibraryFunctions() {
 
 Object.assign(Program.prototype, {
   gen() {
-    generateLibraryFunctions();
+    // generateLibraryFunctions();
     return `(${this.body})`;
   },
 });
