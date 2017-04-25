@@ -19,13 +19,15 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
   }
   const program = parse(text);
   console.log(program);
-  // if (argv.a) {
-  //   console.log(util.inspect(program, { depth: null }));
-  //   return;
-  // }
+
+  if (argv.a) {
+    console.log(util.inspect(program, { depth: null }));
+    return;
+  }
+
   program.analyze();
-  // if (argv.i) {
-  //   console.log(util.inspect(program, { depth: null }));
-  // }
-  // program.gen();
+  if (argv.i) {
+    console.log(util.inspect(program, { depth: null }));
+  }
+  program.gen();
 });

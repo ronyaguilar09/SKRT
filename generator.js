@@ -81,13 +81,15 @@ function generateLibraryFunctions() {
 
 Object.assign(Program.prototype, {
   gen() {
-    // generateLibraryFunctions();
-    return `(${this.body.gen()})`;
+    generateLibraryFunctions();
+    this.body.gen();
   },
 });
 
 Object.assign(Body.prototype, {
-  gen() { return `(${this.statements.gen()})`; },
+  gen() {
+    this.statements.forEach(statement => statement.gen());
+  },
 });
 
 Object.assign(Statement.prototype, {
