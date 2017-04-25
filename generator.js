@@ -93,15 +93,24 @@ Object.assign(Body.prototype, {
 });
 
 Object.assign(Statement.prototype, {
-  gen() { return `(${this.statement.gen()})`; },
+  gen() { emit(`${this.statement.gen()};`); },
 });
 
 Object.assign(Definition.prototype, {
   gen() { return `(${this.typeOfDef.gen()})`; },
 });
 
+Object.assign(Id.prototype, {
+  gen() {
+    return jsName(this);
+  },
+});
+
 Object.assign(BinaryExpression.prototype, {
-  gen() { return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`; },
+  gen() {
+    const leftGen = this.left.gen();
+    return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`;
+  },
 });
 
 Object.assign(Arg.prototype, {
