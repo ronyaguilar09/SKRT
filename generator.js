@@ -24,7 +24,7 @@ const Primitive = require('./entities/primitive');
 const ObjectLiteral = require('./entities/object');
 const Tuple = require('./entities/tuple');
 const List = require('./entities/list');
-const Boolean = require('./entities/boolean');
+const BooleanLiteral = require('./entities/boolean');
 const Integer = require('./entities/integer');
 const StringLiteral = require('./entities/string');
 const Float = require('./entities/float');
@@ -148,4 +148,28 @@ Object.assign(For.prototype, {
                    ${this.body.gen()}
         };`);
   },
+});
+
+Object.assign(BooleanLiteral.prototype, {
+  gen() { return `${this.value}`; },
+});
+
+Object.assign(Char.prototype, {
+  gen() { return `${this.value}`; },
+});
+
+Object.assign(CharLit.prototype, {
+  gen() { return `${this.value}`; },
+});
+
+Object.assign(Float.prototype, {
+  gen() { return `${this.value1}.${this.value2}`; },
+});
+
+Object.assign(Integer.prototype, {
+  gen() { return `${this.value}`; },
+});
+
+Object.assign(StringLiteral.prototype, {
+  gen() { return `${this.value}`; },
 });

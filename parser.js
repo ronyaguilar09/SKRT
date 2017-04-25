@@ -30,7 +30,7 @@ const Primitive = require('./entities/primitive');
 const ObjectLiteral = require('./entities/object');
 const Tuple = require('./entities/tuple');
 const List = require('./entities/list');
-const Boolean = require('./entities/boolean');
+const BooleanLiteral = require('./entities/boolean');
 const Integer = require('./entities/integer');
 const StringLiteral = require('./entities/string');
 const Float = require('./entities/float');
@@ -77,7 +77,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   Tuple(openP, exp, comma, lastExp, closeP) { return new Tuple(exp.tree(), lastExp.tree()); },
   List(openP, exp, comma, lastExp, closeP) { return new List(exp.tree(), lastExp.tree()); },
   assert(type) { return new Assert(type.sourceString); },
-  bool(val) { return new Boolean(val.sourceString); },
+  bool(val) { return new BooleanLiteral(val.sourceString); },
   int(val) { return new Integer(val.sourceString); },
   stringlit(p, val, p2) { return new StringLiteral(val.sourceString); },
   float(val, dot, val2) { return new Float(val.sourceString); },
