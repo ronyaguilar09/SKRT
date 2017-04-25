@@ -7,7 +7,6 @@ const VariableDefinition = require('./entities/variabledefinition');
 const StructDefinition = require('./entities/structdefinition');
 const FunctionDefinition = require('./entities/functiondefinition');
 const FunCall = require('./entities/funcall');
-const Args = require('./entities/args');
 const Arg = require('./entities/arg');
 const AssertDefinition = require('./entities/assertdefinition');
 const ObjectDefinition = require('./entities/objectdefinition');
@@ -98,4 +97,8 @@ Object.assign(Definition.prototype, {
 
 Object.assign(BinaryExpression.prototype, {
   gen() { return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`; },
+});
+
+Object.assign(Arg.prototype, {
+  gen() { return `(${this.arg.gen()})`; },
 });
