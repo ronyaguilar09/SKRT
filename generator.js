@@ -107,5 +107,27 @@ Object.assign(Arg.prototype, {
 });
 
 Object.assign(FunctionDefinition.prototype, {
-  gen() { return `(${this.function.gen()})`; },
+  gen() {
+    emit(`function ${jsName(this.id)}(${this.params.map(p => p.gen()).join(', ')}) {`);
+    genStatementList(this.body);
+    emit('}');
+  },
+});
+
+Object.assign(VariableDefinition.prototype, {
+  gen() { emit(`let ${jsName(this.id)} = (${this.exp.gen()});`); },
+});
+
+Object.assign(StructDefinition.prototype, {
+  gen() { emit(`let ${jsName(this.id)} = (${this.struct.gen()});`); },
+});
+
+Object.assign(StructId.prototype, {
+  gen() { return jsName(this.id); },
+});
+
+// CamlDef????
+
+Object.assign(ObjectDefinition.prototype, {
+  gen() { emit(`let ${jsName(this.id)} = (${this.obj.gen()});`); },
 });
