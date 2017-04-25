@@ -131,3 +131,11 @@ Object.assign(StructId.prototype, {
 Object.assign(ObjectDefinition.prototype, {
   gen() { emit(`let ${jsName(this.id)} = (${this.obj.gen()});`); },
 });
+
+Object.assign(IfElse.prototype, {
+  gen() {
+    emit(`if (${this.cond1.gen()}) { ${this.body1.gen()}
+        } else if (${this.cond2.gen()}) {${this.body2.gen()}
+        } else { ${this.body3.gen()} }`);
+  },
+});
