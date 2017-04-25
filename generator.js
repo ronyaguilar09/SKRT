@@ -78,7 +78,6 @@ function generateLibraryFunctions() {
   }
   // This is sloppy. There should be a better way to do this.
   generateLibraryStub('print', 's', 'console.log(s);');
-  generateLibraryStub('sqrt', 'x', 'return Math.sqrt(x);');
 }
 
 Object.assign(Program.prototype, {
