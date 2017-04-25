@@ -82,20 +82,20 @@ function generateLibraryFunctions() {
 Object.assign(Program.prototype, {
   gen() {
     // generateLibraryFunctions();
-    return `(${this.body})`;
+    return `(${this.body.gen()})`;
   },
 });
 
 Object.assign(Body.prototype, {
-  gen() { return `(${this.statements})`; },
+  gen() { return `(${this.statements.gen()})`; },
 });
 
 Object.assign(Statement.prototype, {
-  gen() { return `(${this.statement})`; },
+  gen() { return `(${this.statement.gen()})`; },
 });
 
 Object.assign(Definition.prototype, {
-  gen() { return `(${this.typeOfDef})`; },
+  gen() { return `(${this.typeOfDef.gen()})`; },
 });
 
 Object.assign(BinaryExpression.prototype, {
@@ -170,7 +170,7 @@ Object.assign(Integer.prototype, {
   gen() { return `${this.value}`; },
 });
 
-Object.assign(String.prototype, {
+Object.assign(StringLiteral.prototype, {
   gen() { return `${this.value}`; },
 });
 
