@@ -106,6 +106,6 @@ Object.assign(Arg.prototype, {
   gen() { return `(${this.arg.gen()})`; },
 });
 
-// Object.assign(FunctionDefinition.prototype, {
-//   gen() { return `(${this.function.gen()})`; },
-// });
+Object.assign(FunctionDefinition.prototype, {
+  gen() { return `(${this.function.gen()})`; },
+});
