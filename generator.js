@@ -170,6 +170,10 @@ Object.assign(Integer.prototype, {
   gen() { return `${this.value}`; },
 });
 
-Object.assign(StringLiteral.prototype, {
+Object.assign(String.prototype, {
   gen() { return `${this.value}`; },
+});
+
+Object.assign(AssertDefinition.prototype, {
+  gen() { emit(`let ${this.id} = ${this.value};`); },
 });
