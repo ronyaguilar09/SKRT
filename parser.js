@@ -104,7 +104,7 @@ if (match.succeeded()) {
 }
 */
 const program = semantics(match).tree();
-console.log(program.toString());
+// console.log(program.toString());
 program.analyze();
 
 module.exports = (text) => {
