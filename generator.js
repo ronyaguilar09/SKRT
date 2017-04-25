@@ -139,3 +139,13 @@ Object.assign(IfElse.prototype, {
         } else { ${this.body3.gen()} }`);
   },
 });
+
+Object.assign(For.prototype, {
+  gen() {
+    emit(`for (${jsName(this.id)} = (${this.exp1.gen()});
+               ${jsName(this.id)} <= (${this.exp2.gen()});
+               ${jsName(this.id)}++) {
+                   ${this.body.gen()}
+        };`);
+  },
+});
