@@ -80,7 +80,10 @@ function generateLibraryFunctions() {
 }
 
 Object.assign(Program.prototype, {
-  gen() { return `(${this.body})`; },
+  gen() {
+    generateLibraryFunctions();
+    return `(${this.body})`;
+  },
 });
 
 Object.assign(Body.prototype, {
@@ -102,3 +105,7 @@ Object.assign(BinaryExpression.prototype, {
 Object.assign(Arg.prototype, {
   gen() { return `(${this.arg.gen()})`; },
 });
+
+// Object.assign(FunctionDefinition.prototype, {
+//   gen() { return `(${this.function.gen()})`; },
+// });
