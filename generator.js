@@ -108,8 +108,11 @@ Object.assign(Id.prototype, {
 
 Object.assign(BinaryExpression.prototype, {
   gen() {
-    const leftGen = this.left.gen();
-    return `(${this.left.gen()} ${makeOp(this.op)} ${this.right.gen()})`;
+    let exp = `(${this.left.gen()}`;
+    for (let i = 0; i < this.right.length; i += 1) {
+      exp += `${makeOp(this.op[i])} ${this.right[i].gen()})`;
+    }
+    return exp;
   },
 });
 
