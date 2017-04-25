@@ -1,7 +1,7 @@
 const ohm = require('../node_modules/ohm-js');
 const assert = require('assert');
 const fs = require('fs');
-const parse = require('../skrt');
+const parse = require('../parser');
 
 describe('The semantic analyzer', () => {
   fs.readdirSync(__dirname).forEach((name) => {
