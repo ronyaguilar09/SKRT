@@ -84,11 +84,11 @@ Object.assign(Program.prototype, {
 });
 
 Object.assign(Body.prototype, {
-  gen() { return `(${this.statements})`; },
+  gen() { return `(${this.stmts})`; },
 });
 
 Object.assign(Statement.prototype, {
-  gen() { return `(${this.statement})`; },
+  gen() { return `(${this.stmt})`; },
 });
 
 Object.assign(Definition.prototype, {
