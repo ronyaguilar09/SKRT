@@ -1,1 +1,3 @@
-print("test");
+def tit = 10;
+def bob = 10;
+def sam = 'c';

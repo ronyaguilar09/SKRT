@@ -190,11 +190,11 @@ Object.assign(BooleanLiteral.prototype, {
 });
 
 Object.assign(Char.prototype, {
-  gen() { return `${this.value}`; },
+  gen() { return `'${this.value}'`; },
 });
 
 Object.assign(CharLit.prototype, {
-  gen() { return `${this.value}`; },
+  gen() { return `'${this.value}'`; },
 });
 
 Object.assign(Float.prototype, {
@@ -206,7 +206,7 @@ Object.assign(Integer.prototype, {
 });
 
 Object.assign(StringLiteral.prototype, {
-  gen() { return `${this.value}`; },
+  gen() { return `"${this.value}"`; },
 });
 
 Object.assign(AssertDefinition.prototype, {
