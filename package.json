@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "ohm-js": "^0.13.1",
+    "sinon": "^2.1.0",
     "yargs": "^7.0.2"
   }
 }
