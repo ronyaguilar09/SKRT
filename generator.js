@@ -216,3 +216,15 @@ Object.assign(AssertDefinition.prototype, {
 Object.assign(Op.prototype, {
   gen() { return `${this.operator}`; },
 });
+
+Object.assign(List.prototype, {
+  gen() { return (`[${this.exp.gen()}, ${this.lastExp.gen()}]`); },
+});
+
+Object.assign(Tuple.prototype, {
+  gen() { return (`(${this.exp.gen()}, ${this.lastExp.gen()})`); },
+});
+
+Object.assign(ObjectLiteral.prototype, {
+  gen() { return (`{${this.lastId.gen()}} : ${this.lastExp.gen()}, ${this.id.gen()} : ${this.exp.gen()}}`); },
+});
