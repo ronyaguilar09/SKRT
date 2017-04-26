@@ -7,7 +7,7 @@ module.exports = class FunctionDefinition {
     this.body = body;
   }
   toString() {
-    return `( Func: ${this.id} (${this.params.join(' ')})= ${this.body} )`;
+    return `(Func: ${this.id} (${this.params.join(' ')})= ${this.body} )`;
   }
 
   analyze(context) {

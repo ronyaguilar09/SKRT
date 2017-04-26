@@ -5,7 +5,7 @@ module.exports = class AssertDefinition {
     this.exp = exp;
   }
   toString() {
-    return `( Var: ${this.id} ofType: ${this.assert} = ${this.exp} )`;
+    return `(Var: ${this.id} ofType: ${this.assert} = ${this.exp} )`;
   }
 
   analyze(context) {

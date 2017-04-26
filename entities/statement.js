@@ -3,7 +3,7 @@ module.exports = class Statement {
     this.statement = stmt;
   }
   toString() {
-    return `( Statement: ${this.statement} )`;
+    return `( Statement: ${this.statement})`;
   }
   analyze(context) {
     return this.statement.analyze(context);

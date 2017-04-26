@@ -3,7 +3,7 @@ module.exports = class MatchPattern {
     this.exp = exp;
   }
   toString() {
-    return `( Pattern: ${this.exp} )`;
+    return `(Pattern: ${this.exp})`;
   }
 
   analyze(context) {

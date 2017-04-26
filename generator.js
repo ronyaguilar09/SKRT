@@ -89,12 +89,12 @@ Object.assign(Program.prototype, {
 
 Object.assign(Body.prototype, {
   gen() {
-    this.statements.forEach(statement => statement.gen());
+    this.statements.forEach(statement => emit(`${statement.gen()}`));
   },
 });
 
 Object.assign(Statement.prototype, {
-  gen() { emit(`${this.statement.gen()}`); },
+  gen() { return `${this.statement.gen()}`; },
 });
 
 Object.assign(Definition.prototype, {
@@ -161,7 +161,25 @@ Object.assign(StructId.prototype, {
   gen() { return jsName(this.id); },
 });
 
-// CamlDef????
+Object.assign(Match.prototype, {
+  gen() { emit(`switch(${this.exp.gen()}) {\n${this.block.gen()}}`); },
+});
+
+Object.assign(MatchBlock.prototype, {
+  gen() {
+    let block = '';
+    for (let i = 0; i < this.pattern.length; i += 1) {
+      block += `case ${this.pattern[i].gen()}:\n\t${this.stmt[i].gen()}\n`;
+    }
+    return block;
+  },
+});
+
+Object.assign(MatchPattern.prototype, {
+  gen() {
+    return `${this.exp.gen()}`;
+  },
+});
 
 Object.assign(ObjectDefinition.prototype, {
   gen() { emit(`let ${jsName(this.id)} = (${this.obj.gen()});`); },

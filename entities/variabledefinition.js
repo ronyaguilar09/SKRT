@@ -7,7 +7,7 @@ module.exports = class VariableDefinition {
     this.type = Type.ANY;
   }
   toString() {
-    return `( Var: ${this.id} = ${this.exp} )`;
+    return `(Var: ${this.id} = ${this.exp} )`;
   }
 
   analyze(context) {

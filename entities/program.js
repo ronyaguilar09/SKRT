@@ -5,7 +5,7 @@ module.exports = class Program {
     this.body = body;
   }
   toString() {
-    return `( Program: ${this.body} )`;
+    return `( Program: ${this.body})`;
   }
   analyze(context = Context.INITIAL) {
     return this.body.analyze(context);

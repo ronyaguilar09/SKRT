@@ -4,7 +4,7 @@ module.exports = class ObjectDefinition {
     this.obj = obj;
   }
   toString() {
-    return `( Obj: ${this.id} = ${this.obj} )`;
+    return `(Obj: ${this.id} = ${this.obj} )`;
   }
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id);
