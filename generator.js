@@ -83,13 +83,15 @@ function generateLibraryFunctions() {
 Object.assign(Program.prototype, {
   gen() {
     // generateLibraryFunctions();
-    this.body.gen();
+    emit(`${this.body.gen()}`);
   },
 });
 
 Object.assign(Body.prototype, {
   gen() {
-    this.statements.forEach(statement => emit(`${statement.gen()}`));
+    let body = '';
+    this.statements.forEach((statement) => { body += `${statement.gen()}\n`; });
+    return body;
   },
 });
 
@@ -143,9 +145,13 @@ Object.assign(Arg.prototype, {
 
 Object.assign(FunctionDefinition.prototype, {
   gen() {
-    emit(`function ${jsName(this.id)}(${this.params.map(p => p.gen()).join(', ')}) {`);
-    genStatementList(this.body);
-    emit('}');
+    return `function ${jsName(this.id)}(${this.params.map(p => p.gen()).join(', ')}) {\n ${this.body.gen()} }`;
+  },
+});
+
+Object.assign(FunCall.prototype, {
+  gen() {
+    return `${jsName(this.id)}(${this.args.map(a => a.gen()).join(', ')});`;
   },
 });
 
