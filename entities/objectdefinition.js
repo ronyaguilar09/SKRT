@@ -10,7 +10,8 @@ module.exports = class ObjectDefinition {
     context.variableMustNotBeAlreadyDeclared(this.id);
     context.addVariable(this.id, this.obj);
     const localcontext = context.createChildContextForFunctionBody(this);
-    this.obj.analyze(localcontext);
+
     this.id.analyze(context);
+    this.obj.analyze(localcontext);
   }
 };

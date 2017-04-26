@@ -13,6 +13,6 @@ module.exports = class TypeExpression {
       this.name = this.exp.name;
     }
 
-    this.value = this.exp.value;
+    // this.value = this.exp.value;
   }
 };

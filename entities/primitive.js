@@ -12,6 +12,6 @@ module.exports = class Primitive {
       this.name = this.prim.name;
     }
 
-    this.value = this.prim.value;
+    // this.value = this.prim.value;
   }
 };

@@ -16,7 +16,7 @@ module.exports = class Type {
   analyze(context) {
     this.literal.analyze(context);
     this.type = this.literal.type;
-    this.value = this.literal.value;
+    // this.value = this.literal.value;
     if (this.literal.name) {
       this.name = this.literal.name;
     }

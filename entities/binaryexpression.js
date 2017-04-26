@@ -26,19 +26,19 @@ module.exports = class BinaryExpression {
             throw Error('Numbers: Invalid operands expected numbers');
           }
           this.type = Type.NUMBER;
-          this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
+          // this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
         } else if (['and', 'or'].includes(this.op[0].operator)) {
           if (this.left.type.literal !== 'bool' || this.right[i].type.literal !== 'bool') {
             throw Error('Expected Boolean values');
           }
           this.type = Type.BOOLEAN;
-          this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
+          // this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
         } else if (['<', '<=', '>', '>=', '==', '!='].includes(this.op[0].operator)) {
           if (!(Type.isNumber(this.left.type.literal)) || !(Type.isNumber(this.right[i].type.literal))) {
             throw Error('Invalid boolean expected numbers');
           }
           this.type = Type.BOOLEAN;
-          this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
+          // this.value = `${this.left.value} ${this.op[0]} ${this.right.value}`;
         }
       }
     }
@@ -48,7 +48,7 @@ module.exports = class BinaryExpression {
     }
 
     if (!this.value) {
-      this.value = this.left.value;
+      // this.value = this.left.value;
     }
   }
 };

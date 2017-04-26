@@ -1,6 +1,6 @@
 const Type = require('./type');
 
-module.exports = class Object {
+module.exports = class ObjectLiteral {
   constructor(id, exp, lastId, lastExp) {
     this.id = id;
     this.exp = exp;
