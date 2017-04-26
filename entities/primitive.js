@@ -11,5 +11,7 @@ module.exports = class Primitive {
     if (this.type.literal === 'id') {
       this.name = this.prim.name;
     }
+
+    this.value = this.prim.value;
   }
 };

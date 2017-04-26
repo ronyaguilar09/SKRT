@@ -18,7 +18,7 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
     return;
   }
   const program = parse(text);
-  console.log(program);
+  console.log(program.toString());
 
   if (argv.a) {
     console.log(util.inspect(program, { depth: null }));

@@ -55,12 +55,13 @@ const jsName = (() => {
   let lastId = 0;
   const map = new Map();
   return (v) => {
-    if (!(map.has(v))) {
-      map.set(v, ++lastId); // eslint-disable-line no-plusplus
+    if (!(map.has(v.name))) {
+      map.set(v.name, ++lastId); // eslint-disable-line no-plusplus
     }
-    return `${v.name}_${map.get(v)}`;
+    return `${v.name}_${map.get(v.name)}`;
   };
 })();
+
 
 function bracketIfNecessary(a) {
   if (a.length === 1) {
@@ -81,7 +82,7 @@ function generateLibraryFunctions() {
 
 Object.assign(Program.prototype, {
   gen() {
-    generateLibraryFunctions();
+    // generateLibraryFunctions();
     this.body.gen();
   },
 });
@@ -93,11 +94,11 @@ Object.assign(Body.prototype, {
 });
 
 Object.assign(Statement.prototype, {
-  gen() { emit(`${this.statement.gen()};`); },
+  gen() { emit(`${this.statement.gen()}`); },
 });
 
 Object.assign(Definition.prototype, {
-  gen() { return `(${this.typeOfDef.gen()})`; },
+  gen() { return `${this.typeOfDef.gen()}`; },
 });
 
 Object.assign(Id.prototype, {
@@ -108,11 +109,31 @@ Object.assign(Id.prototype, {
 
 Object.assign(BinaryExpression.prototype, {
   gen() {
-    let exp = `(${this.left.gen()}`;
+    let exp = `${this.left.gen()}`;
+
+
     for (let i = 0; i < this.right.length; i += 1) {
-      exp += `${makeOp(this.op[i])} ${this.right[i].gen()})`;
+      exp += ` ${makeOp(this.op[i].gen())} ${this.right[i].gen()}`;
     }
     return exp;
+  },
+});
+
+Object.assign(TypeExpression.prototype, {
+  gen() {
+    return this.exp.gen();
+  },
+});
+
+Object.assign(Type.prototype, {
+  gen() {
+    return this.literal.gen();
+  },
+});
+
+Object.assign(Primitive.prototype, {
+  gen() {
+    return this.prim.gen();
   },
 });
 
@@ -129,7 +150,7 @@ Object.assign(FunctionDefinition.prototype, {
 });
 
 Object.assign(VariableDefinition.prototype, {
-  gen() { emit(`let ${jsName(this.id)} = (${this.exp.gen()});`); },
+  gen() { return (`let ${jsName(this.id)} = (${this.exp.gen()});`); },
 });
 
 Object.assign(StructDefinition.prototype, {
@@ -190,4 +211,8 @@ Object.assign(StringLiteral.prototype, {
 
 Object.assign(AssertDefinition.prototype, {
   gen() { emit(`let ${this.id} = ${this.value};`); },
+});
+
+Object.assign(Op.prototype, {
+  gen() { return `${this.operator}`; },
 });

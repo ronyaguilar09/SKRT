@@ -13,9 +13,9 @@ module.exports = class VariableDefinition {
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id.name);
     this.exp.analyze(context);
-    this.id.analyze(context);
     this.type = this.exp.type;
     context.addVariable(this.id, this.exp);
+    this.id.analyze(context);
   }
 
 };

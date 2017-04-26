@@ -12,5 +12,7 @@ module.exports = class TypeExpression {
     if (this.exp.name) {
       this.name = this.exp.name;
     }
+
+    this.value = this.exp.value;
   }
 };

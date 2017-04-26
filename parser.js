@@ -98,14 +98,14 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
 const startContents = fs.readFileSync('sampleSKRTCode.txt');
 
 const match = skrtGrammar.match(startContents);
+
 /*
 if (match.succeeded()) {
   console.log(`AST of ${startContents} `, semantics(match).tree().toString());
 }
 */
+
 const program = semantics(match).tree();
-// console.log(program.toString());
-program.analyze();
 
 module.exports = (text) => {
   const testMatch = skrtGrammar.match(text);

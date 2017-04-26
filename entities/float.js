@@ -3,8 +3,7 @@ const Type = require('./type');
 module.exports = class Float {
 
   constructor(value, value2) {
-    this.value1 = value;
-    this.value2 = value2;
+    this.value = `${value}.${value2}`;
   }
 
   toString() {

@@ -9,5 +9,6 @@ module.exports = class Id {
   }
   analyze(context) {
     this.type = Type.ID;
+    this.value = context.lookupVariable(this.name);
   }
 };

@@ -5,7 +5,7 @@ const cache = {};
 module.exports = class Type {
   constructor(type) {
     this.literal = type;
-    this.type = this;
+    // this.type = this;
     cache[this.literal] = this;
   }
 
@@ -16,10 +16,13 @@ module.exports = class Type {
   analyze(context) {
     this.literal.analyze(context);
     this.type = this.literal.type;
-
+    this.value = this.literal.value;
     if (this.literal.name) {
       this.name = this.literal.name;
     }
+
+
+    // this.value = this.type.value;
   }
 
   mustBeInteger(message, location) {
