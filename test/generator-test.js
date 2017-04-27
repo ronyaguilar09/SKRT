@@ -24,23 +24,18 @@ require('../generator');
 
 describe('SKRT Generator', () => {
   it('def add x2 y2 => { x2 + y2 }', () => {
+    console.log('got here');
     const program = parse('def add x2 y2 => { x2 + y2 }');
+    console.log(program);
     program.gen();
     const expected = 'function add_1(x2_2, y2_3) {x2_2 + y2_3}';
     assert.equal(console.string, expected);
   });
 
-  it('def x = 5;', () => {
-    const program = parse('def x = 5');
-    program.gen();
-    const expected = 'let x = 5;';
-    assert.equal(console.string, expected);
-  });
-
-  it('def add x2 y2 => { x2 + y2 }', () => {
-    const program = parse('def add x2 y2 => { x2 + y2 }');
-    program.gen();
-    const expected = 'function add_1(x2_2, y2_3) {x2_2 + y2_3}';
-    assert.equal(console.string, expected);
-  });
+  // it('def x = 5;', () => {
+  //   const program = parse('def x = 5');
+  //   program.gen();
+  //   const expected = 'let x = 5;';
+  //   assert.equal(console.string, expected);
+  // });
 });
