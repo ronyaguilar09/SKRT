@@ -1,6 +1,5 @@
-def x = 2;
-def y = 3;
-def add x2 y2 => {
-    x2 + y2
+if (x = 0) {
+    x = 3;
+} else {
+    x = 2;
 }
-add x y;
