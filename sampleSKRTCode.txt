@@ -1,1 +1,0 @@
-def add x2 y2 => { x2 + y2 }
