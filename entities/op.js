@@ -5,11 +5,7 @@ module.exports = class Op {
     this.operator = op;
   }
 
-  toString() {
-    return ` ${this.operator} `;
-  }
-
-  analyze(context) {
+  analyze() {
 
   }
 

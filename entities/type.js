@@ -9,10 +9,6 @@ module.exports = class Type {
     cache[this.literal] = this;
   }
 
-  toString() {
-    return `( ${this.literal} )`;
-  }
-
   analyze(context) {
     this.literal.analyze(context);
     this.type = this.literal.type;

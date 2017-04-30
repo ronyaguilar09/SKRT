@@ -8,9 +8,6 @@ module.exports = class For {
     this.exp2 = exp2;
     this.body = body;
   }
-  toString() {
-    return `( For: ${this.id} from ${this.exp1} to ${this.exp2} ${this.body})`;
-  }
 
   analyze(context) {
     this.localContext = context.createChildContextForLoop();

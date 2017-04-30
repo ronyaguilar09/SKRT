@@ -3,9 +3,7 @@ module.exports = class TypeExpression {
     // super();
     this.exp = exp;
   }
-  toString() {
-    return ` (TypeExpression: ${this.exp}) `;
-  }
+
   analyze(context) {
     this.exp.analyze(context);
     this.type = this.exp.type;

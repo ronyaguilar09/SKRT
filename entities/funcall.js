@@ -3,9 +3,7 @@ module.exports = class FunCall {
     this.id = id;
     this.args = args;
   }
-  toString() {
-    return `Function Call ${this.id} with ${this.args}`;
-  }
+
   analyze(context) {
     this.id.analyze(context);
     this.exp = context.lookupVariable(this.id.name);

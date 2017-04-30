@@ -5,10 +5,6 @@ module.exports = class Id {
     this.name = name;
   }
 
-  toString() {
-    return `Id: ${this.name}`;
-  }
-
   analyze(context) {
     this.type = Type.ID;
     // this.value = context.lookupVariable(this.name);

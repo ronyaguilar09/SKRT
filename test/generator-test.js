@@ -4,7 +4,6 @@ require('../generator');
 
 describe('SKRT Generator', () => {
   it('def add z y => { z + y }', () => {
-    console.log('got here');
     const program = parse('def add z y => { z + y }');
     console.log(program);
     program.gen();
@@ -21,7 +20,6 @@ describe('SKRT Generator', () => {
 
 
   it('def sub x y => { x - y }', () => {
-    console.log('got here');
     const program = parse('def sub x y => { x - y }');
     console.log(program);
     program.gen();
@@ -30,7 +28,6 @@ describe('SKRT Generator', () => {
   });
 
   it('def mult x y => { x * y }', () => {
-    console.log('got here');
     const program = parse('def mult x y => { x * y }');
     console.log(program);
     program.gen();
@@ -39,7 +36,6 @@ describe('SKRT Generator', () => {
   });
 
   it('def divide x y => { x / y }', () => {
-    console.log('got here');
     const program = parse('def divide x y => { x / y }');
     console.log(program);
     program.gen();
@@ -48,8 +44,15 @@ describe('SKRT Generator', () => {
   });
 
   it('def mod x y => { x % y }', () => {
-    console.log('got here');
     const program = parse('def mod x y => { x % y }');
+    console.log(program);
+    program.gen();
+    const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';
+    assert.equal(console.string, expected);
+  });
+
+  it('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}', () => {
+    const program = parse('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}');
     console.log(program);
     program.gen();
     const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';

@@ -9,9 +9,6 @@ module.exports = class BinaryExpression {
     this.op = op;
     this.right = right;
   }
-  toString() {
-    return `${this.left}${this.op}${this.right}`;
-  }
 
   analyze(context) {
     this.left.analyze(context);

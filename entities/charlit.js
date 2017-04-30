@@ -6,10 +6,6 @@ module.exports = class CharLit {
     this.value = value;
   }
 
-  toString() {
-    return `Char: ${this.value}`;
-  }
-
   analyze(context) {
     this.type = Type.CHAR;
   }
