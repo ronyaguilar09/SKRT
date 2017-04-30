@@ -8,4 +8,8 @@ module.exports = class Arg {
   analyze(context) {
     this.arg.analyze(context);
   }
+  optimize() {
+    this.expression = this.expression.optimize();
+    return this;
+  }
 };

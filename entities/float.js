@@ -13,4 +13,9 @@ module.exports = class Float {
   analyze(context) {
     this.type = Type.FLOAT;
   }
+
+  optimize() {
+    return this;
+  }
+
 };

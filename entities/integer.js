@@ -11,4 +11,9 @@ module.exports = class Integer {
   analyze(context) {
     this.type = Type.INT;
   }
+
+  optimize() {
+    return this;
+  }
+
 };

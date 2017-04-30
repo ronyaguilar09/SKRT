@@ -15,4 +15,9 @@ module.exports = class Tuple {
     }
     this.type = Type.TUPLE;
   }
+
+  optimize() {
+    return this;
+  }
+
 };

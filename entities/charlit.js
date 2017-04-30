@@ -13,4 +13,9 @@ module.exports = class CharLit {
   analyze(context) {
     this.type = Type.CHAR;
   }
+
+  optimize() {
+    return this;
+  }
+
 };

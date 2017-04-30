@@ -15,4 +15,9 @@ module.exports = class List {
     }
     this.type = Type.LIST;
   }
+
+  optimize() {
+    return this;
+  }
+
 };

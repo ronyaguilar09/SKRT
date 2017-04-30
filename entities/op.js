@@ -12,4 +12,9 @@ module.exports = class Op {
   analyze(context) {
 
   }
+
+  optimize() {
+    return this;
+  }
+
 };
