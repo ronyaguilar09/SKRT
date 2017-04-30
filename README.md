@@ -86,8 +86,8 @@ The language is descired in more detail at the [language home page](https://rony
     escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
     			| "\\u{"hexDigit+"}"
 ```
-
-### Abstract Syntax Tree Examples
+# The SKRT Compiler
+## Abstract Syntax Tree Examples
 Below is an abstract syntax tree when we run "node skrt.js sampleSKRTCode.txt -a" in the terminal, when sampleSKRTCode.txt contains this siimple function of:
 ```
 def add x y => {
