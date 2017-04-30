@@ -63,7 +63,15 @@ describe('SKRT Generator', () => {
     const program = parse('def tuple = (3,5,"hello");');
     console.log(program);
     program.gen();
-    const expected = 'let tuple_1 = ((3,5,"hello"));';
+    const expected = 'let tuple_9 = ((3,5,"hello"));';
+    assert.equal(console.string, expected);
+  });
+
+  it('def list = [1,2,3,4,5];', () => {
+    const program = parse('def list = [1,2,3,4,5];');
+    console.log(program);
+    program.gen();
+    const expected = 'let list_10 = ([1,2,3,4,5]);';
     assert.equal(console.string, expected);
   });
 
