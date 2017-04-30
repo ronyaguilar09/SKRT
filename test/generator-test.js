@@ -50,12 +50,21 @@ describe('SKRT Generator', () => {
     const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';
     assert.equal(console.string, expected);
   });
+<<<<<<< HEAD
 
   it('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}', () => {
     const program = parse('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}');
     console.log(program);
     program.gen();
     const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';
+=======
+  it('print("Hello + "World");', () => {
+    console.log('got here');
+    const program = parse('print("Hello" + "World");');
+    console.log(program);
+    program.gen();
+    const expected = 'console.log("Hello" + "World");';
+>>>>>>> da3510b3f82f7a697e00da4c0c28e968effa89b0
     assert.equal(console.string, expected);
   });
 });
