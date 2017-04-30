@@ -44,7 +44,8 @@ function genStatementList(statements) {
 }
 
 function emit(line) {
-  return this;
+  console.string = line;
+  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
 }
 
 function makeOp(op) {
@@ -90,7 +91,7 @@ Object.assign(Program.prototype, {
 Object.assign(Body.prototype, {
   gen() {
     let body = '';
-    this.statements.forEach((statement) => { body += `${statement.gen()}\n`; });
+    this.statements.forEach((statement) => { body += `${statement.gen()}`; });
     return body;
   },
 });
@@ -145,7 +146,7 @@ Object.assign(Arg.prototype, {
 
 Object.assign(FunctionDefinition.prototype, {
   gen() {
-    return `function ${jsName(this.id)}(${this.params.map(p => p.gen()).join(', ')}) {\n ${this.body.gen()} }`;
+    return `function ${jsName(this.id)}(${this.params.map(p => p.gen()).join(', ')}) { ${this.body.gen()} }`;
   },
 });
 
@@ -160,7 +161,7 @@ Object.assign(VariableDefinition.prototype, {
 });
 
 Object.assign(StructDefinition.prototype, {
-  gen() { emit(`let ${jsName(this.id)} = (${this.struct.gen()});`); },
+  gen() { return (`let ${jsName(this.id)} = (${this.struct.gen()});`); },
 });
 
 Object.assign(StructId.prototype, {
@@ -168,7 +169,7 @@ Object.assign(StructId.prototype, {
 });
 
 Object.assign(Match.prototype, {
-  gen() { emit(`switch(${this.exp.gen()}) {\n${this.block.gen()}}`); },
+  gen() { return (`switch(${this.exp.gen()}) {${this.block.gen()}}`); },
 });
 
 Object.assign(MatchBlock.prototype, {
@@ -188,12 +189,12 @@ Object.assign(MatchPattern.prototype, {
 });
 
 Object.assign(ObjectDefinition.prototype, {
-  gen() { emit(`let ${jsName(this.id)} = (${this.obj.gen()});`); },
+  gen() { return (`let ${jsName(this.id)} = (${this.obj.gen()});`); },
 });
 
 Object.assign(IfElse.prototype, {
   gen() {
-    emit(`if (${this.cond1.gen()}) { ${this.body1.gen()}
+    return (`if (${this.cond1.gen()}) { ${this.body1.gen()}
         } else if (${this.cond2.gen()}) {${this.body2.gen()}
         } else { ${this.body3.gen()} }`);
   },
@@ -201,7 +202,7 @@ Object.assign(IfElse.prototype, {
 
 Object.assign(For.prototype, {
   gen() {
-    emit(`for (${jsName(this.id)} = (${this.exp1.gen()});
+    return (`for (${jsName(this.id)} = (${this.exp1.gen()});
                ${jsName(this.id)} <= (${this.exp2.gen()});
                ${jsName(this.id)}++) {
                    ${this.body.gen()}
@@ -234,7 +235,7 @@ Object.assign(StringLiteral.prototype, {
 });
 
 Object.assign(AssertDefinition.prototype, {
-  gen() { emit(`let ${this.id} = ${this.value};`); },
+  gen() { return (`let ${this.id} = ${this.value};`); },
 });
 
 Object.assign(Op.prototype, {
