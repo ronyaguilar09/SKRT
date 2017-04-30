@@ -249,8 +249,9 @@ Program {
 ```
 
 ## Example Programs
+   ## SKRT Code ----------------------------> JavaScript Code
 
-### Comments
+### Comments                                 
 
 ```
 ~ This is a single line comment               JS Example #1
