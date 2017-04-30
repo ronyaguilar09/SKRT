@@ -12,8 +12,7 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
 - Tuples
 - Destructuring
 
-### Macrosyntax
-[Link to Grammar](https://github.com/ronyaguilar09/SKRT/blob/master/skrt.ohm)
+### Macrosyntax -> [Link to SKRT Grammar](https://github.com/ronyaguilar09/SKRT/blob/master/skrt.ohm)
 ```
     Program     =  Body
     Body        =  Stmts*
