@@ -85,6 +85,46 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
     			| "\\u{"hexDigit+"}"
 ```
 
+### Abstract Syntax Tree Examples
+Below is an abstract syntax tree when we run "node skrt.js sampleSKRTCode.txt -a" in the terminal, when sampleSKRTCode.txt contains this siimple function of:
+```
+def add x y => {
+    x + y
+}
+```
+Here is the output of AST:
+```
+Program {
+  body: 
+   Body {
+     statements: 
+      [ Statement {
+          statement: 
+           Definition {
+             typeOfDef: 
+              FunctionDefinition {
+                id: Id { name: 'add' },
+                params: [ Id { name: 'x' }, Id { name: 'y' } ],
+                body: 
+                 Body {
+                   statements: 
+                    [ Statement {
+                        statement: 
+                         BinaryExpression {
+                           left: 
+                            TypeExpression {
+                              exp: 
+                               Type {
+                                 literal: Primitive { prim: Id { name: 'x' } },
+                                 type: [Circular] } },
+                           op: Op { operator: '+' },
+                           right: 
+                            TypeExpression {
+                              exp: 
+                               Type {
+                                 literal: Primitive { prim: Id { name: 'y' } },
+                                 type: [Circular] } } } } ] } } } } ] } }
+```
 ## Example Programs
 
 ### Comments
