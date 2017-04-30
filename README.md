@@ -12,7 +12,7 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
 - Tuples
 - Destructuring
 
-### Macrosyntax -> [Link to SKRT Grammar](https://github.com/ronyaguilar09/SKRT/blob/master/skrt.ohm)
+### Macrosyntax -> [Link to Full SKRT Grammar](https://github.com/ronyaguilar09/SKRT/blob/master/skrt.ohm)
 ```
     Program     =  Body
     Body        =  Stmts*
@@ -58,7 +58,10 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
     Obj         = "{" (~(id ":" Exp "}" ) (id ":" Exp "," ))* (id ":" Exp "}" )
     Tuple       = "(" (~(Exp ")")(Exp","))* (Exp ")")
     List		= "[" (~(Exp ")")(Exp ","))* (Exp "]")
+```
 
+### Microsyntax -> [Link to Full SKRT Grammar](https://github.com/ronyaguilar09/SKRT/blob/master/skrt.ohm)
+```
     assert		= "int" | "float" | "string" | "char" | "bool"
     bool        = "true" | "false"
     int         = digit+
@@ -79,8 +82,9 @@ A functional, immutable, and statically-typed language. Feels like JavaScript, w
     wild        = "_"
     keyword     = ("for" | "match" | "def" | "type" | "from" | "to" | "with" | "if" | "else" | "or" | "and" | "true" | "false" | "print") ~idrest
     escape		= "\\\\" | "\\\"" | "\\'" | "\\n" | "\\t"
-    			| "\\u{"hexDigit+"}"								-- codepoint
+    			| "\\u{"hexDigit+"}"
 ```
+
 ## Example Programs
 
 ### Comments
