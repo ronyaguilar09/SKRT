@@ -33,6 +33,7 @@ const CharLit = require('./entities/charlit');
 const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
+const printstatement = require('./entities/printstatement');
 
 const indentPadding = 2;
 let indentLevel = 0;
@@ -170,6 +171,10 @@ Object.assign(StructDefinition.prototype, {
 
 Object.assign(StructId.prototype, {
   gen() { return jsName(this.id); },
+});
+
+Object.assign(printstatement.prototype, {
+  gen() { return `console.log(${this.exp.gen()});`; },
 });
 
 Object.assign(Match.prototype, {

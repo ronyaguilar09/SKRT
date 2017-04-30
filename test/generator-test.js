@@ -55,4 +55,12 @@ describe('SKRT Generator', () => {
     const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';
     assert.equal(console.string, expected);
   });
+  it('print("Hello + "World");', () => {
+    console.log('got here');
+    const program = parse('print("Hello" + "World");');
+    console.log(program);
+    program.gen();
+    const expected = 'console.log("Hello" + "World");';
+    assert.equal(console.string, expected);
+  });
 });
