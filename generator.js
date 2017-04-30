@@ -44,7 +44,7 @@ function genStatementList(statements) {
 }
 
 function emit(line) {
-  console.log(`${' '.repeat(indentPadding * indentLevel)}${line}`);
+  return this;
 }
 
 function makeOp(op) {
