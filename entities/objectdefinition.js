@@ -14,4 +14,10 @@ module.exports = class ObjectDefinition {
     this.id.analyze(context);
     this.obj.analyze(localcontext);
   }
+
+  optimize() {
+    this.id = this.id.optimize();
+    this.obj = this.obj.optimize();
+    return this;
+  }
 };

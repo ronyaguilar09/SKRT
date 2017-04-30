@@ -23,4 +23,12 @@ module.exports = class For {
     this.localContext.addVariable(this.id, this.exp1);
     this.body.analyze(this.localContext);
   }
+
+  optimize() {
+    this.id = this.id.optimize();
+    this.exp1 = this.exp1.optimize();
+    this.exp2 = this.exp2.optimize();
+    this.body = this.body.optimize();
+    return this;
+  }
 };

@@ -9,4 +9,8 @@ module.exports = class MatchPattern {
   analyze(context) {
     this.exp.analyze(context);
   }
+
+  optimize() {
+
+  }
 };

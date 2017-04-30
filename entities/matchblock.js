@@ -12,4 +12,8 @@ module.exports = class MatchBlock {
       this.stmt[i].analyze(context);
     }
   }
+
+  optimize() {
+
+  }
 };

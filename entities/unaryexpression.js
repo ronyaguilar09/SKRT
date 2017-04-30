@@ -10,4 +10,10 @@ module.exports = class UnaryExpression {
     this.op.analyze(context);
     this.operand.analyze(context);
   }
+
+  optimize() {
+    this.op = this.op.optimize();
+    this.operand = this.operand.optimize();
+    return this;
+  }
 };

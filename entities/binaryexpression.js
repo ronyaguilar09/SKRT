@@ -51,4 +51,10 @@ module.exports = class BinaryExpression {
       // this.value = this.left.value;
     }
   }
+
+  optimize() {
+    this.left = this.left.optimize();
+    this.right = this.right.optimize();
+    return this;
+  }
 };

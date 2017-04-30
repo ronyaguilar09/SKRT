@@ -18,4 +18,10 @@ module.exports = class AssertDefinition {
       throw new Error('Type Does Not Match Assertion');
     }
   }
+  optimize() {
+    this.type = this.type.optimize();
+    this.id = this.id.optimize();
+    this.exp = this.exp.optimize();
+    return this;
+  }
 };

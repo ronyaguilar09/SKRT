@@ -14,4 +14,8 @@ module.exports = class Primitive {
 
     // this.value = this.prim.value;
   }
+
+  optimize() {
+    return this;
+  }
 };

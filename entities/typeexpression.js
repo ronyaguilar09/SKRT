@@ -15,4 +15,8 @@ module.exports = class TypeExpression {
 
     // this.value = this.exp.value;
   }
+  optimize() {
+    this.exp = this.exp.optimize();
+    return this;
+  }
 };

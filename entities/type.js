@@ -25,6 +25,11 @@ module.exports = class Type {
     // this.value = this.type.value;
   }
 
+  optimize() {
+    this.type = this.type.optimize();
+    return this;
+  }
+
   mustBeInteger(message, location) {
     return this.mustBeCompatibleWith(Type.INT, message);
   }

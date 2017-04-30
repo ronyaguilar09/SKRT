@@ -18,4 +18,11 @@ module.exports = class VariableDefinition {
     this.id.analyze(context);
   }
 
+  optimize() {
+    this.id = this.id.optimize();
+    this.exp = this.exp.optimize();
+    this.type = this.type.optimize();
+    return this;
+  }
+
 };

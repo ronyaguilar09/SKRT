@@ -8,4 +8,9 @@ module.exports = class PrintStatement {
   analyze(context) {
     this.exp.analyze(context);
   }
+
+  optimize() {
+    this.exp = this.exp.optimize();
+    return this;
+  }
 };

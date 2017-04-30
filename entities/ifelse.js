@@ -19,4 +19,14 @@ module.exports = class IfElse {
     this.body2.forEach(b => b.analyze(context.createChildContextForBlock()));
     this.body3.analyze(context.createChildContextForBlock());
   }
+
+  optimize() {
+    this.cond1 = this.cond1.optimize();
+    this.body1.forEach(b1 => b1.optimize());
+    this.cond2 = this.cond2.optimize();
+    this.body2.forEach(b2 => b2.optimize());
+    this.body3.forEach(b3 => b3.optimize());
+    return this;
+  }
+
 };

@@ -24,4 +24,13 @@ module.exports = class FunctionDefinition {
       this.body.analyze(this.localContext);
     }
   }
-};
+
+  optimize() {
+    this.id = this.id.optimize();
+    this.params.forEach(p => p.optimize());
+    this.body.forEach(s => s.optimize());
+    this.body = this.body.filter(s => s !== null);
+  // Suggested: Look for returns in the middle of the body
+    return this;
+  }
+  };

@@ -24,4 +24,14 @@ module.exports = class ObjectLiteral {
       this.exp[i].analyze(context);
     }
   }
+
+  optimize() {
+    this.id.forEach(id => id.optimize());
+    this.exp.forEach(exp => exp.optimize());
+    this.lastId = this.lastId.optimize();
+    this.lastExp = this.lastExp.optimize();
+    return this;
+  }
+
+
 };

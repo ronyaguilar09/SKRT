@@ -22,4 +22,9 @@ module.exports = class FunCall {
       this.exp.localContext.setVariable(this.exp.params[i].name, value);
     }
   }
+  optimize() {
+    this.id = this.id.optimize();
+    this.args.forEach(a => a.optimize());
+    return this;
+  }
 };
