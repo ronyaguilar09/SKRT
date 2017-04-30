@@ -1,1 +1,1 @@
-def tup = ("Max", 15);
+def tupExample = (2, 5);

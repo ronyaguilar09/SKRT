@@ -1,1 +1,1 @@
-def x = 5 + 5;
+def tuple = (5,3,"hi");

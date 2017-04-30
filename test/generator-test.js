@@ -51,6 +51,22 @@ describe('SKRT Generator', () => {
     assert.equal(console.string, expected);
   });
 
+  it('print("Hello" + "World");', () => {
+    const program = parse('print("Hello" + "World");');
+    console.log(program);
+    program.gen();
+    const expected = 'console.log("Hello" + "World");';
+    assert.equal(console.string, expected);
+  });
+
+  it('def tuple = (3,5,"hello");', () => {
+    const program = parse('def tuple = (3,5,"hello");');
+    console.log(program);
+    program.gen();
+    const expected = 'let tuple_1 = ((3,5,"hello"));';
+    assert.equal(console.string, expected);
+  });
+
   it('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}', () => {
     const program = parse('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}');
     console.log(program);

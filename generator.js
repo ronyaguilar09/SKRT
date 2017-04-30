@@ -252,11 +252,11 @@ Object.assign(Op.prototype, {
 });
 
 Object.assign(List.prototype, {
-  gen() { return (`[${this.exp.gen()}, ${this.lastExp.gen()}]`); },
+  gen() { return (`[${this.exp.forEach(e => e.gen())}, ${this.lastExp.gen()}]`); },
 });
 
 Object.assign(Tuple.prototype, {
-  gen() { return (`(${this.exp.gen()}, ${this.lastExp.gen()})`); },
+  gen() { return (`(${this.exp.forEach(e => e.gen())}, ${this.lastExp.gen()})`); },
 });
 
 Object.assign(ObjectLiteral.prototype, {
