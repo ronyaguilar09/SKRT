@@ -125,6 +125,49 @@ Program {
                                  literal: Primitive { prim: Id { name: 'y' } },
                                  type: [Circular] } } } } ] } } } } ] } }
 ```
+
+Next is an example of a definition without type assertion, and with type assertion. The code int the sampleSKRTCode.txt contains:
+```
+def int: x = 5;
+def y = 1;
+```
+The output for the AST is below:
+```
+Program {
+  body: 
+   Body {
+     statements: 
+      [ Statement {
+          statement: 
+           Definition {
+             typeOfDef: 
+              AssertDefinition {
+                assert: 
+                 Type {
+                   literal: Primitive { prim: Assert { type: 'int' } },
+                   type: [Circular] },
+                id: Id { name: 'x' },
+                exp: 
+                 TypeExpression {
+                   exp: 
+                    Type {
+                      literal: Primitive { prim: Integer { value: '5' } },
+                      type: [Circular] } } } } },
+        Statement {
+          statement: 
+           Definition {
+             typeOfDef: 
+              VariableDefinition {
+                id: Id { name: 'y' },
+                exp: 
+                 TypeExpression {
+                   exp: 
+                    Type {
+                      literal: Primitive { prim: Integer { value: '1' } },
+                      type: [Circular] } },
+                type: Type { literal: 'any', type: [Circular] } } } } ] } }
+```
+
 ## Example Programs
 
 ### Comments
