@@ -88,13 +88,18 @@ The language is descired in more detail at the [language home page](https://rony
 ```
 # The SKRT Compiler
 ## Abstract Syntax Tree Examples
-Below is an abstract syntax tree when we run "node skrt.js sampleSKRTCode.txt -a" in the terminal, when sampleSKRTCode.txt contains this siimple function of:
+The SKRT Compiler reads a SKRT prohram from a .skrt file and allows for 3 output options. The first option is "-a" which displays the abstarct syntax tree for the .skrt file and then stops. The second option is "-i" which generates and shows the decorated abstract syntax tree and then stops. Finally, the third option is "-o" which turns on the optimizations we have implemeneted.
+Below is an example program named sampleSKRTCode.txt: 
 ```
 def add x y => {
     x + y
 }
 ```
-Here is the output of AST:
+In the terminal, calling:
+```
+$ node skrt.js sampleSKRTCode.txt -a
+```
+produces the AST:
 ```
 Program {
   body: 
@@ -127,6 +132,19 @@ Program {
                                  literal: Primitive { prim: Id { name: 'y' } },
                                  type: [Circular] } } } } ] } } } } ] } }
 ```
+Next, calling:
+```
+$ node skrt.js sampleSKRTCode.txt -i
+```
+performs the semantic analysis and writes out the decorated abstarct synatx tree:
+
+```
+Input -i output here
+```
+
+
+
+
 
 Next is an example of a definition without type assertion, and with type assertion. The code int the sampleSKRTCode.txt contains:
 ```
