@@ -6,6 +6,10 @@ module.exports = class BooleanLiteral {
     this.value = value;
   }
 
+  toString() {
+    return `Bool: ${this.value}`;
+  }
+
   analyze(context) {
     this.type = Type.BOOL;
   }

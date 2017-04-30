@@ -7,6 +7,9 @@ module.exports = class ObjectLiteral {
     this.lastId = lastId;
     this.lastExp = lastExp;
   }
+  toString() {
+    return `Object: { ${this.lastId}} : ${this.lastExp}, ${this.id} : ${this.exp} }`;
+  }
 
   analyze(context) {
     this.type = Type.OBJECT;

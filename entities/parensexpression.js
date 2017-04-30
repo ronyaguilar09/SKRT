@@ -7,6 +7,10 @@ module.exports = class ParensExpression extends Expression {
     this.p2 = p2;
   }
 
+  toString() {
+    return `( ${this.exp} )`;
+  }
+
   analyze(context) {
     this.exp.analyze(context);
   }

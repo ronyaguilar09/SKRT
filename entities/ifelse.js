@@ -6,6 +6,11 @@ module.exports = class IfElse {
     this.body2 = body2;
     this.body3 = body3;
   }
+  toString() {
+    return `If: ${this.cond1} Body: ${this.body1
+    } IfElse: ${this.cond2.join(' ')} Body2: ${this.body2.join(' ')
+              } Else: ${this.body3} )`;
+  }
 
   analyze(context) {
     this.cond1.analyze(context);

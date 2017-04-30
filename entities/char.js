@@ -6,6 +6,10 @@ module.exports = class Char {
     this.value = value;
   }
 
+  toString() {
+    return `${this.value}`;
+  }
+
   analyze(context) {
 
   }

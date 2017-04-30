@@ -4,6 +4,9 @@ module.exports = class AssertDefinition {
     this.id = id;
     this.exp = exp;
   }
+  toString() {
+    return `(Var: ${this.id} ofType: ${this.assert} = ${this.exp} )`;
+  }
 
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id);

@@ -6,6 +6,9 @@ module.exports = class VariableDefinition {
     this.exp = exp;
     this.type = Type.ANY;
   }
+  toString() {
+    return `(Var: ${this.id} = ${this.exp} )`;
+  }
 
   analyze(context) {
     context.variableMustNotBeAlreadyDeclared(this.id.name);

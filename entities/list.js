@@ -5,7 +5,9 @@ module.exports = class List {
     this.exp = exp;
     this.lastExp = lastExp;
   }
-
+  toString() {
+    return `List: [${this.exp}, ${this.lastExp}]`;
+  }
   analyze(context) {
     this.lastExp.analyze(context);
     for (let i = 0; i < this.exp.length; i += 1) {
