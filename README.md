@@ -139,13 +139,73 @@ $ node skrt.js sampleSKRTCode.txt -i
 performs the semantic analysis and writes out the decorated abstarct synatx tree:
 
 ```
-Input -i output here
+Program {
+  body: 
+   Body {
+     statements: 
+      [ Statement {
+          statement: 
+           Definition {
+             typeOfDef: 
+              FunctionDefinition {
+                id: Id { name: 'add', type: Type { literal: 'id', type: [Circular] } },
+                params: 
+                 [ Id { name: 'x', type: Type { literal: 'id', type: [Circular] } },
+                   Id { name: 'y', type: Type { literal: 'id', type: [Circular] } } ],
+                body: 
+                 Body {
+                   statements: 
+                    [ Statement {
+                        statement: 
+                         BinaryExpression {
+                           left: 
+                            TypeExpression {
+                              exp: 
+                               Type {
+                                 literal: 
+                                  Primitive {
+                                    prim: Id { name: 'x', type: Type { literal: 'id', type: [Circular] } },
+                                    type: Type { literal: 'id', type: [Circular] },
+                                    name: 'x' },
+                                 type: Type { literal: 'id', type: [Circular] },
+                                 name: 'x' },
+                              type: Type { literal: 'id', type: [Circular] },
+                              name: 'x' },
+                           op: Op { operator: '+' },
+                           right: 
+                            TypeExpression {
+                              exp: 
+                               Type {
+                                 literal: Primitive { prim: Id { name: 'y' } },
+                                 type: [Circular] } },
+                           type: Type { literal: 'any', type: [Circular] } } } ] },
+                localContext: 
+                 AnalysisContext {
+                   parent: 
+                    AnalysisContext {
+                      parent: null,
+                      variables: { add: [Circular] },
+                      currentFunction: null,
+                      inLoop: false },
+                   variables: 
+                    { x: Type { literal: 'any', type: [Circular] },
+                      y: Type { literal: 'any', type: [Circular] } },
+                   currentFunction: null,
+                   inLoop: false } } } } ] } }
+```
+Finally, here is the JavaScript equivalent of the program:
+
+```
+function add_1(x_2, y_3) { 
+    x_2 + y_3 
+}
 ```
 
+When using the "-o" optimization flag, the JavaScript equivalent would be:
 
-
-
-
+```
+ADD STUFF HERE AFTER OPTIMIZE IS DONE
+```
 Next is an example of a definition without type assertion, and with type assertion. The code int the sampleSKRTCode.txt contains:
 ```
 def int: x = 5;
