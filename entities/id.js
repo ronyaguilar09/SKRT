@@ -1,8 +1,8 @@
 const Type = require('./type');
 
 module.exports = class Id {
-  constructor(name, rest) {
-    this.name = name + rest;
+  constructor(name) {
+    this.name = name;
   }
 
   toString() {

@@ -81,7 +81,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   int(val) { return new Integer(val.sourceString); },
   stringlit(p, val, p2) { return new StringLiteral(val.sourceString); },
   float(val, dot, val2) { return new Float(val.sourceString); },
-  id(first, rest) { return new Id(first.sourceString, rest.sourceString); },
+  id(first, rest) { return new Id(first.sourceString + rest.sourceString); },
   charlit(p1, val, p2) { return new CharLit(val.sourceString); },
   char(val) { return new Char(val.sourceString); },
   relop(op) { return new Op(op.sourceString); },
