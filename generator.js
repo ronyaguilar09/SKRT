@@ -114,7 +114,7 @@ Object.assign(Id.prototype, {
 Object.assign(BinaryExpression.prototype, {
   gen() {
     const left = `${this.left.gen()}`;
-    const op = makeOp(this.op);
+    const op = `${makeOp(this.op)}`;
     const right = `${this.right.gen()}`;
     const exp = left + op + right;
 

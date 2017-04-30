@@ -5,9 +5,7 @@ module.exports = class Tuple {
     this.exp = exp;
     this.lastExp = lastExp;
   }
-  toString() {
-    return `Tuple: (${this.exp}, ${this.lastExp})`;
-  }
+
   analyze(context) {
     this.exp.analyze(context);
     for (let i = 0; i < this.lastExp.length; i += 1) {

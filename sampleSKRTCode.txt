@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 def x = 5 + 5;
-=======
-print("Hello" + "World");
->>>>>>> da3510b3f82f7a697e00da4c0c28e968effa89b0
