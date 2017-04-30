@@ -18,7 +18,6 @@ SKRT {
     Match       = "match" "(" Exp ")" "with" MatchBlock
     FunCall     = id Arg* ";"
     Arg         = (id | Exp)
-    //Args        = ListOf<Arg, ",">
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp| wild
     StructId	= id | Tuple
