@@ -22,13 +22,20 @@ SKRT {
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp| wild
     StructId	= id | Tuple
-    Exp         = Exp2(logop Exp)*              -- binary
-    Exp2        = Exp3(relop Exp2)*             -- binary
-    Exp3        = Exp4(addop Exp3)*             -- binary
-    Exp4        = Exp5(mulop Exp4)*             -- binary
-    Exp5        = Exp6(preop Exp6)?             -- binary
-    Exp6        = Exp7(exop Exp7)*              -- binary
-    Exp7        = Exp8(dotop Exp8)?             -- binary
+    Exp         = Exp2 logop Exp             -- binary
+                | Exp2
+    Exp2        = Exp3 relop Exp2             -- binary
+                | Exp3
+    Exp3        = Exp4 addop Exp3             -- binary
+                | Exp4
+    Exp4        = Exp5 mulop Exp4             -- binary
+                | Exp5
+    Exp5        = Exp6 preop Exp6             -- binary
+                | Exp6
+    Exp6        = Exp7 exop Exp7              -- binary
+                | Exp7
+    Exp7        = Exp8 dotop Exp8             -- binary
+                | Exp8
     Exp8        = FunCall | Type | Match | Exp9
     Exp9 	    = "(" Exp ")"                   -- parens
     Type		= Prim | Tuple | List
