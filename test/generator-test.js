@@ -28,7 +28,7 @@ describe('SKRT Generator', () => {
     const program = parse('def add z y => { z + y }');
     console.log(program);
     program.gen();
-    const expected = 'function add_1(z_2, y_3) {z_2 + y_3}';
+    const expected = 'function add_1(z_2, y_3) { z_2 + y_3 }';
     assert.equal(console.string, expected);
   });
 

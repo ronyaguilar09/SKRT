@@ -112,12 +112,16 @@ Object.assign(Id.prototype, {
 
 Object.assign(BinaryExpression.prototype, {
   gen() {
-    let exp = `${this.left.gen()}`;
+    const left = `${this.left.gen()}`;
+    const op = makeOp(this.op);
+    const right = `${this.right.gen()}`;
+    const exp = left + op + right;
 
-
-    for (let i = 0; i < this.right.length; i += 1) {
-      exp += ` ${makeOp(this.op[i].gen())} ${this.right[i].gen()}`;
-    }
+    // for (let i = 0; i < this.right.length; i += 1) {
+    //   const javaOp = makeOp(this.op[i].gen());
+    //   const rightGen = this.right[i].gen();
+    //   exp += `${javaOp}${rightGen}`;
+    // }
     return exp;
   },
 });
