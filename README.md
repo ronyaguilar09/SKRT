@@ -1,12 +1,11 @@
 ![alt text](SKRTLOGOREADME.png "Logo Title")
-## Introduction
+## SKRT Introduction
 A functional, immutable, and statically-typed language. Feels like JavaScript, works like OCaml. SKRT possesses powerful features such as Pattern Matching, Type Inference, First-Class Functions. SKRT out programs real quick, and whip onto the next project with skid marks.
 
-# The Language
+### The Language
 The language is descired in more detail at the [language home page](https://ronyaguilar09.github.io/SKRT/)
 
 ## List of Features
-
 - Type Assertions and Inference
 - Loosely Object-Oriented
 - First-Class Functions
