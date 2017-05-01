@@ -113,16 +113,20 @@ Object.assign(Id.prototype, {
 
 Object.assign(BinaryExpression.prototype, {
   gen() {
+    // let exp = `${this.left.gen()}`;
+    // console.log(this);
     const left = `${this.left.gen()}`;
     const op = `${makeOp(this.op)}`;
     const right = `${this.right.gen()}`;
     const exp = left + op + right;
 
-    // for (let i = 0; i < this.right.length; i += 1) {
-    //   const javaOp = makeOp(this.op[i].gen());
-    //   const rightGen = this.right[i].gen();
-    //   exp += `${javaOp}${rightGen}`;
-    // }
+    /*
+    for (let i = 0; i < this.right.length; i += 1) {
+      const javaOp = this.op[i].gen();
+      console.log(javaOp);
+      const rightGen = this.right[i].gen();
+      exp += `${javaOp}${rightGen}`;
+  }*/
     return exp;
   },
 });
@@ -252,11 +256,25 @@ Object.assign(Op.prototype, {
 });
 
 Object.assign(List.prototype, {
-  gen() { return (`[${this.exp.forEach(e => e.gen())}, ${this.lastExp.gen()}]`); },
+  gen() {
+    let list = '[';
+    for (let i = 0; i < this.exp.length; i += 1) {
+      list += `${this.exp[i].gen()},`;
+    }
+    list += `${this.lastExp.gen()}]`;
+    return list;
+  },
 });
 
 Object.assign(Tuple.prototype, {
-  gen() { return (`(${this.exp.forEach(e => e.gen())}, ${this.lastExp.gen()})`); },
+  gen() {
+    let tuple = '(';
+    for (let i = 0; i < this.exp.length; i += 1) {
+      tuple += `${this.exp[i].gen()},`;
+    }
+    tuple += `${this.lastExp.gen()})`;
+    return tuple;
+  },
 });
 
 Object.assign(ObjectLiteral.prototype, {
