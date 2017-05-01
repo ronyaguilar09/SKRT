@@ -6,7 +6,7 @@ const parse = require('../parser');
 describe('The semantic analyzer', () => {
   fs.readdirSync(__dirname).forEach((name) => {
     if (name.endsWith('.error')) {
-      it('detects an error', (done) => {
+      it(`should detects an error with ${name}`, (done) => {
         const program = parse(fs.readFileSync(`${__dirname}/${name}`, 'utf-8'));
         const errorPattern = RegExp(name.replace('.error', '').replace(/-/g, ' '), 'i');
         assert.throws(() => program.analyze(), errorPattern);

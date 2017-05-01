@@ -1,1 +1,9 @@
-def tuple = (5,3,"hi");
+def mirror x => {
+    if (x == 0) {
+        x
+    } else if ( x == 1 ) {
+        x + x
+    } else {
+        "0"
+    }
+}

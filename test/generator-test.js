@@ -75,11 +75,11 @@ describe('SKRT Generator', () => {
     assert.equal(console.string, expected);
   });
 
-  it('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}', () => {
-    const program = parse('def mirror x => { if (x = 0) { x } else if ( x = 1 ) { x + x } else { "0" }}');
+  it('def mirror x => { if (x == 0) { x } else if ( x == 1 ) { x + x } else { "0" }}', () => {
+    const program = parse('def mirror x => { if (x == 0) { x } else if ( x == 1 ) { x + x } else { "0" }}');
     console.log(program);
     program.gen();
-    const expected = 'function mod_8(x_4, y_3) { x_4 % y_3 }';
+    const expected = 'function mirror_11(x_4) { if (x_4 == 0) { x_4 } else if (x_4 == 1) {x_4 + x_4 } else { "0" } }';
     assert.equal(console.string, expected);
   });
 });

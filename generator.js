@@ -207,9 +207,19 @@ Object.assign(ObjectDefinition.prototype, {
 
 Object.assign(IfElse.prototype, {
   gen() {
+    let ifelse = `if (${this.cond1.gen()}) { ${this.body1.gen()} } `;
+    for (let i = 0; i < this.cond2.length; i += 1) {
+      ifelse += `else if (${this.cond2[i].gen()}) {${this.body2[i].gen()} } `;
+    }
+    if (this.body3) {
+      ifelse += `else { ${this.body3[0].gen()} }`;
+    }
+
+    return ifelse;
+    /*
     return (`if (${this.cond1.gen()}) { ${this.body1.gen()}
         } else if (${this.cond2.gen()}) {${this.body2.gen()}
-        } else { ${this.body3.gen()} }`);
+    } else { ${this.body3.gen()} }`);*/
   },
 });
 

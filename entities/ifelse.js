@@ -10,9 +10,9 @@ module.exports = class IfElse {
   analyze(context) {
     this.cond1.analyze(context);
     this.body1.analyze(context.createChildContextForBlock());
-    this.cond2.forEach(c => c.analyze(context.createChildContextForBlock()));
+    this.cond2.forEach(c => c.analyze(context));
     this.body2.forEach(b => b.analyze(context.createChildContextForBlock()));
-    this.body3.analyze(context.createChildContextForBlock());
+    this.body3.forEach(b => b.analyze(context.createChildContextForBlock()));
   }
 
   optimize() {
