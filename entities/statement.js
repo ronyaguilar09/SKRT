@@ -9,7 +9,7 @@ module.exports = class Statement {
   }
 
   optimize() {
-    this.stmt = this.stmt.optimize();
+    this.statement = this.statement.optimize();
     return this;
   }
 };

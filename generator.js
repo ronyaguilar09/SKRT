@@ -211,7 +211,8 @@ Object.assign(IfElse.prototype, {
     for (let i = 0; i < this.cond2.length; i += 1) {
       ifelse += `else if (${this.cond2[i].gen()}) {${this.body2[i].gen()} } `;
     }
-    if (this.body3) {
+    console.log(this.body3);
+    if (this.body3.length === 1) {
       ifelse += `else { ${this.body3[0].gen()} }`;
     }
 

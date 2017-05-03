@@ -5,7 +5,7 @@ const cache = {};
 module.exports = class Type {
   constructor(type) {
     this.literal = type;
-    this.type = this;
+    // this.type = this;
     cache[this.literal] = this;
   }
 
@@ -22,7 +22,6 @@ module.exports = class Type {
   }
 
   optimize() {
-    this.type = this.type.optimize();
     return this;
   }
 

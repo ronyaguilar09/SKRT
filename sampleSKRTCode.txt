@@ -1,9 +1,12 @@
-def mirror x => {
-    if (x == 0) {
-        x
-    } else if ( x == 1 ) {
-        x + x
-    } else {
-        "0"
-    }
+def x = 1;
+if(  3 < 2) {
+    "true"
+} else if (x == 2){
+     1 + 2
+} else if (x > 2){
+     1 + 2
+} else if (x < 2){
+     1 + 2
+} else {
+ "false"
 }

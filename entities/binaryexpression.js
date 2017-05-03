@@ -18,7 +18,7 @@ module.exports = class BinaryExpression {
     if (this.right) {
       this.right.analyze(context);
       if (this.right.name) {
-        this.right.type = context.lookupVariable(this.left.name).type;
+        this.right.type = context.lookupVariable(this.right.name).type;
       }
 
       if (['*', '/', '+', '-'].includes(this.op.operator)) {

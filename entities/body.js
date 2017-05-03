@@ -9,7 +9,7 @@ module.exports = class Body {
   }
 
   optimize() {
-    this.stmts.forEach(s => s.optimize());
+    this.statements.forEach(s => s.optimize());
     return this;
   }
 
