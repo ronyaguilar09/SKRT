@@ -1,1 +1,8 @@
-"def y = 1;"
+def x = 1;
+if(  3 < 2) {
+    "true"
+} else if (x == 1){
+    1 + 2
+} else {
+    "false"
+}

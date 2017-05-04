@@ -89,7 +89,7 @@ The language is descired in more detail at the [language home page](https://rony
 # The SKRT Compiler
 ## Abstract Syntax Tree Examples
 The SKRT Compiler reads a SKRT prohram from a .skrt file and allows for 3 output options. The first option is "-a" which displays the abstarct syntax tree for the .skrt file and then stops. The second option is "-i" which generates and shows the decorated abstract syntax tree and then stops. Finally, the third option is "-o" which turns on the optimizations we have implemeneted.
-Below is an example program named sampleSKRTCode.txt: 
+Below is an example program named sampleSKRTCode.txt:
 ```
 def add x y => {
     x + y
@@ -102,32 +102,32 @@ $ node skrt.js sampleSKRTCode.txt -a
 produces the AST:
 ```
 Program {
-  body: 
+  body:
    Body {
-     statements: 
+     statements:
       [ Statement {
-          statement: 
+          statement:
            Definition {
-             typeOfDef: 
+             typeOfDef:
               FunctionDefinition {
                 id: Id { name: 'add' },
                 params: [ Id { name: 'x' }, Id { name: 'y' } ],
-                body: 
+                body:
                  Body {
-                   statements: 
+                   statements:
                     [ Statement {
-                        statement: 
+                        statement:
                          BinaryExpression {
-                           left: 
+                           left:
                             TypeExpression {
-                              exp: 
+                              exp:
                                Type {
                                  literal: Primitive { prim: Id { name: 'x' } },
                                  type: [Circular] } },
                            op: Op { operator: '+' },
-                           right: 
+                           right:
                             TypeExpression {
-                              exp: 
+                              exp:
                                Type {
                                  literal: Primitive { prim: Id { name: 'y' } },
                                  type: [Circular] } } } } ] } } } } ] } }
@@ -140,29 +140,29 @@ performs the semantic analysis and writes out the decorated abstarct synatx tree
 
 ```
 Program {
-  body: 
+  body:
    Body {
-     statements: 
+     statements:
       [ Statement {
-          statement: 
+          statement:
            Definition {
-             typeOfDef: 
+             typeOfDef:
               FunctionDefinition {
                 id: Id { name: 'add', type: Type { literal: 'id', type: [Circular] } },
-                params: 
+                params:
                  [ Id { name: 'x', type: Type { literal: 'id', type: [Circular] } },
                    Id { name: 'y', type: Type { literal: 'id', type: [Circular] } } ],
-                body: 
+                body:
                  Body {
-                   statements: 
+                   statements:
                     [ Statement {
-                        statement: 
+                        statement:
                          BinaryExpression {
-                           left: 
+                           left:
                             TypeExpression {
-                              exp: 
+                              exp:
                                Type {
-                                 literal: 
+                                 literal:
                                   Primitive {
                                     prim: Id { name: 'x', type: Type { literal: 'id', type: [Circular] } },
                                     type: Type { literal: 'id', type: [Circular] },
@@ -172,22 +172,22 @@ Program {
                               type: Type { literal: 'id', type: [Circular] },
                               name: 'x' },
                            op: Op { operator: '+' },
-                           right: 
+                           right:
                             TypeExpression {
-                              exp: 
+                              exp:
                                Type {
                                  literal: Primitive { prim: Id { name: 'y' } },
                                  type: [Circular] } },
                            type: Type { literal: 'any', type: [Circular] } } } ] },
-                localContext: 
+                localContext:
                  AnalysisContext {
-                   parent: 
+                   parent:
                     AnalysisContext {
                       parent: null,
                       variables: { add: [Circular] },
                       currentFunction: null,
                       inLoop: false },
-                   variables: 
+                   variables:
                     { x: Type { literal: 'any', type: [Circular] },
                       y: Type { literal: 'any', type: [Circular] } },
                    currentFunction: null,
@@ -196,54 +196,33 @@ Program {
 Finally, here is the JavaScript equivalent of the program:
 
 ```
-function add_1(x_2, y_3) { 
-    x_2 + y_3 
+function add_1(x_2, y_3) {
+    x_2 + y_3
 }
 ```
 
-When using the "-o" optimization flag, the JavaScript equivalent would be:
+The example above does not optimize, however, here is another example:
 
 ```
-ADD STUFF HERE AFTER OPTIMIZE IS DONE
+def x = 1;
+if(  3 < 2) {
+    "true"
+} else if (x == 1){
+    1 + 2
+} else {
+    "false"
+}
 ```
-Next is an example of a definition without type assertion, and with type assertion. The code int the sampleSKRTCode.txt contains:
+When using the "-o" optimization flag when calling
 ```
-def int: x = 5;
-def y = 1;
+$ node skrt.js sampleSKRTCode.txt -o
 ```
-The output for the AST is below:
+the JavaScript equivalent would be:
 ```
-Program {
-  body: 
-   Body {
-     statements: 
-      [ Statement {
-          statement: 
-           Definition {
-             typeOfDef: 
-              AssertDefinition {
-                assert: 
-                 Type {
-                   literal: Primitive { prim: Assert { type: 'int' } },
-                   type: [Circular] },
-                id: Id { name: 'x' },
-                exp: 
-                 TypeExpression {
-                   exp: 
-                    Type {
-                      literal: Primitive { prim: Integer { value: '5' } },
-                      type: [Circular] } } } } },
-        Statement {
-          statement: 
-           Definition {
-             typeOfDef: 
-              VariableDefinition {
-                id: Id { name: 'y' },
-                exp: 
-                 TypeExpression {
-                   exp: 
-                    Type {
-                      literal: Primitive { prim: Integer { value: '1' } },
-                      type: [Circular] } },
-                type: Type { literal: 'any', type: [Circular] } } } } ] } }
+let x_1 = (1);
+if (3 < 2) {
+    "true"
+} else if (x_1 == 1) {
+    1 + 2 
+}
 ```
