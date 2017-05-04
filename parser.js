@@ -40,6 +40,7 @@ const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
 const PrintStatement = require('./entities/printstatement');
+const AssignDef = require('./entities/assigndef');
 
 /* eslint-disable no-unused-vars */
 const semantics = skrtGrammar.createSemantics().addOperation('tree', {
@@ -52,7 +53,7 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
   FunDef(_, funName, params, _a, _b, body, _c) { return new FunctionDefinition(funName.tree(), params.tree(), body.tree()); },
   FunCall(id, args, s) { return new FunCall(id.tree(), args.tree()); },
   Arg(arg) { return new Arg(arg.tree()); },
-  // Args(arg) { return new Args(arg.tree()); },
+  AssignDef(id, e, exp, s) { return new AssignDef(id.tree(), exp.tree()); },
   CamlDef(_, type, _a, id, _b, exp, _c) { return new AssertDefinition(type.tree(), id.tree(), exp.tree()); },
   ObjDef(_, id, _a, obj, semi) { return new ObjectDefinition(id.tree(), obj.tree()); },
   Exp_binary(left, op, right) { return new BinaryExpression(left.tree(), op.tree(), right.tree()); },
@@ -98,12 +99,6 @@ const semantics = skrtGrammar.createSemantics().addOperation('tree', {
 const startContents = fs.readFileSync('sampleSKRTCode.txt');
 
 const match = skrtGrammar.match(startContents);
-
-/*
-if (match.succeeded()) {
-  console.log(`AST of ${startContents} `, semantics(match).tree().toString());
-}
-*/
 
 const program = semantics(match).tree();
 

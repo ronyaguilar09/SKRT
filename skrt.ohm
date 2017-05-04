@@ -6,9 +6,11 @@ SKRT {
                 |  For
                 |  Exp
                 |  Print
-    Def         = VarDef | FunDef | CamlDef | ObjDef | StructDef
+    Def         = VarDef | FunDef | CamlDef | ObjDef | StructDef | AssignDef
+
+    VarDef      = "def" id "=" (id|Exp) ";"
     StructDef	= "def" StructId "=" (Tuple|id) ";"
-    VarDef      = "def" id "=" Exp ";"
+    AssignDef   = id "=" (id | Exp) ";"
     FunDef      = "def" id id* "=>" "{" Body "}"
     CamlDef     = "def" Type ":" id "=" Exp";"
     ObjDef      = "type" id "=" Obj ";"
@@ -20,7 +22,7 @@ SKRT {
     Arg         = (id | Exp)
     MatchBlock  = ("|" MatchPat "=>" Stmts)+
     MatchPat    = Exp| wild
-    StructId	= id | Tuple
+    StructId	= Tuple | id
     Exp         = Exp2 logop Exp             -- binary
                 | Exp2
     Exp2        = Exp3 relop Exp2             -- binary

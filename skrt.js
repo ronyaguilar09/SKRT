@@ -29,6 +29,7 @@ fs.readFile(argv._[0], 'utf-8', (err, text) => {
     program = program.optimize();
   }
 
+
   if (argv.i) {
     console.log(util.inspect(program, { depth: null }));
   }

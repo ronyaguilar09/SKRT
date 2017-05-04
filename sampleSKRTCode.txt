@@ -1,12 +1,4 @@
-def x = 1;
-if(  3 < 2) {
-    "true"
-} else if (x == 2){
-     1 + 2
-} else if (x > 2){
-     1 + 2
-} else if (x < 2){
-     1 + 2
-} else {
- "false"
-}
+def string:x = "hello";
+def y = 2;
+x = "hi";
+y = "whatever cause its not asserted";

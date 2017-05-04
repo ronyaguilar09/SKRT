@@ -10,6 +10,7 @@ module.exports = class Statement {
 
   optimize() {
     this.statement = this.statement.optimize();
+    this.null = this.statement.null;
     return this;
   }
 };

@@ -34,6 +34,7 @@ const Char = require('./entities/char');
 const Op = require('./entities/op');
 const Assert = require('./entities/assert');
 const printstatement = require('./entities/printstatement');
+const AssignDef = require('./entities/assigndef');
 
 const indentPadding = 2;
 let indentLevel = 0;
@@ -81,6 +82,12 @@ function generateLibraryFunctions() {
   // This is sloppy. There should be a better way to do this.
   generateLibraryStub('print', 's', 'console.log(s);');
 }
+
+Object.assign(AssignDef.prototype, {
+  gen() {
+    return `${this.id.gen()} = ${this.exp.gen()};`;
+  },
+});
 
 Object.assign(Program.prototype, {
   gen() {
@@ -259,7 +266,7 @@ Object.assign(StringLiteral.prototype, {
 });
 
 Object.assign(AssertDefinition.prototype, {
-  gen() { return (`let ${this.id} = ${this.value};`); },
+  gen() { return (`let ${this.id.gen()} = ${this.exp.gen()};`); },
 });
 
 Object.assign(Op.prototype, {

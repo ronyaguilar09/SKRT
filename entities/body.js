@@ -9,7 +9,14 @@ module.exports = class Body {
   }
 
   optimize() {
-    this.statements.forEach(s => s.optimize());
+    const temp = [];
+    this.statements.forEach((s, i) => {
+      s.optimize();
+      if (!s.null) {
+        temp.push(s);
+      }
+    });
+    this.statements = temp;
     return this;
   }
 

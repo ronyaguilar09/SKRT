@@ -10,6 +10,7 @@ module.exports = class Definition {
 
   optimize() {
     this.typeOfDef = this.typeOfDef.optimize();
+    this.null = this.typeOfDef.null;
     return this;
   }
 };
