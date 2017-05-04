@@ -3,7 +3,7 @@
 A functional, immutable, and statically-typed language. Feels like JavaScript, works like OCaml. SKRT possesses powerful features such as Pattern Matching, Type Inference, First-Class Functions. SKRT out programs real quick, and whip onto the next project with skid marks.
 
 ### The Language
-The language is descired in more detail at the [language home page](https://ronyaguilar09.github.io/SKRT/)
+The language is descried in more detail at the [language home page](https://ronyaguilar09.github.io/SKRT/)
 
 ## List of Features
 - Type Assertions and Inference
@@ -88,7 +88,7 @@ The language is descired in more detail at the [language home page](https://rony
 ```
 # The SKRT Compiler
 ## Abstract Syntax Tree Examples
-The SKRT Compiler reads a SKRT prohram from a .skrt file and allows for 3 output options. The first option is "-a" which displays the abstarct syntax tree for the .skrt file and then stops. The second option is "-i" which generates and shows the decorated abstract syntax tree and then stops. Finally, the third option is "-o" which turns on the optimizations we have implemeneted.
+The SKRT Compiler reads a SKRT program from a .skrt file and allows for 3 output options. The first option is "-a" which displays the abstract syntax tree for the .skrt file and then stops. The second option is "-i" which generates and shows the decorated abstract syntax tree and then stops. Finally, the third option is "-o" which turns on the optimizations we have implemented.
 Below is an example program named sampleSKRTCode.txt:
 ```
 def add x y => {
@@ -136,7 +136,7 @@ Next, calling:
 ```
 $ node skrt.js sampleSKRTCode.txt -i
 ```
-performs the semantic analysis and writes out the decorated abstarct synatx tree:
+performs the semantic analysis and writes out the decorated abstract syntax tree:
 
 ```
 Program {
@@ -223,6 +223,6 @@ let x_1 = (1);
 if (3 < 2) {
     "true"
 } else if (x_1 == 1) {
-    1 + 2 
+    1 + 2
 }
 ```
